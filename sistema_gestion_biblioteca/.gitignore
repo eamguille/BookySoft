@@ -1,0 +1,4 @@
+# Omitimos carpetas obj/ y bin/
+
+bin/
+obj/
