@@ -1,0 +1,4 @@
+# archivo para omitir carpetas bin y obj
+
+obj/
+bin/
