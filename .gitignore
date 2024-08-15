@@ -1,4 +1,5 @@
 # Archivo para omitir carpetas de ejecucion locales en github
 
 .vs/
-./sistema_gestion_biblioteca/obj/
+/sistema_gestion_biblioteca/obj/
+/sistema_gestion_biblioteca/bin/
