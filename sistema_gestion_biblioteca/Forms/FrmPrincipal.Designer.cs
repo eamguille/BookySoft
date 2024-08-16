@@ -35,8 +35,8 @@
             btnMinimizar = new PictureBox();
             btnCerrar = new PictureBox();
             PnMenuVertical = new Panel();
-            PnContenedor = new Panel();
             pictureBox1 = new PictureBox();
+            PnContenedor = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnRestaurar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMaximizar).BeginInit();
@@ -118,6 +118,16 @@
             PnMenuVertical.Size = new Size(220, 615);
             PnMenuVertical.TabIndex = 1;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(4, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(211, 172);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
             // PnContenedor
             // 
             PnContenedor.BackColor = Color.FromArgb(49, 66, 82);
@@ -126,16 +136,6 @@
             PnContenedor.Name = "PnContenedor";
             PnContenedor.Size = new Size(1080, 615);
             PnContenedor.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(4, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(211, 147);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // FrmPrincipal
             // 
