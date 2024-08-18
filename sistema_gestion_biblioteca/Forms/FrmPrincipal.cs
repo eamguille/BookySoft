@@ -40,5 +40,10 @@ namespace sistema_gestion_biblioteca.Forms
             btnRestaurar.Visible = false;
             btnMaximizar.Visible = true;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
