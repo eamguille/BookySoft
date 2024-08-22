@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGestionUsuarios));
             textBox1 = new TextBox();
             label1 = new Label();
             groupBox1 = new GroupBox();
+            button3 = new Button();
+            button1 = new Button();
             button2 = new Button();
             btnLimpiar = new Button();
             textBox6 = new TextBox();
@@ -47,8 +49,6 @@
             label7 = new Label();
             label2 = new Label();
             label3 = new Label();
-            button1 = new Button();
-            button3 = new Button();
             dgIngresoLibros = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
@@ -77,11 +77,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Silver;
-            label1.Location = new Point(379, 21);
+            label1.Location = new Point(461, 25);
             label1.Name = "label1";
-            label1.Size = new Size(320, 32);
+            label1.Size = new Size(159, 32);
             label1.TabIndex = 11;
-            label1.Text = "CONSULTA DE LIBROS";
+            label1.Text = "USUARIOS";
             // 
             // groupBox1
             // 
@@ -108,6 +108,38 @@
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             groupBox1.Text = "GESTION DE USUARIOS";
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.WhiteSmoke;
+            button3.BackgroundImageLayout = ImageLayout.None;
+            button3.Cursor = Cursors.Hand;
+            button3.FlatAppearance.MouseDownBackColor = Color.Gray;
+            button3.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.FromArgb(49, 66, 82);
+            button3.Location = new Point(416, 137);
+            button3.Name = "button3";
+            button3.Size = new Size(155, 44);
+            button3.TabIndex = 23;
+            button3.Text = "Agregar usuario";
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.WhiteSmoke;
+            button1.BackgroundImageLayout = ImageLayout.None;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.MouseDownBackColor = Color.Gray;
+            button1.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.FromArgb(49, 66, 82);
+            button1.Location = new Point(790, 137);
+            button1.Name = "button1";
+            button1.Size = new Size(155, 44);
+            button1.TabIndex = 22;
+            button1.Text = "Eliminar usuario";
+            button1.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -222,77 +254,45 @@
             label3.TabIndex = 2;
             label3.Text = "Apellidos: ";
             // 
-            // button1
-            // 
-            button1.BackColor = Color.WhiteSmoke;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button1.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.FromArgb(49, 66, 82);
-            button1.Location = new Point(790, 137);
-            button1.Name = "button1";
-            button1.Size = new Size(155, 44);
-            button1.TabIndex = 22;
-            button1.Text = "Eliminar usuario";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.WhiteSmoke;
-            button3.BackgroundImageLayout = ImageLayout.None;
-            button3.Cursor = Cursors.Hand;
-            button3.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button3.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.FromArgb(49, 66, 82);
-            button3.Location = new Point(416, 137);
-            button3.Name = "button3";
-            button3.Size = new Size(155, 44);
-            button3.TabIndex = 23;
-            button3.Text = "Agregar usuario";
-            button3.UseVisualStyleBackColor = false;
-            // 
             // dgIngresoLibros
             // 
             dgIngresoLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dgIngresoLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
             dgIngresoLibros.BorderStyle = BorderStyle.None;
             dgIngresoLibros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.Gray;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle4.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgIngresoLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgIngresoLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgIngresoLibros.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.Silver;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.Padding = new Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle5.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgIngresoLibros.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(2);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgIngresoLibros.DefaultCellStyle = dataGridViewCellStyle2;
             dgIngresoLibros.EnableHeadersVisualStyles = false;
             dgIngresoLibros.GridColor = Color.FromArgb(49, 66, 82);
             dgIngresoLibros.Location = new Point(45, 339);
             dgIngresoLibros.Name = "dgIngresoLibros";
             dgIngresoLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Silver;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.Padding = new Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgIngresoLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgIngresoLibros.Size = new Size(967, 261);
             dgIngresoLibros.TabIndex = 15;
             // 
