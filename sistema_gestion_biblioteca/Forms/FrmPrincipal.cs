@@ -46,11 +46,6 @@ namespace sistema_gestion_biblioteca.Forms
             btnMaximizar.Visible = true;
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         // Metodo para abrir el formulario para abrir formulario para agregar libros
         private void abrirFormularioHijo(object obj_form)
         {
@@ -65,9 +60,28 @@ namespace sistema_gestion_biblioteca.Forms
             myForm.Show();
         }
 
+        // Creamos un metodo para la seleccion de la barra de navegacion
+        private void seleccinarBoton(Button obj_btn)
+        {
+            Color primerColor = Color.FromArgb(26, 32, 40);
+            Color segundoColor = Color.FromArgb(0, 80, 200);
+
+            List<Button> listaBotones = new List<Button> { btnRegistroLibros, btnConsultaLibros, btnGestionUsuarios, btnPrestamosYDevoluciones, btnHistorialPrestamos };
+
+            // Recorremos cada boton para su seleccion
+            foreach (Button boton in listaBotones)
+            {
+                boton.BackColor = primerColor;
+            }
+
+            // Cambiamos el color de fondo al color seleccionado
+            obj_btn.BackColor = segundoColor;
+        }
+
         private void btnRegistroLibros_Click(object sender, EventArgs e)
         {
             abrirFormularioHijo(new FrmRegistroLibros());
+            seleccinarBoton(btnRegistroLibros);
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
@@ -78,11 +92,32 @@ namespace sistema_gestion_biblioteca.Forms
         private void btnConsultaLibros_Click(object sender, EventArgs e)
         {
             abrirFormularioHijo(new FrmConsultaLibros());
+            seleccinarBoton(btnConsultaLibros);
         }
 
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
             abrirFormularioHijo(new FrmGestionUsuarios());
+            seleccinarBoton(btnGestionUsuarios);
+        }
+
+        private void btnPrestamosYDevoluciones_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FrmPrestamos());
+            seleccinarBoton(btnPrestamosYDevoluciones);
+        }
+
+        private void btnHistorialPrestamos_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FrmHistorialPrestamos());
+            seleccinarBoton(btnHistorialPrestamos);
+        }
+
+        private void btnSalirSesion_Click(object sender, EventArgs e)
+        {
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.Show();
+            this.Hide();
         }
     }
 }

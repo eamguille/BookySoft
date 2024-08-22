@@ -47,6 +47,7 @@
             btnRegistroLibros = new Button();
             btnInicio = new PictureBox();
             PnContenedor = new Panel();
+            btnSalirSesion = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnRestaurar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMaximizar).BeginInit();
@@ -54,6 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)btnCerrar).BeginInit();
             PnMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnInicio).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnSalirSesion).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -121,6 +123,7 @@
             // PnMenuVertical
             // 
             PnMenuVertical.BackColor = Color.FromArgb(26, 32, 40);
+            PnMenuVertical.Controls.Add(btnSalirSesion);
             PnMenuVertical.Controls.Add(panel8);
             PnMenuVertical.Controls.Add(panel7);
             PnMenuVertical.Controls.Add(panel6);
@@ -135,7 +138,7 @@
             PnMenuVertical.Dock = DockStyle.Left;
             PnMenuVertical.Location = new Point(0, 35);
             PnMenuVertical.Name = "PnMenuVertical";
-            PnMenuVertical.Size = new Size(250, 615);
+            PnMenuVertical.Size = new Size(250, 680);
             PnMenuVertical.TabIndex = 1;
             // 
             // panel8
@@ -196,6 +199,7 @@
             btnHistorialPrestamos.Text = "HISTORIAL DE PRÉSTAMOS";
             btnHistorialPrestamos.TextAlign = ContentAlignment.MiddleRight;
             btnHistorialPrestamos.UseVisualStyleBackColor = true;
+            btnHistorialPrestamos.Click += btnHistorialPrestamos_Click;
             // 
             // btnPrestamosYDevoluciones
             // 
@@ -215,7 +219,7 @@
             btnPrestamosYDevoluciones.Text = "PRÉSTAMO Y \r\n   DEVOLUCIONES";
             btnPrestamosYDevoluciones.TextAlign = ContentAlignment.MiddleRight;
             btnPrestamosYDevoluciones.UseVisualStyleBackColor = true;
-            btnPrestamosYDevoluciones.Click += button6_Click;
+            btnPrestamosYDevoluciones.Click += btnPrestamosYDevoluciones_Click;
             // 
             // btnGestionUsuarios
             // 
@@ -295,14 +299,26 @@
             PnContenedor.Dock = DockStyle.Fill;
             PnContenedor.Location = new Point(250, 35);
             PnContenedor.Name = "PnContenedor";
-            PnContenedor.Size = new Size(1050, 615);
+            PnContenedor.Size = new Size(1050, 680);
             PnContenedor.TabIndex = 2;
+            // 
+            // btnSalirSesion
+            // 
+            btnSalirSesion.Image = (Image)resources.GetObject("btnSalirSesion.Image");
+            btnSalirSesion.Location = new Point(12, 631);
+            btnSalirSesion.Name = "btnSalirSesion";
+            btnSalirSesion.Size = new Size(37, 37);
+            btnSalirSesion.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnSalirSesion.TabIndex = 8;
+            btnSalirSesion.TabStop = false;
+            btnSalirSesion.Tag = "Cerrar Sesion";
+            btnSalirSesion.Click += btnSalirSesion_Click;
             // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 650);
+            ClientSize = new Size(1300, 715);
             Controls.Add(PnContenedor);
             Controls.Add(PnMenuVertical);
             Controls.Add(panel1);
@@ -318,6 +334,7 @@
             ((System.ComponentModel.ISupportInitialize)btnCerrar).EndInit();
             PnMenuVertical.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btnInicio).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnSalirSesion).EndInit();
             ResumeLayout(false);
         }
 
@@ -341,5 +358,6 @@
         private Panel panel8;
         private Panel panel7;
         private Panel panel6;
+        private PictureBox btnSalirSesion;
     }
 }
