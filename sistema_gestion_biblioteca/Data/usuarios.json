@@ -1,0 +1,23 @@
+[
+  {
+    "nombres": "Guillermo",
+    "apellidos": "Castillo",
+    "direccion": "San Salvador",
+    "telefono": "76335320",
+    "email": "guilleacc26@gmail.com"
+  },
+  {
+    "nombres": "Alex",
+    "apellidos": "Valdez",
+    "direccion": "San Marcos",
+    "telefono": "78324934",
+    "email": "alexValdez01@gmail.com"
+  },
+  {
+    "nombres": "Ricardo",
+    "apellidos": "Helshman",
+    "direccion": "Mejicanos",
+    "telefono": "71029435",
+    "email": "eamRH$%&@gmail.com"
+  }
+]

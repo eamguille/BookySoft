@@ -35,28 +35,27 @@
             textBox1 = new TextBox();
             label1 = new Label();
             groupBox1 = new GroupBox();
-            button3 = new Button();
-            button1 = new Button();
-            button2 = new Button();
+            txtIDUsuario = new TextBox();
+            btnAgregar = new Button();
+            btnEliminar = new Button();
+            btnActualizar = new Button();
             btnLimpiar = new Button();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
-            textBox5 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            txtDireccion = new TextBox();
+            txtTelefono = new TextBox();
+            txtEmail = new TextBox();
+            txtApellidos = new TextBox();
+            txtNombres = new TextBox();
             label9 = new Label();
             label8 = new Label();
             label7 = new Label();
             label2 = new Label();
             label3 = new Label();
-            dgIngresoLibros = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
+            dgUsuarios = new DataGridView();
             button4 = new Button();
-            textBox4 = new TextBox();
+            txtBuscar = new TextBox();
             label4 = new Label();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgIngresoLibros).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgUsuarios).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -86,15 +85,16 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(txtIDUsuario);
+            groupBox1.Controls.Add(btnAgregar);
+            groupBox1.Controls.Add(btnEliminar);
+            groupBox1.Controls.Add(btnActualizar);
             groupBox1.Controls.Add(btnLimpiar);
-            groupBox1.Controls.Add(textBox6);
-            groupBox1.Controls.Add(textBox7);
-            groupBox1.Controls.Add(textBox5);
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtDireccion);
+            groupBox1.Controls.Add(txtTelefono);
+            groupBox1.Controls.Add(txtEmail);
+            groupBox1.Controls.Add(txtApellidos);
+            groupBox1.Controls.Add(txtNombres);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label7);
@@ -109,53 +109,66 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "GESTION DE USUARIOS";
             // 
-            // button3
+            // txtIDUsuario
             // 
-            button3.BackColor = Color.WhiteSmoke;
-            button3.BackgroundImageLayout = ImageLayout.None;
-            button3.Cursor = Cursors.Hand;
-            button3.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button3.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.FromArgb(49, 66, 82);
-            button3.Location = new Point(416, 137);
-            button3.Name = "button3";
-            button3.Size = new Size(155, 44);
-            button3.TabIndex = 23;
-            button3.Text = "Agregar usuario";
-            button3.UseVisualStyleBackColor = false;
+            txtIDUsuario.Font = new Font("Arial", 11.25F);
+            txtIDUsuario.Location = new Point(24, 173);
+            txtIDUsuario.Name = "txtIDUsuario";
+            txtIDUsuario.ReadOnly = true;
+            txtIDUsuario.Size = new Size(63, 25);
+            txtIDUsuario.TabIndex = 24;
+            txtIDUsuario.Visible = false;
             // 
-            // button1
+            // btnAgregar
             // 
-            button1.BackColor = Color.WhiteSmoke;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button1.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.FromArgb(49, 66, 82);
-            button1.Location = new Point(790, 137);
-            button1.Name = "button1";
-            button1.Size = new Size(155, 44);
-            button1.TabIndex = 22;
-            button1.Text = "Eliminar usuario";
-            button1.UseVisualStyleBackColor = false;
+            btnAgregar.BackColor = Color.WhiteSmoke;
+            btnAgregar.BackgroundImageLayout = ImageLayout.None;
+            btnAgregar.Cursor = Cursors.Hand;
+            btnAgregar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnAgregar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnAgregar.FlatStyle = FlatStyle.Flat;
+            btnAgregar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnAgregar.Location = new Point(416, 137);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(155, 44);
+            btnAgregar.TabIndex = 23;
+            btnAgregar.Text = "Agregar usuario";
+            btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnAgregar_Click;
             // 
-            // button2
+            // btnEliminar
             // 
-            button2.BackColor = Color.WhiteSmoke;
-            button2.BackgroundImageLayout = ImageLayout.None;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button2.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.FromArgb(49, 66, 82);
-            button2.Location = new Point(600, 137);
-            button2.Name = "button2";
-            button2.Size = new Size(164, 44);
-            button2.TabIndex = 21;
-            button2.Text = "Actualizar usuario";
-            button2.UseVisualStyleBackColor = false;
+            btnEliminar.BackColor = Color.WhiteSmoke;
+            btnEliminar.BackgroundImageLayout = ImageLayout.None;
+            btnEliminar.Cursor = Cursors.Hand;
+            btnEliminar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnEliminar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnEliminar.Location = new Point(790, 137);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(155, 44);
+            btnEliminar.TabIndex = 22;
+            btnEliminar.Text = "Eliminar usuario";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.BackColor = Color.WhiteSmoke;
+            btnActualizar.BackgroundImageLayout = ImageLayout.None;
+            btnActualizar.Cursor = Cursors.Hand;
+            btnActualizar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnActualizar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnActualizar.FlatStyle = FlatStyle.Flat;
+            btnActualizar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnActualizar.Location = new Point(600, 137);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(164, 44);
+            btnActualizar.TabIndex = 21;
+            btnActualizar.Text = "Actualizar usuario";
+            btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // btnLimpiar
             // 
@@ -172,42 +185,48 @@
             btnLimpiar.TabIndex = 20;
             btnLimpiar.Text = "Limpiar campos";
             btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
-            // textBox6
+            // txtDireccion
             // 
-            textBox6.Location = new Point(120, 134);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(272, 64);
-            textBox6.TabIndex = 18;
+            txtDireccion.Font = new Font("Arial", 11.25F);
+            txtDireccion.Location = new Point(120, 134);
+            txtDireccion.Multiline = true;
+            txtDireccion.Name = "txtDireccion";
+            txtDireccion.Size = new Size(272, 64);
+            txtDireccion.TabIndex = 18;
             // 
-            // textBox7
+            // txtTelefono
             // 
-            textBox7.Location = new Point(508, 32);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(271, 26);
-            textBox7.TabIndex = 15;
+            txtTelefono.Font = new Font("Arial", 11.25F);
+            txtTelefono.Location = new Point(508, 32);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(271, 25);
+            txtTelefono.TabIndex = 15;
             // 
-            // textBox5
+            // txtEmail
             // 
-            textBox5.Location = new Point(507, 83);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(272, 26);
-            textBox5.TabIndex = 13;
+            txtEmail.Font = new Font("Arial", 11.25F);
+            txtEmail.Location = new Point(507, 83);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(272, 25);
+            txtEmail.TabIndex = 13;
             // 
-            // textBox3
+            // txtApellidos
             // 
-            textBox3.Location = new Point(120, 81);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(271, 26);
-            textBox3.TabIndex = 11;
+            txtApellidos.Font = new Font("Arial", 11.25F);
+            txtApellidos.Location = new Point(120, 81);
+            txtApellidos.Name = "txtApellidos";
+            txtApellidos.Size = new Size(271, 25);
+            txtApellidos.TabIndex = 11;
             // 
-            // textBox2
+            // txtNombres
             // 
-            textBox2.Location = new Point(119, 32);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(272, 26);
-            textBox2.TabIndex = 10;
+            txtNombres.Font = new Font("Arial", 11.25F);
+            txtNombres.Location = new Point(119, 32);
+            txtNombres.Name = "txtNombres";
+            txtNombres.Size = new Size(272, 25);
+            txtNombres.TabIndex = 10;
             // 
             // label9
             // 
@@ -254,57 +273,49 @@
             label3.TabIndex = 2;
             label3.Text = "Apellidos: ";
             // 
-            // dgIngresoLibros
+            // dgUsuarios
             // 
-            dgIngresoLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgIngresoLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
-            dgIngresoLibros.BorderStyle = BorderStyle.None;
-            dgIngresoLibros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgUsuarios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgUsuarios.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            dgUsuarios.BackgroundColor = Color.FromArgb(49, 66, 82);
+            dgUsuarios.BorderStyle = BorderStyle.None;
+            dgUsuarios.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.Gray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.LightGray;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
             dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgIngresoLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgIngresoLibros.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
+            dgUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.Silver;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new Padding(2);
+            dataGridViewCellStyle2.Padding = new Padding(8, 2, 8, 2);
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
             dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgIngresoLibros.DefaultCellStyle = dataGridViewCellStyle2;
-            dgIngresoLibros.EnableHeadersVisualStyles = false;
-            dgIngresoLibros.GridColor = Color.FromArgb(49, 66, 82);
-            dgIngresoLibros.Location = new Point(45, 339);
-            dgIngresoLibros.Name = "dgIngresoLibros";
-            dgIngresoLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
+            dgUsuarios.EnableHeadersVisualStyles = false;
+            dgUsuarios.GridColor = Color.FromArgb(49, 66, 82);
+            dgUsuarios.Location = new Point(45, 339);
+            dgUsuarios.Name = "dgUsuarios";
+            dgUsuarios.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = Color.Silver;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.Padding = new Padding(5);
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
             dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgIngresoLibros.Size = new Size(967, 261);
-            dgIngresoLibros.TabIndex = 15;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Column1";
-            Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Column2";
-            Column2.Name = "Column2";
+            dgUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgUsuarios.Size = new Size(967, 261);
+            dgUsuarios.TabIndex = 15;
+            dgUsuarios.CellClick += dgUsuarios_CellClick;
             // 
             // button4
             // 
@@ -319,13 +330,14 @@
             button4.TabIndex = 18;
             button4.UseVisualStyleBackColor = false;
             // 
-            // textBox4
+            // txtBuscar
             // 
-            textBox4.Cursor = Cursors.IBeam;
-            textBox4.Location = new Point(116, 78);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(843, 23);
-            textBox4.TabIndex = 17;
+            txtBuscar.Cursor = Cursors.IBeam;
+            txtBuscar.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscar.Location = new Point(116, 78);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(843, 21);
+            txtBuscar.TabIndex = 17;
             // 
             // label4
             // 
@@ -345,18 +357,19 @@
             BackColor = Color.FromArgb(49, 66, 82);
             ClientSize = new Size(1050, 615);
             Controls.Add(button4);
-            Controls.Add(textBox4);
+            Controls.Add(txtBuscar);
             Controls.Add(label4);
-            Controls.Add(dgIngresoLibros);
+            Controls.Add(dgUsuarios);
             Controls.Add(groupBox1);
             Controls.Add(textBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmGestionUsuarios";
             Text = "FrmGestionLibros";
+            Load += FrmGestionUsuarios_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgIngresoLibros).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgUsuarios).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -366,25 +379,24 @@
         private TextBox textBox1;
         private Label label1;
         private GroupBox groupBox1;
-        private Button button2;
+        private Button btnActualizar;
         private Button btnLimpiar;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox5;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox txtDireccion;
+        private TextBox txtTelefono;
+        private TextBox txtEmail;
+        private TextBox txtApellidos;
+        private TextBox txtNombres;
         private Label label9;
         private Label label8;
         private Label label7;
         private Label label2;
         private Label label3;
-        private Button button3;
-        private Button button1;
-        private DataGridView dgIngresoLibros;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
+        private Button btnAgregar;
+        private Button btnEliminar;
+        private DataGridView dgUsuarios;
         private Button button4;
-        private TextBox textBox4;
+        private TextBox txtBuscar;
         private Label label4;
+        private TextBox txtIDUsuario;
     }
 }
