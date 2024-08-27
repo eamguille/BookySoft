@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sistema_gestion_biblioteca.Classes
+namespace sistema_gestion_biblioteca.Modelo
 {
-    public class Usuario
+    public class usuarioModelo
     {
         // Definimos los campos de usuario
         public string nombres { get; set; }
