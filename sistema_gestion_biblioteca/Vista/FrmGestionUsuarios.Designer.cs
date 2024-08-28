@@ -35,7 +35,6 @@
             textBox1 = new TextBox();
             label1 = new Label();
             groupBox1 = new GroupBox();
-            txtIDUsuario = new TextBox();
             btnAgregar = new Button();
             btnEliminar = new Button();
             btnActualizar = new Button();
@@ -85,7 +84,6 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(txtIDUsuario);
             groupBox1.Controls.Add(btnAgregar);
             groupBox1.Controls.Add(btnEliminar);
             groupBox1.Controls.Add(btnActualizar);
@@ -108,16 +106,6 @@
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             groupBox1.Text = "GESTION DE USUARIOS";
-            // 
-            // txtIDUsuario
-            // 
-            txtIDUsuario.Font = new Font("Arial", 11.25F);
-            txtIDUsuario.Location = new Point(24, 173);
-            txtIDUsuario.Name = "txtIDUsuario";
-            txtIDUsuario.ReadOnly = true;
-            txtIDUsuario.Size = new Size(63, 25);
-            txtIDUsuario.TabIndex = 24;
-            txtIDUsuario.Visible = false;
             // 
             // btnAgregar
             // 
@@ -397,6 +385,5 @@
         private Button button4;
         private TextBox txtBuscar;
         private Label label4;
-        private TextBox txtIDUsuario;
     }
 }

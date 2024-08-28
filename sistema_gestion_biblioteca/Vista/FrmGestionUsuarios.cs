@@ -49,8 +49,8 @@ namespace sistema_gestion_biblioteca.Forms
                 if (guardado)
                 {
                     MessageBox.Show("Usuario Agregado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ActualizarDataGrid();
                 }
-                ActualizarDataGrid();
             }
             catch (Exception e)
             {
@@ -73,9 +73,10 @@ namespace sistema_gestion_biblioteca.Forms
 
                             if (eliminar)
                             {
-                                MessageBox.Show("Usuario eliminado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Usuario eliminado exitosamente", "Tarea exitosa",              MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                ActualizarDataGrid();
                             }
-                            ActualizarDataGrid();
                         }
                     }
                 }
@@ -144,7 +145,6 @@ namespace sistema_gestion_biblioteca.Forms
             txtDireccion.Clear();
             txtTelefono.Clear();
             txtEmail.Clear();
-            txtIDUsuario.Clear();
         }
     }
 }

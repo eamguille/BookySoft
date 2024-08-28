@@ -1,6 +1,5 @@
 ﻿using sistema_gestion_biblioteca.Modelo;
 using Newtonsoft.Json;
-using System.Security.Cryptography.Xml;
 
 namespace sistema_gestion_biblioteca.Controlador
 {
@@ -31,6 +30,7 @@ namespace sistema_gestion_biblioteca.Controlador
 
         public List<usuarioModelo> obtenerUsuarios()
         {
+            // Verificamos que el archivo JSON exista
             if (File.Exists(archivoJson))
             {
                 string json = File.ReadAllText(archivoJson);
@@ -45,7 +45,7 @@ namespace sistema_gestion_biblioteca.Controlador
         {
             try
             {
-                usuarioModelo nuevoUsuario = new usuarioModelo
+                obj_modelo = new usuarioModelo
                 {
                     nombres = p_nombres,
                     apellidos = p_apellidos,
@@ -54,7 +54,7 @@ namespace sistema_gestion_biblioteca.Controlador
                     email = p_email
                 };
 
-                return agregarUsuario(nuevoUsuario);
+                return agregarUsuario(obj_modelo);
 
             } 
             catch
@@ -69,7 +69,7 @@ namespace sistema_gestion_biblioteca.Controlador
             try
             {
                 var guardar = obtenerUsuarios();
-                guardar.Add(p_usuario);
+                guardar.Add(p_usuario); // Aqui agregamos los datos recogidos a la lista
                 guardarUsuarios(guardar); // Aqui guardamos la lista dentro del JSON
                 return true;
             } 
@@ -96,7 +96,7 @@ namespace sistema_gestion_biblioteca.Controlador
                     actualizar[index].direccion = p_direccion;
                     actualizar[index].telefono = p_telefono;
                     actualizar[index].email = p_email;
-                    guardarUsuarios(actualizar);
+                    guardarUsuarios(actualizar); // Guardamos la nueva lista modificada y la agregamos directamente al archivo JSON
                     return true;
                 }
             }
