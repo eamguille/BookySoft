@@ -37,16 +37,15 @@
             groupBox1 = new GroupBox();
             comboBox3 = new ComboBox();
             label6 = new Label();
-            checkBox1 = new CheckBox();
             dateTimePicker1 = new DateTimePicker();
             label5 = new Label();
             comboBox2 = new ComboBox();
             label4 = new Label();
             comboBox1 = new ComboBox();
             label3 = new Label();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
+            btnEliminar = new Button();
+            btnActualizar = new Button();
+            btnAgregar = new Button();
             btnLimpiar = new Button();
             dgIngresoLibros = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -54,6 +53,8 @@
             button1 = new Button();
             textBox2 = new TextBox();
             label2 = new Label();
+            label7 = new Label();
+            lblFechaDevolucion = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgIngresoLibros).BeginInit();
             SuspendLayout();
@@ -76,27 +77,28 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Silver;
-            label1.Location = new Point(325, 21);
+            label1.Location = new Point(461, 25);
             label1.Name = "label1";
-            label1.Size = new Size(436, 32);
+            label1.Size = new Size(184, 32);
             label1.TabIndex = 11;
-            label1.Text = "PRESTAMOS Y DEVOLUCIONES";
+            label1.Text = "PRESTAMOS";
             // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(lblFechaDevolucion);
+            groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(comboBox3);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(checkBox1);
             groupBox1.Controls.Add(dateTimePicker1);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(button4);
-            groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(btnEliminar);
+            groupBox1.Controls.Add(btnActualizar);
+            groupBox1.Controls.Add(btnAgregar);
             groupBox1.Controls.Add(btnLimpiar);
             groupBox1.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.LightGray;
@@ -123,19 +125,6 @@
             label6.Size = new Size(214, 18);
             label6.TabIndex = 32;
             label6.Text = "Condicion inicial del libro: ";
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.FlatAppearance.CheckedBackColor = Color.DarkGray;
-            checkBox1.Location = new Point(456, 37);
-            checkBox1.Name = "checkBox1";
-            checkBox1.RightToLeft = RightToLeft.Yes;
-            checkBox1.Size = new Size(141, 22);
-            checkBox1.TabIndex = 31;
-            checkBox1.Text = "Libro devuelto";
-            checkBox1.TextAlign = ContentAlignment.MiddleCenter;
-            checkBox1.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker1
             // 
@@ -187,53 +176,53 @@
             label3.TabIndex = 25;
             label3.Text = "Libro: ";
             // 
-            // button4
+            // btnEliminar
             // 
-            button4.BackColor = Color.WhiteSmoke;
-            button4.BackgroundImageLayout = ImageLayout.None;
-            button4.Cursor = Cursors.Hand;
-            button4.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button4.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.ForeColor = Color.FromArgb(49, 66, 82);
-            button4.Location = new Point(793, 170);
-            button4.Name = "button4";
-            button4.Size = new Size(155, 44);
-            button4.TabIndex = 24;
-            button4.Text = "Eliminar";
-            button4.UseVisualStyleBackColor = false;
+            btnEliminar.BackColor = Color.WhiteSmoke;
+            btnEliminar.BackgroundImageLayout = ImageLayout.None;
+            btnEliminar.Cursor = Cursors.Hand;
+            btnEliminar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnEliminar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnEliminar.Location = new Point(793, 170);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(155, 44);
+            btnEliminar.TabIndex = 24;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnActualizar
             // 
-            button3.BackColor = Color.WhiteSmoke;
-            button3.BackgroundImageLayout = ImageLayout.None;
-            button3.Cursor = Cursors.Hand;
-            button3.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button3.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.FromArgb(49, 66, 82);
-            button3.Location = new Point(793, 120);
-            button3.Name = "button3";
-            button3.Size = new Size(155, 44);
-            button3.TabIndex = 23;
-            button3.Text = "Actualizar";
-            button3.UseVisualStyleBackColor = false;
+            btnActualizar.BackColor = Color.WhiteSmoke;
+            btnActualizar.BackgroundImageLayout = ImageLayout.None;
+            btnActualizar.Cursor = Cursors.Hand;
+            btnActualizar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnActualizar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnActualizar.FlatStyle = FlatStyle.Flat;
+            btnActualizar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnActualizar.Location = new Point(793, 120);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(155, 44);
+            btnActualizar.TabIndex = 23;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnAgregar
             // 
-            button2.BackColor = Color.WhiteSmoke;
-            button2.BackgroundImageLayout = ImageLayout.None;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button2.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.FromArgb(49, 66, 82);
-            button2.Location = new Point(793, 70);
-            button2.Name = "button2";
-            button2.Size = new Size(155, 44);
-            button2.TabIndex = 22;
-            button2.Text = "Agregar";
-            button2.UseVisualStyleBackColor = false;
+            btnAgregar.BackColor = Color.WhiteSmoke;
+            btnAgregar.BackgroundImageLayout = ImageLayout.None;
+            btnAgregar.Cursor = Cursors.Hand;
+            btnAgregar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnAgregar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnAgregar.FlatStyle = FlatStyle.Flat;
+            btnAgregar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnAgregar.Location = new Point(793, 70);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(155, 44);
+            btnAgregar.TabIndex = 22;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = false;
             // 
             // btnLimpiar
             // 
@@ -335,6 +324,25 @@
             label2.TabIndex = 11;
             label2.Text = "Buscar: ";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(434, 120);
+            label7.Name = "label7";
+            label7.Size = new Size(259, 18);
+            label7.TabIndex = 34;
+            label7.Text = "Fecha estimada de devolucion: ";
+            // 
+            // lblFechaDevolucion
+            // 
+            lblFechaDevolucion.AutoSize = true;
+            lblFechaDevolucion.ForeColor = Color.WhiteSmoke;
+            lblFechaDevolucion.Location = new Point(434, 143);
+            lblFechaDevolucion.Name = "lblFechaDevolucion";
+            lblFechaDevolucion.Size = new Size(148, 18);
+            lblFechaDevolucion.TabIndex = 35;
+            lblFechaDevolucion.Text = "fecha_devolucion";
+            // 
             // FrmPrestamos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -363,7 +371,7 @@
         private TextBox textBox1;
         private Label label1;
         private GroupBox groupBox1;
-        private Button button2;
+        private Button btnAgregar;
         private Button btnLimpiar;
         private Button button1;
         private TextBox textBox2;
@@ -371,16 +379,17 @@
         private DataGridView dgIngresoLibros;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
-        private Button button3;
-        private Button button4;
+        private Button btnActualizar;
+        private Button btnEliminar;
         private Label label3;
         private ComboBox comboBox2;
         private Label label4;
         private ComboBox comboBox1;
         private DateTimePicker dateTimePicker1;
         private Label label5;
-        private CheckBox checkBox1;
         private ComboBox comboBox3;
         private Label label6;
+        private Label label7;
+        private Label lblFechaDevolucion;
     }
 }

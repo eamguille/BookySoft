@@ -326,6 +326,7 @@
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(843, 21);
             txtBuscar.TabIndex = 17;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // label4
             // 

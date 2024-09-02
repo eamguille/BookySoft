@@ -18,7 +18,10 @@ namespace sistema_gestion_biblioteca.Forms
 
         // Iniciamos una variable para el control del DataGridView
         private int indexDataGrid = -1;
-        
+
+        // Definimos un BindingSource para enlazar los datos de la lista
+        private BindingSource enlaceDatos = new BindingSource();
+
 
         public FrmGestionUsuarios()
         {
@@ -36,9 +39,9 @@ namespace sistema_gestion_biblioteca.Forms
         void ActualizarDataGrid()
         {
             var listaUsuarios = obj_controlador.obtenerUsuarios();
-            dgUsuarios.DataSource = listaUsuarios;
+            enlaceDatos.DataSource = listaUsuarios;
+            dgUsuarios.DataSource = enlaceDatos;
         }
-
 
         void guardarUsuario()
         {
@@ -73,7 +76,7 @@ namespace sistema_gestion_biblioteca.Forms
 
                             if (eliminar)
                             {
-                                MessageBox.Show("Usuario eliminado exitosamente", "Tarea exitosa",              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Usuario eliminado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 ActualizarDataGrid();
                             }
@@ -93,17 +96,54 @@ namespace sistema_gestion_biblioteca.Forms
             {
                 if (indexDataGrid >= 0)
                 {
-                     bool actualizar = obj_controlador.actualizarUsuario(indexDataGrid, txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
+                    bool actualizar = obj_controlador.actualizarUsuario(indexDataGrid, txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
 
-                     MessageBox.Show("Usuario actulizado con exito", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Usuario actulizado con exito", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                     ActualizarDataGrid();
+                    ActualizarDataGrid();
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show($"Error al actualizar el usuario {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        void filtrarUsuario(string filtro_buscador)
+        {
+            var listaUsuarios = obj_controlador.obtenerUsuarios();
+            if (string.IsNullOrEmpty(filtro_buscador))
+            {
+                enlaceDatos.DataSource = listaUsuarios;
+            }
+            else
+            {
+                // Creamos una variable para dividir el texto de busqueda en palabras independientes
+                var busqueda = filtro_buscador.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // Filtramos la lista de forma manual
+                var listaFiltrada = listaUsuarios.Where(ele =>
+                    busqueda.All(t =>
+                        (ele.nombres != null && ele.nombres.Contains(t, StringComparison.OrdinalIgnoreCase)) ||
+                        (ele.apellidos != null && ele.apellidos.Contains(t, StringComparison.OrdinalIgnoreCase)) ||
+                        (ele.email != null && ele.email.Contains(t, StringComparison.OrdinalIgnoreCase))
+                    )
+                ).ToList();
+
+                // Verifica si la lista filtrada está vacía
+                if (listaFiltrada.Any())
+                {
+                    enlaceDatos.DataSource = listaFiltrada;
+                }
+            }
+
+            // Llenamos el dataGrid con la lista nueva ya filtrada
+            dgUsuarios.DataSource = enlaceDatos;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            filtrarUsuario(txtBuscar.Text);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
