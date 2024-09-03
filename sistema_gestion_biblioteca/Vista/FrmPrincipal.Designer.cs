@@ -35,6 +35,7 @@
             btnMinimizar = new PictureBox();
             btnCerrar = new PictureBox();
             PnMenuVertical = new Panel();
+            btnSalirSesion = new PictureBox();
             panel8 = new Panel();
             panel7 = new Panel();
             panel6 = new Panel();
@@ -47,15 +48,14 @@
             btnRegistroLibros = new Button();
             btnInicio = new PictureBox();
             PnContenedor = new Panel();
-            btnSalirSesion = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnRestaurar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMaximizar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMinimizar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnCerrar).BeginInit();
             PnMenuVertical.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnInicio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSalirSesion).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnInicio).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -138,8 +138,20 @@
             PnMenuVertical.Dock = DockStyle.Left;
             PnMenuVertical.Location = new Point(0, 35);
             PnMenuVertical.Name = "PnMenuVertical";
-            PnMenuVertical.Size = new Size(250, 680);
+            PnMenuVertical.Size = new Size(250, 667);
             PnMenuVertical.TabIndex = 1;
+            // 
+            // btnSalirSesion
+            // 
+            btnSalirSesion.Image = (Image)resources.GetObject("btnSalirSesion.Image");
+            btnSalirSesion.Location = new Point(12, 607);
+            btnSalirSesion.Name = "btnSalirSesion";
+            btnSalirSesion.Size = new Size(37, 37);
+            btnSalirSesion.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnSalirSesion.TabIndex = 8;
+            btnSalirSesion.TabStop = false;
+            btnSalirSesion.Tag = "Cerrar Sesion";
+            btnSalirSesion.Click += btnSalirSesion_Click;
             // 
             // panel8
             // 
@@ -299,26 +311,14 @@
             PnContenedor.Dock = DockStyle.Fill;
             PnContenedor.Location = new Point(250, 35);
             PnContenedor.Name = "PnContenedor";
-            PnContenedor.Size = new Size(1050, 680);
+            PnContenedor.Size = new Size(1050, 667);
             PnContenedor.TabIndex = 2;
-            // 
-            // btnSalirSesion
-            // 
-            btnSalirSesion.Image = (Image)resources.GetObject("btnSalirSesion.Image");
-            btnSalirSesion.Location = new Point(12, 631);
-            btnSalirSesion.Name = "btnSalirSesion";
-            btnSalirSesion.Size = new Size(37, 37);
-            btnSalirSesion.SizeMode = PictureBoxSizeMode.StretchImage;
-            btnSalirSesion.TabIndex = 8;
-            btnSalirSesion.TabStop = false;
-            btnSalirSesion.Tag = "Cerrar Sesion";
-            btnSalirSesion.Click += btnSalirSesion_Click;
             // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 715);
+            ClientSize = new Size(1300, 702);
             Controls.Add(PnContenedor);
             Controls.Add(PnMenuVertical);
             Controls.Add(panel1);
@@ -333,8 +333,8 @@
             ((System.ComponentModel.ISupportInitialize)btnMinimizar).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnCerrar).EndInit();
             PnMenuVertical.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)btnInicio).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnSalirSesion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnInicio).EndInit();
             ResumeLayout(false);
         }
 

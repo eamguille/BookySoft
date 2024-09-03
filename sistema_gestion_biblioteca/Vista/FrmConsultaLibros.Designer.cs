@@ -28,17 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaLibros));
             textBox1 = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            textBox2 = new TextBox();
+            txtBuscar = new TextBox();
             groupBox1 = new GroupBox();
-            button2 = new Button();
-            btnLimpiar = new Button();
             dgIngresoLibros = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
@@ -80,22 +78,20 @@
             label2.TabIndex = 11;
             label2.Text = "Buscar: ";
             // 
-            // textBox2
+            // txtBuscar
             // 
-            textBox2.Cursor = Cursors.IBeam;
-            textBox2.Location = new Point(105, 36);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(843, 26);
-            textBox2.TabIndex = 12;
+            txtBuscar.Cursor = Cursors.IBeam;
+            txtBuscar.Location = new Point(105, 36);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(843, 26);
+            txtBuscar.TabIndex = 12;
             // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(btnLimpiar);
             groupBox1.Controls.Add(dgIngresoLibros);
             groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtBuscar);
             groupBox1.Controls.Add(label2);
             groupBox1.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.LightGray;
@@ -106,78 +102,46 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "ENCUENTRA TU LIBRO";
             // 
-            // button2
-            // 
-            button2.BackColor = Color.WhiteSmoke;
-            button2.BackgroundImageLayout = ImageLayout.None;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.MouseDownBackColor = Color.Gray;
-            button2.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.FromArgb(49, 66, 82);
-            button2.Location = new Point(851, 82);
-            button2.Name = "button2";
-            button2.Size = new Size(155, 44);
-            button2.TabIndex = 22;
-            button2.Text = "Eliminar Libro";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // btnLimpiar
-            // 
-            btnLimpiar.BackColor = Color.WhiteSmoke;
-            btnLimpiar.BackgroundImageLayout = ImageLayout.None;
-            btnLimpiar.Cursor = Cursors.Hand;
-            btnLimpiar.FlatAppearance.MouseDownBackColor = Color.Gray;
-            btnLimpiar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            btnLimpiar.FlatStyle = FlatStyle.Flat;
-            btnLimpiar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnLimpiar.Location = new Point(672, 82);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(155, 44);
-            btnLimpiar.TabIndex = 21;
-            btnLimpiar.Text = "Actualizar Libro";
-            btnLimpiar.UseVisualStyleBackColor = false;
-            // 
             // dgIngresoLibros
             // 
             dgIngresoLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dgIngresoLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
             dgIngresoLibros.BorderStyle = BorderStyle.None;
             dgIngresoLibros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.Gray;
-            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.Gray;
+            dataGridViewCellStyle4.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.LightGray;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle4.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgIngresoLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgIngresoLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgIngresoLibros.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Silver;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.LightGray;
-            dataGridViewCellStyle2.Padding = new Padding(2);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgIngresoLibros.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.Silver;
+            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.LightGray;
+            dataGridViewCellStyle5.Padding = new Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle5.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgIngresoLibros.DefaultCellStyle = dataGridViewCellStyle5;
             dgIngresoLibros.EnableHeadersVisualStyles = false;
             dgIngresoLibros.GridColor = Color.FromArgb(49, 66, 82);
-            dgIngresoLibros.Location = new Point(21, 142);
+            dgIngresoLibros.Location = new Point(21, 89);
             dgIngresoLibros.Name = "dgIngresoLibros";
             dgIngresoLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.Silver;
-            dataGridViewCellStyle3.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle3.Padding = new Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgIngresoLibros.Size = new Size(985, 363);
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.Silver;
+            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle6.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgIngresoLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dgIngresoLibros.Size = new Size(985, 416);
             dgIngresoLibros.TabIndex = 14;
             // 
             // Column1
@@ -227,13 +191,11 @@
         private TextBox textBox1;
         private Label label1;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtBuscar;
         private GroupBox groupBox1;
         private Button button1;
         private DataGridView dgIngresoLibros;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
-        private Button button2;
-        private Button btnLimpiar;
     }
 }

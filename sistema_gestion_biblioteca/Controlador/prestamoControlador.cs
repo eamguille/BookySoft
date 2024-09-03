@@ -9,6 +9,7 @@ namespace sistema_gestion_biblioteca.Controlador
         private string archivoJson;
 
         public prestamoModelo obj_modelo = new prestamoModelo();
+        public usuarioModelo obj_usuario_modelo = new usuarioModelo();
 
         public prestamoControlador()
         {
@@ -32,6 +33,16 @@ namespace sistema_gestion_biblioteca.Controlador
                 return JsonConvert.DeserializeObject<List<prestamoModelo>>(json) ?? new List<prestamoModelo>();
             }
             return new List<prestamoModelo>();
+        }
+
+        public List<usuarioModelo> obtenerUsuarios()
+        {
+            if (File.Exists(archivoJson))
+            {
+                string json = File.ReadAllText(archivoJson);
+                return JsonConvert.DeserializeObject<List<usuarioModelo>>(json) ?? new List<usuarioModelo>();
+            }
+            return new List<usuarioModelo>();
         }
 
         public bool agregarPrestamo(string p_libro, string p_email, string p_fechaP, string p_fechaD, string p_estado)

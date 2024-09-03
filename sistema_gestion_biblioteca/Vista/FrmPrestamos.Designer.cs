@@ -28,35 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrestamos));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             textBox1 = new TextBox();
             label1 = new Label();
             groupBox1 = new GroupBox();
-            comboBox3 = new ComboBox();
+            lblFechaDevolucion = new Label();
+            label7 = new Label();
+            cmbEstadoPrestamo = new ComboBox();
             label6 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtFechaInicial = new DateTimePicker();
             label5 = new Label();
-            comboBox2 = new ComboBox();
+            cmbUsuario = new ComboBox();
             label4 = new Label();
-            comboBox1 = new ComboBox();
+            cmbLibro = new ComboBox();
             label3 = new Label();
             btnEliminar = new Button();
             btnActualizar = new Button();
             btnAgregar = new Button();
             btnLimpiar = new Button();
-            dgIngresoLibros = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
             button1 = new Button();
-            textBox2 = new TextBox();
+            txtBuscar = new TextBox();
             label2 = new Label();
-            label7 = new Label();
-            lblFechaDevolucion = new Label();
+            dgPrestamos = new DataGridView();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgIngresoLibros).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgPrestamos).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -88,13 +86,13 @@
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(lblFechaDevolucion);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(comboBox3);
+            groupBox1.Controls.Add(cmbEstadoPrestamo);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(dateTimePicker1);
+            groupBox1.Controls.Add(dtFechaInicial);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(comboBox2);
+            groupBox1.Controls.Add(cmbUsuario);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(cmbLibro);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(btnEliminar);
             groupBox1.Controls.Add(btnActualizar);
@@ -109,72 +107,95 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "GESTION DE PRESTAMOS";
             // 
-            // comboBox3
+            // lblFechaDevolucion
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(240, 185);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(168, 26);
-            comboBox3.TabIndex = 33;
+            lblFechaDevolucion.AutoSize = true;
+            lblFechaDevolucion.Font = new Font("Arial Rounded MT Bold", 9.75F);
+            lblFechaDevolucion.ForeColor = Color.WhiteSmoke;
+            lblFechaDevolucion.Location = new Point(636, 143);
+            lblFechaDevolucion.Name = "lblFechaDevolucion";
+            lblFechaDevolucion.Size = new Size(121, 15);
+            lblFechaDevolucion.TabIndex = 35;
+            lblFechaDevolucion.Text = "fecha_devolucion";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial Rounded MT Bold", 9.75F);
+            label7.Location = new Point(425, 143);
+            label7.Name = "label7";
+            label7.Size = new Size(210, 15);
+            label7.TabIndex = 34;
+            label7.Text = "Fecha estimada de devolucion: ";
+            // 
+            // cmbEstadoPrestamo
+            // 
+            cmbEstadoPrestamo.FormattingEnabled = true;
+            cmbEstadoPrestamo.Location = new Point(247, 185);
+            cmbEstadoPrestamo.Name = "cmbEstadoPrestamo";
+            cmbEstadoPrestamo.Size = new Size(373, 26);
+            cmbEstadoPrestamo.TabIndex = 33;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(20, 188);
+            label6.Location = new Point(64, 188);
             label6.Name = "label6";
-            label6.Size = new Size(214, 18);
+            label6.Size = new Size(177, 18);
             label6.TabIndex = 32;
-            label6.Text = "Condicion inicial del libro: ";
+            label6.Text = "Estado de préstamo: ";
             // 
-            // dateTimePicker1
+            // dtFechaInicial
             // 
-            dateTimePicker1.Location = new Point(143, 138);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(265, 26);
-            dateTimePicker1.TabIndex = 30;
+            dtFechaInicial.Format = DateTimePickerFormat.Short;
+            dtFechaInicial.Location = new Point(247, 138);
+            dtFechaInicial.Name = "dtFechaInicial";
+            dtFechaInicial.Size = new Size(163, 26);
+            dtFechaInicial.TabIndex = 30;
+            dtFechaInicial.ValueChanged += dtFechaInicial_ValueChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 138);
+            label5.Location = new Point(20, 143);
             label5.Name = "label5";
-            label5.Size = new Size(117, 18);
+            label5.Size = new Size(221, 18);
             label5.TabIndex = 29;
-            label5.Text = "Fecha inicial: ";
+            label5.Text = "Fecha inicial de préstamo: ";
             // 
-            // comboBox2
+            // cmbUsuario
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(105, 85);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(303, 26);
-            comboBox2.TabIndex = 28;
+            cmbUsuario.FormattingEnabled = true;
+            cmbUsuario.Location = new Point(247, 85);
+            cmbUsuario.Name = "cmbUsuario";
+            cmbUsuario.Size = new Size(373, 26);
+            cmbUsuario.TabIndex = 28;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(20, 88);
+            label4.Location = new Point(76, 88);
             label4.Name = "label4";
-            label4.Size = new Size(79, 18);
+            label4.Size = new Size(165, 18);
             label4.TabIndex = 27;
-            label4.Text = "Usuario: ";
+            label4.Text = "Correo del usuario: ";
             // 
-            // comboBox1
+            // cmbLibro
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(84, 35);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(324, 26);
-            comboBox1.TabIndex = 26;
+            cmbLibro.FormattingEnabled = true;
+            cmbLibro.Location = new Point(247, 35);
+            cmbLibro.Name = "cmbLibro";
+            cmbLibro.Size = new Size(373, 26);
+            cmbLibro.TabIndex = 26;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 38);
+            label3.Location = new Point(117, 38);
             label3.Name = "label3";
-            label3.Size = new Size(58, 18);
+            label3.Size = new Size(124, 18);
             label3.TabIndex = 25;
-            label3.Text = "Libro: ";
+            label3.Text = "Título de libro: ";
             // 
             // btnEliminar
             // 
@@ -240,58 +261,6 @@
             btnLimpiar.Text = "Limpiar campos";
             btnLimpiar.UseVisualStyleBackColor = false;
             // 
-            // dgIngresoLibros
-            // 
-            dgIngresoLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgIngresoLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
-            dgIngresoLibros.BorderStyle = BorderStyle.None;
-            dgIngresoLibros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.Gray;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle4.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dgIngresoLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgIngresoLibros.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.Silver;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.Padding = new Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle5.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgIngresoLibros.DefaultCellStyle = dataGridViewCellStyle5;
-            dgIngresoLibros.EnableHeadersVisualStyles = false;
-            dgIngresoLibros.GridColor = Color.FromArgb(49, 66, 82);
-            dgIngresoLibros.Location = new Point(45, 352);
-            dgIngresoLibros.Name = "dgIngresoLibros";
-            dgIngresoLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Silver;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.Padding = new Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dgIngresoLibros.Size = new Size(966, 251);
-            dgIngresoLibros.TabIndex = 14;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Column1";
-            Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Column2";
-            Column2.Name = "Column2";
-            // 
             // button1
             // 
             button1.BackColor = Color.Transparent;
@@ -305,13 +274,13 @@
             button1.TabIndex = 13;
             button1.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // txtBuscar
             // 
-            textBox2.Cursor = Cursors.IBeam;
-            textBox2.Location = new Point(116, 80);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(843, 23);
-            textBox2.TabIndex = 12;
+            txtBuscar.Cursor = Cursors.IBeam;
+            txtBuscar.Location = new Point(116, 80);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(843, 23);
+            txtBuscar.TabIndex = 12;
             // 
             // label2
             // 
@@ -324,44 +293,69 @@
             label2.TabIndex = 11;
             label2.Text = "Buscar: ";
             // 
-            // label7
+            // dgPrestamos
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(434, 120);
-            label7.Name = "label7";
-            label7.Size = new Size(259, 18);
-            label7.TabIndex = 34;
-            label7.Text = "Fecha estimada de devolucion: ";
-            // 
-            // lblFechaDevolucion
-            // 
-            lblFechaDevolucion.AutoSize = true;
-            lblFechaDevolucion.ForeColor = Color.WhiteSmoke;
-            lblFechaDevolucion.Location = new Point(434, 143);
-            lblFechaDevolucion.Name = "lblFechaDevolucion";
-            lblFechaDevolucion.Size = new Size(148, 18);
-            lblFechaDevolucion.TabIndex = 35;
-            lblFechaDevolucion.Text = "fecha_devolucion";
+            dgPrestamos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgPrestamos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgPrestamos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            dgPrestamos.BackgroundColor = Color.FromArgb(49, 66, 82);
+            dgPrestamos.BorderStyle = BorderStyle.None;
+            dgPrestamos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgPrestamos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgPrestamos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(8, 2, 8, 2);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgPrestamos.DefaultCellStyle = dataGridViewCellStyle2;
+            dgPrestamos.EnableHeadersVisualStyles = false;
+            dgPrestamos.GridColor = Color.FromArgb(49, 66, 82);
+            dgPrestamos.Location = new Point(45, 355);
+            dgPrestamos.Name = "dgPrestamos";
+            dgPrestamos.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.Padding = new Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgPrestamos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgPrestamos.Size = new Size(967, 283);
+            dgPrestamos.TabIndex = 16;
             // 
             // FrmPrestamos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(49, 66, 82);
-            ClientSize = new Size(1050, 615);
+            ClientSize = new Size(1050, 650);
+            Controls.Add(dgPrestamos);
             Controls.Add(groupBox1);
             Controls.Add(textBox1);
-            Controls.Add(dgIngresoLibros);
             Controls.Add(button1);
             Controls.Add(label1);
-            Controls.Add(textBox2);
+            Controls.Add(txtBuscar);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmPrestamos";
             Text = "FrmPrestamos";
+            Load += FrmPrestamos_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgIngresoLibros).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgPrestamos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -374,22 +368,20 @@
         private Button btnAgregar;
         private Button btnLimpiar;
         private Button button1;
-        private TextBox textBox2;
+        private TextBox txtBuscar;
         private Label label2;
-        private DataGridView dgIngresoLibros;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
         private Button btnActualizar;
         private Button btnEliminar;
         private Label label3;
-        private ComboBox comboBox2;
+        private ComboBox cmbUsuario;
         private Label label4;
-        private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
+        private ComboBox cmbLibro;
+        private DateTimePicker dtFechaInicial;
         private Label label5;
-        private ComboBox comboBox3;
+        private ComboBox cmbEstadoPrestamo;
         private Label label6;
         private Label label7;
         private Label lblFechaDevolucion;
+        private DataGridView dgPrestamos;
     }
 }

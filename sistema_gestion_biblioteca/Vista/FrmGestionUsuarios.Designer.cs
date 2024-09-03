@@ -301,7 +301,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgUsuarios.Size = new Size(967, 261);
+            dgUsuarios.Size = new Size(967, 308);
             dgUsuarios.TabIndex = 15;
             dgUsuarios.CellClick += dgUsuarios_CellClick;
             // 
@@ -344,7 +344,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(49, 66, 82);
-            ClientSize = new Size(1050, 615);
+            ClientSize = new Size(1050, 670);
             Controls.Add(button4);
             Controls.Add(txtBuscar);
             Controls.Add(label4);
