@@ -30,9 +30,12 @@ namespace sistema_gestion_biblioteca.Forms
         {
             ActualizarDataGrid();
             lblFechaDevolucion.Text = " - ";
+            cargarCmbLibros();
             cargarCmbCorreoUsuario();
+            cargarCmbEstadoPrestamo();
             dtFechaInicial.Format = DateTimePickerFormat.Custom;
             dtFechaInicial.CustomFormat = " ";
+            cargarHeadersDataGrid();
         }
 
         private BindingSource enlaceDatos = new BindingSource();
@@ -53,12 +56,47 @@ namespace sistema_gestion_biblioteca.Forms
 
         void cargarCmbCorreoUsuario()
         {
+            cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
             var lista = obj_usuario_controlador.obtenerUsuarios();
             if (lista != null && lista.Count > 0)
             {
                 var pos = lista.Select(elemento => elemento.email).ToList();
+
+                pos.Insert(0, "Selecciona el correo");
+
                 cmbUsuario.DataSource = pos;
+
+                cmbUsuario.SelectedIndex = 0;
+
+                cmbUsuario.SelectedIndexChanged += (s, ev) =>
+                {
+                    if (cmbUsuario.SelectedIndex == 0)
+                    {
+                        cmbUsuario.SelectedIndex = -1;
+                    }
+                };
             }
+        }
+
+        void cargarCmbEstadoPrestamo()
+        {
+            cmbEstadoPrestamo.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            List<String> lista = new List<String> { "En curso", "Devuelto", "Retrasado" };
+
+            cmbEstadoPrestamo.Items.Insert(0, "Selecciona el estado");
+
+            cmbEstadoPrestamo.Items.AddRange(lista.ToArray());
+
+            cmbEstadoPrestamo.SelectedIndex = 0;
+
+            cmbEstadoPrestamo.SelectedIndexChanged += (s, ev) =>
+            {
+                if (cmbEstadoPrestamo.SelectedIndex == 0)
+                {
+                    cmbEstadoPrestamo.SelectedIndex = -1;
+                }
+            };
         }
 
         void ActualizarDataGrid()
@@ -121,6 +159,15 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
+        void cargarHeadersDataGrid()
+        {
+            dgPrestamos.Columns[0].HeaderText = "Título del libro";
+            dgPrestamos.Columns[1].HeaderText = "Correo del usuario";
+            dgPrestamos.Columns[2].HeaderText = "Fecha de préstamo";
+            dgPrestamos.Columns[3].HeaderText = "Fecha de devolución";
+            dgPrestamos.Columns[4].HeaderText = "Estado del préstamo";
+        }
+
         // Variable para guardar la fecha estimada de devolucion
         DateTime fecha_devolucion;
 
@@ -135,6 +182,14 @@ namespace sistema_gestion_biblioteca.Forms
 
             // Finalmente mostramos la fecha estimada de devolucion en el label
             lblFechaDevolucion.Text = fecha_devolucion.ToString("dd/MM/yyyy");
+        }
+
+        private void cmbLibro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbLibro.SelectedIndex == 0)
+            {
+                cmbLibro.SelectedIndex = -1;
+            }
         }
     }
 }

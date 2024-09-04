@@ -130,10 +130,11 @@
             // 
             // cmbEstadoPrestamo
             // 
+            cmbEstadoPrestamo.Font = new Font("Arial", 9.75F);
             cmbEstadoPrestamo.FormattingEnabled = true;
             cmbEstadoPrestamo.Location = new Point(247, 185);
             cmbEstadoPrestamo.Name = "cmbEstadoPrestamo";
-            cmbEstadoPrestamo.Size = new Size(373, 26);
+            cmbEstadoPrestamo.Size = new Size(373, 24);
             cmbEstadoPrestamo.TabIndex = 33;
             // 
             // label6
@@ -147,10 +148,11 @@
             // 
             // dtFechaInicial
             // 
+            dtFechaInicial.Font = new Font("Arial", 9.75F);
             dtFechaInicial.Format = DateTimePickerFormat.Short;
             dtFechaInicial.Location = new Point(247, 138);
             dtFechaInicial.Name = "dtFechaInicial";
-            dtFechaInicial.Size = new Size(163, 26);
+            dtFechaInicial.Size = new Size(163, 22);
             dtFechaInicial.TabIndex = 30;
             dtFechaInicial.ValueChanged += dtFechaInicial_ValueChanged;
             // 
@@ -165,10 +167,11 @@
             // 
             // cmbUsuario
             // 
+            cmbUsuario.Font = new Font("Arial", 9.75F);
             cmbUsuario.FormattingEnabled = true;
             cmbUsuario.Location = new Point(247, 85);
             cmbUsuario.Name = "cmbUsuario";
-            cmbUsuario.Size = new Size(373, 26);
+            cmbUsuario.Size = new Size(373, 24);
             cmbUsuario.TabIndex = 28;
             // 
             // label4
@@ -182,11 +185,13 @@
             // 
             // cmbLibro
             // 
+            cmbLibro.Font = new Font("Arial", 9.75F);
             cmbLibro.FormattingEnabled = true;
             cmbLibro.Location = new Point(247, 35);
             cmbLibro.Name = "cmbLibro";
-            cmbLibro.Size = new Size(373, 26);
+            cmbLibro.Size = new Size(373, 24);
             cmbLibro.TabIndex = 26;
+            cmbLibro.SelectedIndexChanged += cmbLibro_SelectedIndexChanged;
             // 
             // label3
             // 
