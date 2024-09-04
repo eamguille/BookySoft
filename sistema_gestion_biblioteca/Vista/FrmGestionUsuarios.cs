@@ -19,7 +19,7 @@ namespace sistema_gestion_biblioteca.Forms
         // Iniciamos una variable para el control del DataGridView
         private int indexDataGrid = -1;
 
-        // Definimos un BindingSource para enlazar los datos de la lista
+        // Definimos un BindingSource para enlazar los datos de la lista (Esto nos servira para el buscador)
         private BindingSource enlaceDatos = new BindingSource();
 
 
@@ -30,6 +30,7 @@ namespace sistema_gestion_biblioteca.Forms
             ActualizarDataGrid();
         }
 
+        // Metodo que se ejecuta al cargar el Form
         private void FrmGestionUsuarios_Load(object sender, EventArgs e)
         {
             ActualizarDataGrid();
@@ -43,6 +44,7 @@ namespace sistema_gestion_biblioteca.Forms
             dgUsuarios.DataSource = enlaceDatos;
         }
 
+        // Metodo para guardar el usuario
         void guardarUsuario()
         {
             try
@@ -61,6 +63,7 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
+        // Metodo para eliminar el usuario
         void eliminarUsuario()
         {
             try
@@ -90,6 +93,7 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
+        // Metodo para actualizar el usuario
         void actualizarUsuario()
         {
             try
@@ -109,6 +113,7 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
+        // Metodo para filtrar el usuario para el buscador, buscador funciona por medio de ya sea nombres, apellidos o correo, ademas el datagrid se actualiza automaticamente por el objeto BindingSource en el metodo ActualizarDataGrid()
         void filtrarUsuario(string filtro_buscador)
         {
             var listaUsuarios = obj_controlador.obtenerUsuarios();
@@ -141,21 +146,31 @@ namespace sistema_gestion_biblioteca.Forms
             dgUsuarios.DataSource = enlaceDatos;
         }
 
+        // Mandamos a llamar el metodo filtrarUsuario() en el txtBuscar, elemento que sirve para buscar
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             filtrarUsuario(txtBuscar.Text);
         }
 
+        // Mandamos a llamar el metodo guardarUsuario() al evento click del boton agregar
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             guardarUsuario();
         }
 
+        // Mandamos a llamar el metodo actualizarUsuario() al evento click del boton actualizar
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             eliminarUsuario();
         }
 
+        // Mandamos a llamar el metodo eliminarUsuario() al evento click del boton eliminar
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            actualizarUsuario();
+        }
+
+        // Metodo para obtener los datos de los registros en los textBoxes, esto nos sirve para la funcion de actualizar el usuario
         private void dgUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -169,11 +184,6 @@ namespace sistema_gestion_biblioteca.Forms
                 txtTelefono.Text = fila[3].Value.ToString();
                 txtEmail.Text = fila[4].Value.ToString();
             }
-        }
-
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            actualizarUsuario();
         }
 
 
