@@ -191,7 +191,6 @@
             cmbLibro.Name = "cmbLibro";
             cmbLibro.Size = new Size(373, 24);
             cmbLibro.TabIndex = 26;
-            cmbLibro.SelectedIndexChanged += cmbLibro_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -249,6 +248,7 @@
             btnAgregar.TabIndex = 22;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnLimpiar
             // 

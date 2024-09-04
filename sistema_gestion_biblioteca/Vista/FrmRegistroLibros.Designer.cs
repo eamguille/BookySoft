@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -39,26 +39,26 @@
             label6 = new Label();
             label7 = new Label();
             groupBox1 = new GroupBox();
+            btnEliminar = new Button();
+            btnActualizar = new Button();
             btnAgregar = new Button();
             btnLimpiar = new Button();
-            textBox8 = new TextBox();
-            textBox6 = new TextBox();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
-            textBox7 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            txtISBN = new TextBox();
+            txtDescripcion = new TextBox();
+            dtFechaPublicacion = new DateTimePicker();
+            dtFechaIngreso = new DateTimePicker();
+            txtNumeroPags = new TextBox();
+            txtGenero = new TextBox();
+            txtEditorial = new TextBox();
+            txtAutor = new TextBox();
+            txtTitulo = new TextBox();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
             textBox1 = new TextBox();
-            btnActualizar = new Button();
-            btnEliminar = new Button();
-            dgPrestamos = new DataGridView();
+            dgLibros = new DataGridView();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgPrestamos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgLibros).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -134,15 +134,15 @@
             groupBox1.Controls.Add(btnActualizar);
             groupBox1.Controls.Add(btnAgregar);
             groupBox1.Controls.Add(btnLimpiar);
-            groupBox1.Controls.Add(textBox8);
-            groupBox1.Controls.Add(textBox6);
-            groupBox1.Controls.Add(dateTimePicker2);
-            groupBox1.Controls.Add(dateTimePicker1);
-            groupBox1.Controls.Add(textBox7);
-            groupBox1.Controls.Add(textBox5);
-            groupBox1.Controls.Add(textBox4);
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtISBN);
+            groupBox1.Controls.Add(txtDescripcion);
+            groupBox1.Controls.Add(dtFechaPublicacion);
+            groupBox1.Controls.Add(dtFechaIngreso);
+            groupBox1.Controls.Add(txtNumeroPags);
+            groupBox1.Controls.Add(txtGenero);
+            groupBox1.Controls.Add(txtEditorial);
+            groupBox1.Controls.Add(txtAutor);
+            groupBox1.Controls.Add(txtTitulo);
             groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(label8);
@@ -161,6 +161,38 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "INFORMACIÓN DE LIBROS";
             // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.WhiteSmoke;
+            btnEliminar.BackgroundImageLayout = ImageLayout.None;
+            btnEliminar.Cursor = Cursors.Hand;
+            btnEliminar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnEliminar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnEliminar.Location = new Point(790, 213);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(155, 44);
+            btnEliminar.TabIndex = 23;
+            btnEliminar.Text = "Eliminar libro";
+            btnEliminar.UseVisualStyleBackColor = false;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.BackColor = Color.WhiteSmoke;
+            btnActualizar.BackgroundImageLayout = ImageLayout.None;
+            btnActualizar.Cursor = Cursors.Hand;
+            btnActualizar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnActualizar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnActualizar.FlatStyle = FlatStyle.Flat;
+            btnActualizar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnActualizar.Location = new Point(790, 149);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(155, 44);
+            btnActualizar.TabIndex = 22;
+            btnActualizar.Text = "Actualizar libro";
+            btnActualizar.UseVisualStyleBackColor = false;
+            // 
             // btnAgregar
             // 
             btnAgregar.BackColor = Color.WhiteSmoke;
@@ -176,6 +208,7 @@
             btnAgregar.TabIndex = 21;
             btnAgregar.Text = "Agregar libro";
             btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnLimpiar
             // 
@@ -193,73 +226,80 @@
             btnLimpiar.Text = "Limpiar campos";
             btnLimpiar.UseVisualStyleBackColor = false;
             // 
-            // textBox8
+            // txtISBN
             // 
-            textBox8.Location = new Point(548, 223);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(204, 26);
-            textBox8.TabIndex = 19;
+            txtISBN.Font = new Font("Arial", 9.75F);
+            txtISBN.Location = new Point(548, 223);
+            txtISBN.Name = "txtISBN";
+            txtISBN.Size = new Size(204, 22);
+            txtISBN.TabIndex = 19;
             // 
-            // textBox6
+            // txtDescripcion
             // 
-            textBox6.Location = new Point(461, 56);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(291, 104);
-            textBox6.TabIndex = 18;
+            txtDescripcion.Font = new Font("Arial", 9.75F);
+            txtDescripcion.Location = new Point(461, 56);
+            txtDescripcion.Multiline = true;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(291, 104);
+            txtDescripcion.TabIndex = 18;
             // 
-            // dateTimePicker2
+            // dtFechaPublicacion
             // 
-            dateTimePicker2.Font = new Font("Arial Rounded MT Bold", 9.75F);
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(207, 252);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(229, 23);
-            dateTimePicker2.TabIndex = 17;
+            dtFechaPublicacion.Font = new Font("Arial", 9.75F);
+            dtFechaPublicacion.Format = DateTimePickerFormat.Short;
+            dtFechaPublicacion.Location = new Point(207, 252);
+            dtFechaPublicacion.Name = "dtFechaPublicacion";
+            dtFechaPublicacion.Size = new Size(229, 22);
+            dtFechaPublicacion.TabIndex = 17;
             // 
-            // dateTimePicker1
+            // dtFechaIngreso
             // 
-            dateTimePicker1.Font = new Font("Arial Rounded MT Bold", 9.75F);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(207, 213);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(229, 23);
-            dateTimePicker1.TabIndex = 16;
+            dtFechaIngreso.Font = new Font("Arial", 9.75F);
+            dtFechaIngreso.Format = DateTimePickerFormat.Short;
+            dtFechaIngreso.Location = new Point(207, 213);
+            dtFechaIngreso.Name = "dtFechaIngreso";
+            dtFechaIngreso.Size = new Size(229, 22);
+            dtFechaIngreso.TabIndex = 16;
             // 
-            // textBox7
+            // txtNumeroPags
             // 
-            textBox7.Location = new Point(207, 121);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(229, 26);
-            textBox7.TabIndex = 15;
+            txtNumeroPags.Font = new Font("Arial", 9.75F);
+            txtNumeroPags.Location = new Point(207, 121);
+            txtNumeroPags.Name = "txtNumeroPags";
+            txtNumeroPags.Size = new Size(229, 22);
+            txtNumeroPags.TabIndex = 15;
             // 
-            // textBox5
+            // txtGenero
             // 
-            textBox5.Location = new Point(207, 167);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(229, 26);
-            textBox5.TabIndex = 13;
+            txtGenero.Font = new Font("Arial", 9.75F);
+            txtGenero.Location = new Point(207, 167);
+            txtGenero.Name = "txtGenero";
+            txtGenero.Size = new Size(229, 22);
+            txtGenero.TabIndex = 13;
             // 
-            // textBox4
+            // txtEditorial
             // 
-            textBox4.Location = new Point(548, 177);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(204, 26);
-            textBox4.TabIndex = 12;
+            txtEditorial.Font = new Font("Arial", 9.75F);
+            txtEditorial.Location = new Point(548, 177);
+            txtEditorial.Name = "txtEditorial";
+            txtEditorial.Size = new Size(204, 22);
+            txtEditorial.TabIndex = 12;
             // 
-            // textBox3
+            // txtAutor
             // 
-            textBox3.Location = new Point(207, 74);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(229, 26);
-            textBox3.TabIndex = 11;
+            txtAutor.Font = new Font("Arial", 9.75F);
+            txtAutor.Location = new Point(207, 74);
+            txtAutor.Name = "txtAutor";
+            txtAutor.Size = new Size(229, 22);
+            txtAutor.TabIndex = 11;
             // 
-            // textBox2
+            // txtTitulo
             // 
-            textBox2.Location = new Point(207, 32);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(229, 26);
-            textBox2.TabIndex = 10;
+            txtTitulo.Font = new Font("Arial", 9.75F);
+            txtTitulo.Location = new Point(207, 32);
+            txtTitulo.Name = "txtTitulo";
+            txtTitulo.Size = new Size(229, 22);
+            txtTitulo.TabIndex = 10;
             // 
             // label10
             // 
@@ -300,80 +340,48 @@
             textBox1.Size = new Size(967, 2);
             textBox1.TabIndex = 8;
             // 
-            // btnActualizar
+            // dgLibros
             // 
-            btnActualizar.BackColor = Color.WhiteSmoke;
-            btnActualizar.BackgroundImageLayout = ImageLayout.None;
-            btnActualizar.Cursor = Cursors.Hand;
-            btnActualizar.FlatAppearance.MouseDownBackColor = Color.Gray;
-            btnActualizar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            btnActualizar.FlatStyle = FlatStyle.Flat;
-            btnActualizar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnActualizar.Location = new Point(790, 149);
-            btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(155, 44);
-            btnActualizar.TabIndex = 22;
-            btnActualizar.Text = "Actualizar libro";
-            btnActualizar.UseVisualStyleBackColor = false;
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.BackColor = Color.WhiteSmoke;
-            btnEliminar.BackgroundImageLayout = ImageLayout.None;
-            btnEliminar.Cursor = Cursors.Hand;
-            btnEliminar.FlatAppearance.MouseDownBackColor = Color.Gray;
-            btnEliminar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnEliminar.Location = new Point(790, 213);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(155, 44);
-            btnEliminar.TabIndex = 23;
-            btnEliminar.Text = "Eliminar libro";
-            btnEliminar.UseVisualStyleBackColor = false;
-            // 
-            // dgPrestamos
-            // 
-            dgPrestamos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgPrestamos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgPrestamos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
-            dgPrestamos.BackgroundColor = Color.FromArgb(49, 66, 82);
-            dgPrestamos.BorderStyle = BorderStyle.None;
-            dgPrestamos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.Gray;
-            dataGridViewCellStyle4.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle4.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgPrestamos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dgPrestamos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.Silver;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.Padding = new Padding(8, 2, 8, 2);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle5.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgPrestamos.DefaultCellStyle = dataGridViewCellStyle5;
-            dgPrestamos.EnableHeadersVisualStyles = false;
-            dgPrestamos.GridColor = Color.FromArgb(49, 66, 82);
-            dgPrestamos.Location = new Point(45, 397);
-            dgPrestamos.Name = "dgPrestamos";
-            dgPrestamos.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Silver;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.Padding = new Padding(5);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgPrestamos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dgPrestamos.Size = new Size(967, 281);
-            dgPrestamos.TabIndex = 17;
+            dgLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgLibros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgLibros.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            dgLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
+            dgLibros.BorderStyle = BorderStyle.None;
+            dgLibros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(8, 2, 8, 2);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgLibros.DefaultCellStyle = dataGridViewCellStyle2;
+            dgLibros.EnableHeadersVisualStyles = false;
+            dgLibros.GridColor = Color.FromArgb(49, 66, 82);
+            dgLibros.Location = new Point(45, 397);
+            dgLibros.Name = "dgLibros";
+            dgLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.Padding = new Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgLibros.Size = new Size(967, 281);
+            dgLibros.TabIndex = 17;
             // 
             // FrmRegistroLibros
             // 
@@ -381,16 +389,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(49, 66, 82);
             ClientSize = new Size(1050, 690);
-            Controls.Add(dgPrestamos);
+            Controls.Add(dgLibros);
             Controls.Add(textBox1);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmRegistroLibros";
             Text = "FrmRegistroLibros";
+            Load += FrmRegistroLibros_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgPrestamos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgLibros).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -409,19 +418,19 @@
         private Label label9;
         private Label label8;
         private TextBox textBox1;
-        private TextBox textBox7;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox6;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
-        private TextBox textBox8;
+        private TextBox txtNumeroPags;
+        private TextBox txtGenero;
+        private TextBox txtEditorial;
+        private TextBox txtAutor;
+        private TextBox txtTitulo;
+        private TextBox txtDescripcion;
+        private DateTimePicker dtFechaPublicacion;
+        private DateTimePicker dtFechaIngreso;
+        private TextBox txtISBN;
         private Button btnAgregar;
         private Button btnLimpiar;
         private Button btnEliminar;
         private Button btnActualizar;
-        private DataGridView dgPrestamos;
+        private DataGridView dgLibros;
     }
 }

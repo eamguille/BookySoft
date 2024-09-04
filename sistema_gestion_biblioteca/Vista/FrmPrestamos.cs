@@ -46,11 +46,25 @@ namespace sistema_gestion_biblioteca.Forms
 
         void cargarCmbLibros()
         {
+            cmbLibro.DropDownStyle = ComboBoxStyle.DropDownList;
             var lista = obj_libro_controlador.obtenerListaLibros();
             if (lista != null && lista.Count > 0)
             {
                 var pos = lista.Select(elemento => elemento.titulo_libro).ToList();
+
+                pos.Insert(0, "Selecciona el libro");
+
                 cmbLibro.DataSource = pos;
+
+                cmbLibro.SelectedIndex = 0;
+
+                cmbLibro.SelectedIndexChanged += (s, ev) =>
+                {
+                    if (cmbLibro.SelectedIndex == 0)
+                    {
+                        cmbLibro.SelectedIndex = -1;
+                    }
+                };
             }
         }
 
@@ -184,12 +198,9 @@ namespace sistema_gestion_biblioteca.Forms
             lblFechaDevolucion.Text = fecha_devolucion.ToString("dd/MM/yyyy");
         }
 
-        private void cmbLibro_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (cmbLibro.SelectedIndex == 0)
-            {
-                cmbLibro.SelectedIndex = -1;
-            }
+            guardarPrestamo();
         }
     }
 }
