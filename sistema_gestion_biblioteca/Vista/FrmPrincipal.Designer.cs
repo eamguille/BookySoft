@@ -35,14 +35,18 @@
             btnMinimizar = new PictureBox();
             btnCerrar = new PictureBox();
             PnMenuVertical = new Panel();
+            panel5 = new Panel();
+            btnHistorialDev = new Button();
+            panel4 = new Panel();
             btnSalirSesion = new PictureBox();
+            btnGestionDev = new Button();
             panel8 = new Panel();
             panel7 = new Panel();
             panel6 = new Panel();
             panel3 = new Panel();
             panel2 = new Panel();
             btnHistorialPrestamos = new Button();
-            btnPrestamosYDevoluciones = new Button();
+            btnGestionPrestamos = new Button();
             btnGestionUsuarios = new Button();
             btnConsultaLibros = new Button();
             btnRegistroLibros = new Button();
@@ -123,14 +127,18 @@
             // PnMenuVertical
             // 
             PnMenuVertical.BackColor = Color.FromArgb(26, 32, 40);
+            PnMenuVertical.Controls.Add(panel5);
+            PnMenuVertical.Controls.Add(btnHistorialDev);
+            PnMenuVertical.Controls.Add(panel4);
             PnMenuVertical.Controls.Add(btnSalirSesion);
+            PnMenuVertical.Controls.Add(btnGestionDev);
             PnMenuVertical.Controls.Add(panel8);
             PnMenuVertical.Controls.Add(panel7);
             PnMenuVertical.Controls.Add(panel6);
             PnMenuVertical.Controls.Add(panel3);
             PnMenuVertical.Controls.Add(panel2);
             PnMenuVertical.Controls.Add(btnHistorialPrestamos);
-            PnMenuVertical.Controls.Add(btnPrestamosYDevoluciones);
+            PnMenuVertical.Controls.Add(btnGestionPrestamos);
             PnMenuVertical.Controls.Add(btnGestionUsuarios);
             PnMenuVertical.Controls.Add(btnConsultaLibros);
             PnMenuVertical.Controls.Add(btnRegistroLibros);
@@ -141,10 +149,45 @@
             PnMenuVertical.Size = new Size(250, 667);
             PnMenuVertical.TabIndex = 1;
             // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(0, 80, 200);
+            panel5.Location = new Point(0, 539);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(3, 48);
+            panel5.TabIndex = 10;
+            // 
+            // btnHistorialDev
+            // 
+            btnHistorialDev.Cursor = Cursors.Hand;
+            btnHistorialDev.FlatAppearance.BorderColor = Color.FromArgb(26, 32, 40);
+            btnHistorialDev.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
+            btnHistorialDev.FlatStyle = FlatStyle.Flat;
+            btnHistorialDev.Font = new Font("Arial Rounded MT Bold", 9.75F);
+            btnHistorialDev.ForeColor = Color.Silver;
+            btnHistorialDev.Image = (Image)resources.GetObject("btnHistorialDev.Image");
+            btnHistorialDev.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHistorialDev.Location = new Point(0, 537);
+            btnHistorialDev.Name = "btnHistorialDev";
+            btnHistorialDev.Padding = new Padding(12, 0, 0, 0);
+            btnHistorialDev.Size = new Size(284, 52);
+            btnHistorialDev.TabIndex = 11;
+            btnHistorialDev.Text = "HISTORIAL DE \r\nDEVOLUCIONES";
+            btnHistorialDev.UseVisualStyleBackColor = true;
+            btnHistorialDev.Click += btnHistorialDev_Click;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(0, 80, 200);
+            panel4.Location = new Point(0, 483);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(3, 48);
+            panel4.TabIndex = 8;
+            // 
             // btnSalirSesion
             // 
             btnSalirSesion.Image = (Image)resources.GetObject("btnSalirSesion.Image");
-            btnSalirSesion.Location = new Point(12, 607);
+            btnSalirSesion.Location = new Point(11, 621);
             btnSalirSesion.Name = "btnSalirSesion";
             btnSalirSesion.Size = new Size(37, 37);
             btnSalirSesion.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -152,6 +195,25 @@
             btnSalirSesion.TabStop = false;
             btnSalirSesion.Tag = "Cerrar Sesion";
             btnSalirSesion.Click += btnSalirSesion_Click;
+            // 
+            // btnGestionDev
+            // 
+            btnGestionDev.Cursor = Cursors.Hand;
+            btnGestionDev.FlatAppearance.BorderColor = Color.FromArgb(26, 32, 40);
+            btnGestionDev.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
+            btnGestionDev.FlatStyle = FlatStyle.Flat;
+            btnGestionDev.Font = new Font("Arial Rounded MT Bold", 9.75F);
+            btnGestionDev.ForeColor = Color.Silver;
+            btnGestionDev.Image = (Image)resources.GetObject("btnGestionDev.Image");
+            btnGestionDev.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGestionDev.Location = new Point(1, 481);
+            btnGestionDev.Name = "btnGestionDev";
+            btnGestionDev.Padding = new Padding(8, 0, 0, 0);
+            btnGestionDev.Size = new Size(283, 52);
+            btnGestionDev.TabIndex = 9;
+            btnGestionDev.Text = "GESTIÓN DE \r\nDEVOLUCIONES";
+            btnGestionDev.UseVisualStyleBackColor = true;
+            btnGestionDev.Click += btnGestionDev_Click;
             // 
             // panel8
             // 
@@ -203,35 +265,35 @@
             btnHistorialPrestamos.ForeColor = Color.Silver;
             btnHistorialPrestamos.Image = (Image)resources.GetObject("btnHistorialPrestamos.Image");
             btnHistorialPrestamos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHistorialPrestamos.Location = new Point(0, 424);
+            btnHistorialPrestamos.Location = new Point(0, 423);
             btnHistorialPrestamos.Name = "btnHistorialPrestamos";
             btnHistorialPrestamos.Padding = new Padding(12, 0, 0, 0);
-            btnHistorialPrestamos.Size = new Size(251, 50);
+            btnHistorialPrestamos.Size = new Size(251, 52);
             btnHistorialPrestamos.TabIndex = 7;
             btnHistorialPrestamos.Text = "HISTORIAL DE PRÉSTAMOS";
             btnHistorialPrestamos.TextAlign = ContentAlignment.MiddleRight;
             btnHistorialPrestamos.UseVisualStyleBackColor = true;
             btnHistorialPrestamos.Click += btnHistorialPrestamos_Click;
             // 
-            // btnPrestamosYDevoluciones
+            // btnGestionPrestamos
             // 
-            btnPrestamosYDevoluciones.Cursor = Cursors.Hand;
-            btnPrestamosYDevoluciones.FlatAppearance.BorderColor = Color.FromArgb(26, 32, 40);
-            btnPrestamosYDevoluciones.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
-            btnPrestamosYDevoluciones.FlatStyle = FlatStyle.Flat;
-            btnPrestamosYDevoluciones.Font = new Font("Arial Rounded MT Bold", 9.75F);
-            btnPrestamosYDevoluciones.ForeColor = Color.Silver;
-            btnPrestamosYDevoluciones.Image = (Image)resources.GetObject("btnPrestamosYDevoluciones.Image");
-            btnPrestamosYDevoluciones.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPrestamosYDevoluciones.Location = new Point(0, 368);
-            btnPrestamosYDevoluciones.Name = "btnPrestamosYDevoluciones";
-            btnPrestamosYDevoluciones.Padding = new Padding(12, 0, 35, 0);
-            btnPrestamosYDevoluciones.Size = new Size(251, 52);
-            btnPrestamosYDevoluciones.TabIndex = 6;
-            btnPrestamosYDevoluciones.Text = "PRÉSTAMO Y \r\n   DEVOLUCIONES";
-            btnPrestamosYDevoluciones.TextAlign = ContentAlignment.MiddleRight;
-            btnPrestamosYDevoluciones.UseVisualStyleBackColor = true;
-            btnPrestamosYDevoluciones.Click += btnPrestamosYDevoluciones_Click;
+            btnGestionPrestamos.Cursor = Cursors.Hand;
+            btnGestionPrestamos.FlatAppearance.BorderColor = Color.FromArgb(26, 32, 40);
+            btnGestionPrestamos.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
+            btnGestionPrestamos.FlatStyle = FlatStyle.Flat;
+            btnGestionPrestamos.Font = new Font("Arial Rounded MT Bold", 9.75F);
+            btnGestionPrestamos.ForeColor = Color.Silver;
+            btnGestionPrestamos.Image = (Image)resources.GetObject("btnGestionPrestamos.Image");
+            btnGestionPrestamos.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGestionPrestamos.Location = new Point(0, 367);
+            btnGestionPrestamos.Name = "btnGestionPrestamos";
+            btnGestionPrestamos.Padding = new Padding(12, 0, 2, 0);
+            btnGestionPrestamos.Size = new Size(251, 54);
+            btnGestionPrestamos.TabIndex = 6;
+            btnGestionPrestamos.Text = "GESTIÓN DE PRÉSTAMOS";
+            btnGestionPrestamos.TextAlign = ContentAlignment.MiddleRight;
+            btnGestionPrestamos.UseVisualStyleBackColor = true;
+            btnGestionPrestamos.Click += btnGestionPrestamos_Click;
             // 
             // btnGestionUsuarios
             // 
@@ -243,10 +305,10 @@
             btnGestionUsuarios.ForeColor = Color.Silver;
             btnGestionUsuarios.Image = (Image)resources.GetObject("btnGestionUsuarios.Image");
             btnGestionUsuarios.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGestionUsuarios.Location = new Point(0, 316);
+            btnGestionUsuarios.Location = new Point(0, 315);
             btnGestionUsuarios.Name = "btnGestionUsuarios";
             btnGestionUsuarios.Padding = new Padding(12, 0, 7, 0);
-            btnGestionUsuarios.Size = new Size(251, 48);
+            btnGestionUsuarios.Size = new Size(251, 50);
             btnGestionUsuarios.TabIndex = 5;
             btnGestionUsuarios.Text = "GESTIÓN DE USUARIOS";
             btnGestionUsuarios.TextAlign = ContentAlignment.MiddleRight;
@@ -263,10 +325,10 @@
             btnConsultaLibros.ForeColor = Color.Silver;
             btnConsultaLibros.Image = (Image)resources.GetObject("btnConsultaLibros.Image");
             btnConsultaLibros.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConsultaLibros.Location = new Point(0, 258);
+            btnConsultaLibros.Location = new Point(0, 257);
             btnConsultaLibros.Name = "btnConsultaLibros";
             btnConsultaLibros.Padding = new Padding(10, 0, 15, 0);
-            btnConsultaLibros.Size = new Size(251, 50);
+            btnConsultaLibros.Size = new Size(251, 52);
             btnConsultaLibros.TabIndex = 2;
             btnConsultaLibros.Text = "CONSULTA DE LIBROS";
             btnConsultaLibros.TextAlign = ContentAlignment.MiddleRight;
@@ -350,7 +412,7 @@
         private PictureBox btnInicio;
         private Button btnRegistroLibros;
         private Button btnHistorialPrestamos;
-        private Button btnPrestamosYDevoluciones;
+        private Button btnGestionPrestamos;
         private Button btnGestionUsuarios;
         private Button btnConsultaLibros;
         private Panel panel3;
@@ -359,5 +421,9 @@
         private Panel panel7;
         private Panel panel6;
         private PictureBox btnSalirSesion;
+        private Panel panel5;
+        private Button btnHistorialDev;
+        private Panel panel4;
+        private Button btnGestionDev;
     }
 }

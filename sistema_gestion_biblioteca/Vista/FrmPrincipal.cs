@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using sistema_gestion_biblioteca.Vista;
 
 namespace sistema_gestion_biblioteca.Forms
 {
@@ -66,7 +67,7 @@ namespace sistema_gestion_biblioteca.Forms
             Color primerColor = Color.FromArgb(26, 32, 40);
             Color segundoColor = Color.FromArgb(0, 80, 200);
 
-            List<Button> listaBotones = new List<Button> { btnRegistroLibros, btnConsultaLibros, btnGestionUsuarios, btnPrestamosYDevoluciones, btnHistorialPrestamos };
+            List<Button> listaBotones = new List<Button> { btnRegistroLibros, btnConsultaLibros, btnGestionUsuarios, btnGestionPrestamos, btnHistorialPrestamos, btnGestionDev, btnHistorialDev };
 
             // Recorremos cada boton para su seleccion
             foreach (Button boton in listaBotones)
@@ -101,12 +102,6 @@ namespace sistema_gestion_biblioteca.Forms
             seleccinarBoton(btnGestionUsuarios);
         }
 
-        private void btnPrestamosYDevoluciones_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new FrmPrestamos());
-            seleccinarBoton(btnPrestamosYDevoluciones);
-        }
-
         private void btnHistorialPrestamos_Click(object sender, EventArgs e)
         {
             abrirFormularioHijo(new FrmHistorialPrestamos());
@@ -118,6 +113,24 @@ namespace sistema_gestion_biblioteca.Forms
             FrmLogin frmLogin = new FrmLogin();
             frmLogin.Show();
             this.Hide();
+        }
+
+        private void btnGestionDev_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FrmGestionDevoluciones());
+            seleccinarBoton(btnGestionDev);
+        }
+
+        private void btnHistorialDev_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FrmHistorialDevoluciones());
+            seleccinarBoton(btnHistorialDev);
+        }
+
+        private void btnGestionPrestamos_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FrmPrestamos());
+            seleccinarBoton(btnGestionPrestamos);
         }
     }
 }
