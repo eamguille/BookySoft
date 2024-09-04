@@ -67,63 +67,63 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Silver;
-            label1.Location = new Point(379, 21);
+            label1.Location = new Point(433, 28);
             label1.Name = "label1";
-            label1.Size = new Size(308, 32);
+            label1.Size = new Size(393, 39);
             label1.TabIndex = 0;
             label1.Text = "REGISTRO DE LIBROS";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(73, 35);
+            label2.Location = new Point(83, 47);
             label2.Name = "label2";
-            label2.Size = new Size(128, 18);
+            label2.Size = new Size(159, 23);
             label2.TabIndex = 1;
             label2.Text = "Título del libro: ";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(72, 77);
+            label3.Location = new Point(82, 103);
             label3.Name = "label3";
-            label3.Size = new Size(129, 18);
+            label3.Size = new Size(159, 23);
             label3.TabIndex = 2;
             label3.Text = "Autor del libro: ";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(485, 226);
+            label4.Location = new Point(554, 301);
             label4.Name = "label4";
-            label4.Size = new Size(57, 18);
+            label4.Size = new Size(69, 23);
             label4.TabIndex = 3;
             label4.Text = "ISBN: ";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(14, 255);
+            label5.Location = new Point(16, 340);
             label5.Name = "label5";
-            label5.Size = new Size(187, 18);
+            label5.Size = new Size(229, 23);
             label5.TabIndex = 4;
             label5.Text = "Fecha de publicación: ";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(461, 180);
+            label6.Location = new Point(527, 240);
             label6.Name = "label6";
-            label6.Size = new Size(83, 18);
+            label6.Size = new Size(102, 23);
             label6.TabIndex = 5;
             label6.Text = "Editorial: ";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(57, 170);
+            label7.Location = new Point(65, 227);
             label7.Name = "label7";
-            label7.Size = new Size(144, 18);
+            label7.Size = new Size(178, 23);
             label7.TabIndex = 6;
             label7.Text = "Género del libro: ";
             // 
@@ -154,9 +154,11 @@
             groupBox1.Controls.Add(label4);
             groupBox1.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.LightGray;
-            groupBox1.Location = new Point(45, 91);
+            groupBox1.Location = new Point(51, 121);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(967, 287);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(1105, 383);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "INFORMACIÓN DE LIBROS";
@@ -170,12 +172,14 @@
             btnEliminar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnEliminar.Location = new Point(790, 213);
+            btnEliminar.Location = new Point(903, 284);
+            btnEliminar.Margin = new Padding(3, 4, 3, 4);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(155, 44);
+            btnEliminar.Size = new Size(177, 59);
             btnEliminar.TabIndex = 23;
             btnEliminar.Text = "Eliminar libro";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnActualizar
             // 
@@ -186,12 +190,14 @@
             btnActualizar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnActualizar.FlatStyle = FlatStyle.Flat;
             btnActualizar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnActualizar.Location = new Point(790, 149);
+            btnActualizar.Location = new Point(903, 199);
+            btnActualizar.Margin = new Padding(3, 4, 3, 4);
             btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(155, 44);
+            btnActualizar.Size = new Size(177, 59);
             btnActualizar.TabIndex = 22;
             btnActualizar.Text = "Actualizar libro";
             btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // btnAgregar
             // 
@@ -202,9 +208,10 @@
             btnAgregar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnAgregar.FlatStyle = FlatStyle.Flat;
             btnAgregar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnAgregar.Location = new Point(790, 86);
+            btnAgregar.Location = new Point(903, 115);
+            btnAgregar.Margin = new Padding(3, 4, 3, 4);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(155, 44);
+            btnAgregar.Size = new Size(177, 59);
             btnAgregar.TabIndex = 21;
             btnAgregar.Text = "Agregar libro";
             btnAgregar.UseVisualStyleBackColor = false;
@@ -219,112 +226,123 @@
             btnLimpiar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnLimpiar.FlatStyle = FlatStyle.Flat;
             btnLimpiar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnLimpiar.Location = new Point(790, 25);
+            btnLimpiar.Location = new Point(903, 33);
+            btnLimpiar.Margin = new Padding(3, 4, 3, 4);
             btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(155, 44);
+            btnLimpiar.Size = new Size(177, 59);
             btnLimpiar.TabIndex = 20;
             btnLimpiar.Text = "Limpiar campos";
             btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // txtISBN
             // 
             txtISBN.Font = new Font("Arial", 9.75F);
-            txtISBN.Location = new Point(548, 223);
+            txtISBN.Location = new Point(626, 297);
+            txtISBN.Margin = new Padding(3, 4, 3, 4);
             txtISBN.Name = "txtISBN";
-            txtISBN.Size = new Size(204, 22);
+            txtISBN.Size = new Size(233, 26);
             txtISBN.TabIndex = 19;
             // 
             // txtDescripcion
             // 
             txtDescripcion.Font = new Font("Arial", 9.75F);
-            txtDescripcion.Location = new Point(461, 56);
+            txtDescripcion.Location = new Point(527, 75);
+            txtDescripcion.Margin = new Padding(3, 4, 3, 4);
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(291, 104);
+            txtDescripcion.Size = new Size(332, 137);
             txtDescripcion.TabIndex = 18;
             // 
             // dtFechaPublicacion
             // 
             dtFechaPublicacion.Font = new Font("Arial", 9.75F);
             dtFechaPublicacion.Format = DateTimePickerFormat.Short;
-            dtFechaPublicacion.Location = new Point(207, 252);
+            dtFechaPublicacion.Location = new Point(237, 336);
+            dtFechaPublicacion.Margin = new Padding(3, 4, 3, 4);
             dtFechaPublicacion.Name = "dtFechaPublicacion";
-            dtFechaPublicacion.Size = new Size(229, 22);
+            dtFechaPublicacion.Size = new Size(261, 26);
             dtFechaPublicacion.TabIndex = 17;
             // 
             // dtFechaIngreso
             // 
             dtFechaIngreso.Font = new Font("Arial", 9.75F);
             dtFechaIngreso.Format = DateTimePickerFormat.Short;
-            dtFechaIngreso.Location = new Point(207, 213);
+            dtFechaIngreso.Location = new Point(237, 284);
+            dtFechaIngreso.Margin = new Padding(3, 4, 3, 4);
             dtFechaIngreso.Name = "dtFechaIngreso";
-            dtFechaIngreso.Size = new Size(229, 22);
+            dtFechaIngreso.Size = new Size(261, 26);
             dtFechaIngreso.TabIndex = 16;
             // 
             // txtNumeroPags
             // 
             txtNumeroPags.Font = new Font("Arial", 9.75F);
-            txtNumeroPags.Location = new Point(207, 121);
+            txtNumeroPags.Location = new Point(237, 161);
+            txtNumeroPags.Margin = new Padding(3, 4, 3, 4);
             txtNumeroPags.Name = "txtNumeroPags";
-            txtNumeroPags.Size = new Size(229, 22);
+            txtNumeroPags.Size = new Size(261, 26);
             txtNumeroPags.TabIndex = 15;
             // 
             // txtGenero
             // 
             txtGenero.Font = new Font("Arial", 9.75F);
-            txtGenero.Location = new Point(207, 167);
+            txtGenero.Location = new Point(237, 223);
+            txtGenero.Margin = new Padding(3, 4, 3, 4);
             txtGenero.Name = "txtGenero";
-            txtGenero.Size = new Size(229, 22);
+            txtGenero.Size = new Size(261, 26);
             txtGenero.TabIndex = 13;
             // 
             // txtEditorial
             // 
             txtEditorial.Font = new Font("Arial", 9.75F);
-            txtEditorial.Location = new Point(548, 177);
+            txtEditorial.Location = new Point(626, 236);
+            txtEditorial.Margin = new Padding(3, 4, 3, 4);
             txtEditorial.Name = "txtEditorial";
-            txtEditorial.Size = new Size(204, 22);
+            txtEditorial.Size = new Size(233, 26);
             txtEditorial.TabIndex = 12;
             // 
             // txtAutor
             // 
             txtAutor.Font = new Font("Arial", 9.75F);
-            txtAutor.Location = new Point(207, 74);
+            txtAutor.Location = new Point(237, 99);
+            txtAutor.Margin = new Padding(3, 4, 3, 4);
             txtAutor.Name = "txtAutor";
-            txtAutor.Size = new Size(229, 22);
+            txtAutor.Size = new Size(261, 26);
             txtAutor.TabIndex = 11;
             // 
             // txtTitulo
             // 
             txtTitulo.Font = new Font("Arial", 9.75F);
-            txtTitulo.Location = new Point(207, 32);
+            txtTitulo.Location = new Point(237, 43);
+            txtTitulo.Margin = new Padding(3, 4, 3, 4);
             txtTitulo.Name = "txtTitulo";
-            txtTitulo.Size = new Size(229, 22);
+            txtTitulo.Size = new Size(261, 26);
             txtTitulo.TabIndex = 10;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(46, 216);
+            label10.Location = new Point(53, 288);
             label10.Name = "label10";
-            label10.Size = new Size(155, 18);
+            label10.Size = new Size(190, 23);
             label10.TabIndex = 9;
             label10.Text = "Fecha de ingreso: ";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(461, 32);
+            label9.Location = new Point(527, 43);
             label9.Name = "label9";
-            label9.Size = new Size(163, 18);
+            label9.Size = new Size(201, 23);
             label9.TabIndex = 8;
             label9.Text = "Descripción breve: ";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(30, 124);
+            label8.Location = new Point(34, 165);
             label8.Name = "label8";
-            label8.Size = new Size(171, 18);
+            label8.Size = new Size(212, 23);
             label8.TabIndex = 7;
             label8.Text = "Número de páginas: ";
             // 
@@ -333,11 +351,12 @@
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox1.BackColor = Color.LightGray;
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(45, 60);
+            textBox1.Location = new Point(51, 80);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(967, 2);
+            textBox1.Size = new Size(1105, 3);
             textBox1.TabIndex = 8;
             // 
             // dgLibros
@@ -368,7 +387,8 @@
             dgLibros.DefaultCellStyle = dataGridViewCellStyle2;
             dgLibros.EnableHeadersVisualStyles = false;
             dgLibros.GridColor = Color.FromArgb(49, 66, 82);
-            dgLibros.Location = new Point(45, 397);
+            dgLibros.Location = new Point(51, 529);
+            dgLibros.Margin = new Padding(3, 4, 3, 4);
             dgLibros.Name = "dgLibros";
             dgLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -380,20 +400,22 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgLibros.Size = new Size(967, 281);
+            dgLibros.RowHeadersWidth = 51;
+            dgLibros.Size = new Size(1105, 375);
             dgLibros.TabIndex = 17;
             // 
             // FrmRegistroLibros
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(49, 66, 82);
-            ClientSize = new Size(1050, 690);
+            ClientSize = new Size(1200, 920);
             Controls.Add(dgLibros);
             Controls.Add(textBox1);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmRegistroLibros";
             Text = "FrmRegistroLibros";
             Load += FrmRegistroLibros_Load;

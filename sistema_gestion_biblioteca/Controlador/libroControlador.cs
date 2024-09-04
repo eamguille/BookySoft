@@ -65,7 +65,61 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
+        public bool actualizarLibro(string isbnSeleccionado, string titulo, string autor, int numeroPags, string genero, string fechaIngreso, string fechaPublicacion, string descripcion, string editorial, string nuevoIsbn)
+        {
+            try
+            {
+                var libros = obtenerListaLibros();
+                var libro = libros.FirstOrDefault(l => l.ISBN == isbnSeleccionado);
+                if (libro == null)
+                {
+                    return false; // No se encontró el libro para actualizar
+                }
 
+                // Actualiza los datos del libro
+                libro.titulo_libro = titulo;
+                libro.autor_libro = autor;
+                libro.numero_paginas = numeroPags;
+                libro.genero_libro = genero;
+                libro.fecha_ingreso = fechaIngreso;
+                libro.fecha_publicacion = fechaPublicacion;
+                libro.descripcion = descripcion;
+                libro.editorial = editorial;
+                libro.ISBN = nuevoIsbn; // Si se desea actualizar el ISBN
+
+                // Guarda los cambios en el archivo JSON
+                guardarLibros(libros);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool eliminarLibro(string isbnSeleccionado)
+        {
+            try
+            {
+                var libros = obtenerListaLibros();
+                var libro = libros.FirstOrDefault(l => l.ISBN == isbnSeleccionado);
+                if (libro == null)
+                {
+                    return false; // No se encontró el libro para eliminar
+                }
+
+                // Elimina el libro de la lista
+                libros.Remove(libro);
+
+                // Guarda la lista actualizada en el archivo JSON
+                guardarLibros(libros);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public void guardarLibros(List<libroModelo> p_libros)
         {
