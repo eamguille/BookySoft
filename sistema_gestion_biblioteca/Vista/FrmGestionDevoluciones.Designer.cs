@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGestionDevoluciones));
             dgDevoluciones = new DataGridView();
             button1 = new Button();
@@ -38,21 +38,19 @@
             lblMonto = new Label();
             label7 = new Label();
             label6 = new Label();
-            dtFechaInicial = new DateTimePicker();
+            dtFechaDevolu = new DateTimePicker();
             label5 = new Label();
             cmbUsuario = new ComboBox();
             label4 = new Label();
             cmbLibro = new ComboBox();
             label3 = new Label();
-            btnEliminar = new Button();
-            btnActualizar = new Button();
             btnAgregar = new Button();
             btnLimpiar = new Button();
             groupBox1 = new GroupBox();
+            txtComentario = new TextBox();
             textBox1 = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            txtComentario = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgDevoluciones).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -65,38 +63,38 @@
             dgDevoluciones.BackgroundColor = Color.FromArgb(49, 66, 82);
             dgDevoluciones.BorderStyle = BorderStyle.None;
             dgDevoluciones.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.Gray;
-            dataGridViewCellStyle4.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle4.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgDevoluciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgDevoluciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgDevoluciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.Silver;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.Padding = new Padding(8, 2, 8, 2);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle5.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgDevoluciones.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(8, 2, 8, 2);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgDevoluciones.DefaultCellStyle = dataGridViewCellStyle2;
             dgDevoluciones.EnableHeadersVisualStyles = false;
             dgDevoluciones.GridColor = Color.FromArgb(49, 66, 82);
             dgDevoluciones.Location = new Point(42, 394);
             dgDevoluciones.Name = "dgDevoluciones";
             dgDevoluciones.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Silver;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.Padding = new Padding(5);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgDevoluciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.Padding = new Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgDevoluciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgDevoluciones.Size = new Size(967, 248);
             dgDevoluciones.TabIndex = 23;
             // 
@@ -151,14 +149,15 @@
             label6.TabIndex = 32;
             label6.Text = "Comentarios del préstamo: ";
             // 
-            // dtFechaInicial
+            // dtFechaDevolu
             // 
-            dtFechaInicial.Font = new Font("Arial", 9.75F);
-            dtFechaInicial.Format = DateTimePickerFormat.Short;
-            dtFechaInicial.Location = new Point(247, 138);
-            dtFechaInicial.Name = "dtFechaInicial";
-            dtFechaInicial.Size = new Size(163, 22);
-            dtFechaInicial.TabIndex = 30;
+            dtFechaDevolu.Font = new Font("Arial", 9.75F);
+            dtFechaDevolu.Format = DateTimePickerFormat.Short;
+            dtFechaDevolu.Location = new Point(247, 138);
+            dtFechaDevolu.Name = "dtFechaDevolu";
+            dtFechaDevolu.Size = new Size(163, 22);
+            dtFechaDevolu.TabIndex = 30;
+            dtFechaDevolu.ValueChanged += dtFechaDevolu_ValueChanged_1;
             // 
             // label5
             // 
@@ -205,38 +204,6 @@
             label3.TabIndex = 25;
             label3.Text = "Título de libro: ";
             // 
-            // btnEliminar
-            // 
-            btnEliminar.BackColor = Color.WhiteSmoke;
-            btnEliminar.BackgroundImageLayout = ImageLayout.None;
-            btnEliminar.Cursor = Cursors.Hand;
-            btnEliminar.FlatAppearance.MouseDownBackColor = Color.Gray;
-            btnEliminar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnEliminar.Location = new Point(793, 170);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(155, 44);
-            btnEliminar.TabIndex = 24;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = false;
-            // 
-            // btnActualizar
-            // 
-            btnActualizar.BackColor = Color.WhiteSmoke;
-            btnActualizar.BackgroundImageLayout = ImageLayout.None;
-            btnActualizar.Cursor = Cursors.Hand;
-            btnActualizar.FlatAppearance.MouseDownBackColor = Color.Gray;
-            btnActualizar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
-            btnActualizar.FlatStyle = FlatStyle.Flat;
-            btnActualizar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnActualizar.Location = new Point(793, 120);
-            btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(155, 44);
-            btnActualizar.TabIndex = 23;
-            btnActualizar.Text = "Actualizar";
-            btnActualizar.UseVisualStyleBackColor = false;
-            // 
             // btnAgregar
             // 
             btnAgregar.BackColor = Color.WhiteSmoke;
@@ -252,6 +219,7 @@
             btnAgregar.TabIndex = 22;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnLimpiar
             // 
@@ -268,6 +236,7 @@
             btnLimpiar.TabIndex = 21;
             btnLimpiar.Text = "Limpiar campos";
             btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // groupBox1
             // 
@@ -276,14 +245,12 @@
             groupBox1.Controls.Add(lblMonto);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(dtFechaInicial);
+            groupBox1.Controls.Add(dtFechaDevolu);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(cmbUsuario);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(cmbLibro);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(btnEliminar);
-            groupBox1.Controls.Add(btnActualizar);
             groupBox1.Controls.Add(btnAgregar);
             groupBox1.Controls.Add(btnLimpiar);
             groupBox1.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -294,6 +261,14 @@
             groupBox1.TabIndex = 22;
             groupBox1.TabStop = false;
             groupBox1.Text = "GESTIÓN DE DEVOLUCIONES";
+            // 
+            // txtComentario
+            // 
+            txtComentario.Location = new Point(248, 183);
+            txtComentario.Multiline = true;
+            txtComentario.Name = "txtComentario";
+            txtComentario.Size = new Size(373, 65);
+            txtComentario.TabIndex = 36;
             // 
             // textBox1
             // 
@@ -330,14 +305,6 @@
             label2.TabIndex = 18;
             label2.Text = "Buscar: ";
             // 
-            // txtComentario
-            // 
-            txtComentario.Location = new Point(248, 183);
-            txtComentario.Multiline = true;
-            txtComentario.Name = "txtComentario";
-            txtComentario.Size = new Size(373, 65);
-            txtComentario.TabIndex = 36;
-            // 
             // FrmGestionDevoluciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -355,6 +322,7 @@
             Name = "FrmGestionDevoluciones";
             StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "FrmGestionDevoluciones";
+            Load += FrmGestionDevoluciones_Load;
             ((System.ComponentModel.ISupportInitialize)dgDevoluciones).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -370,14 +338,12 @@
         private Label lblMonto;
         private Label label7;
         private Label label6;
-        private DateTimePicker dtFechaInicial;
+        private DateTimePicker dtFechaDevolu;
         private Label label5;
         private ComboBox cmbUsuario;
         private Label label4;
         private ComboBox cmbLibro;
         private Label label3;
-        private Button btnEliminar;
-        private Button btnActualizar;
         private Button btnAgregar;
         private Button btnLimpiar;
         private GroupBox groupBox1;
