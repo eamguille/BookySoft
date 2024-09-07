@@ -216,6 +216,7 @@
             btnEliminar.TabIndex = 24;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnActualizar
             // 
@@ -232,6 +233,7 @@
             btnActualizar.TabIndex = 23;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // btnAgregar
             // 
@@ -340,6 +342,7 @@
             dgPrestamos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgPrestamos.Size = new Size(967, 283);
             dgPrestamos.TabIndex = 16;
+            dgPrestamos.CellClick += dgPrestamos_CellClick;
             // 
             // FrmPrestamos
             // 

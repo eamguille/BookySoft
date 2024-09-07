@@ -141,12 +141,15 @@ namespace sistema_gestion_biblioteca.Forms
         {
             try
             {
-                bool actualizar = obj_controlador.actualizarPrestamo(index_tabla, cmbLibro.Text, cmbUsuario.Text, dtFechaInicial.Text, lblFechaDevolucion.Text, cmbEstadoPrestamo.Text);
-
-                if (actualizar)
+                if (index_tabla >= 0)
                 {
-                    MessageBox.Show("Prestamo actualizado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ActualizarDataGrid();
+                    bool actualizar = obj_controlador.actualizarPrestamo(index_tabla, cmbLibro.Text, cmbUsuario.Text, dtFechaInicial.Text, lblFechaDevolucion.Text, cmbEstadoPrestamo.Text);
+
+                    if (actualizar)
+                    {
+                        MessageBox.Show("Prestamo actualizado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ActualizarDataGrid();
+                    }
                 }
             }
             catch (Exception e)
@@ -159,17 +162,26 @@ namespace sistema_gestion_biblioteca.Forms
         {
             try
             {
-                bool eliminar = obj_controlador.eliminarPrestamo(index_tabla);
-
-                if (eliminar)
+                if (MessageBox.Show("Deseas eliminar el prestamo ?", "Confirmacion de eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Prestamo eliminado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ActualizarDataGrid();
+                    if (dgPrestamos.SelectedRows.Count > 0)
+                    {
+                        if (index_tabla >= 0)
+                        {
+                            bool eliminar = obj_controlador.eliminarPrestamo(index_tabla);
+
+                            if (eliminar)
+                            {
+                                MessageBox.Show("Prestamo eliminado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                ActualizarDataGrid();
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show($"Error al actualizar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al eliminar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -201,6 +213,31 @@ namespace sistema_gestion_biblioteca.Forms
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             guardarPrestamo();
+        }
+
+        private void dgPrestamos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                index_tabla = e.RowIndex;
+
+                var fila = dgPrestamos.Rows[e.RowIndex].Cells;
+                cmbLibro.Text = fila[0].Value.ToString();
+                cmbUsuario.Text = fila[1].Value.ToString();
+                dtFechaInicial.Text = fila[2].Value.ToString();
+                lblFechaDevolucion.Text = fila[3].Value.ToString();
+                cmbEstadoPrestamo.Text = fila[4].Value.ToString();
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            actualizarPrestamo();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            eliminarPrestamo();
         }
     }
 }
