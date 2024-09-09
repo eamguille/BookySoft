@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using sistema_gestion_biblioteca.Controlador;
 
@@ -47,21 +41,111 @@ namespace sistema_gestion_biblioteca.Forms
             txtISBN.Text = "";
         }
 
-        void guardarLibro()
+        // Validaciones para los campos del libro
+        bool ValidarCamposLibro()
         {
-            try
+            // Validar Título: Solo letras y espacios
+            if (string.IsNullOrWhiteSpace(txtTitulo.Text) || !txtTitulo.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
             {
-                bool guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
-                if (guardar)
+                MessageBox.Show("El campo 'Título del libro' solo debe contener letras y espacios", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar Autor: Solo letras y espacios
+            if (string.IsNullOrWhiteSpace(txtAutor.Text) || !txtAutor.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
+            {
+                MessageBox.Show("El campo 'Autor' solo debe contener letras y espacios", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar Número de Páginas: Solo números
+            if (!int.TryParse(txtNumeroPags.Text, out int numeroPaginas) || numeroPaginas <= 0)
+            {
+                MessageBox.Show("El campo 'Número de páginas' debe ser un número positivo", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar Género: Solo letras y espacios
+            if (string.IsNullOrWhiteSpace(txtGenero.Text) || !txtGenero.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
+            {
+                MessageBox.Show("El campo 'Género del libro' solo debe contener letras y espacios", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar Fecha de Publicación: No debe ser futura
+            if (DateTime.TryParse(dtFechaPublicacion.Text, out DateTime fechaPublicacion))
+            {
+                if (fechaPublicacion > DateTime.Now)
                 {
-                    MessageBox.Show("Libro ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ActualizarDataGrid();
-                    LimpiarCampos();
+                    MessageBox.Show("La fecha de publicación no puede ser posterior a la fecha actual", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
                 }
             }
-            catch (Exception e)
+            else
             {
-                MessageBox.Show($"Error al guardar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fecha de publicación inválida", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar Fecha de Ingreso: No debe ser futura
+            if (DateTime.TryParse(dtFechaIngreso.Text, out DateTime fechaIngreso))
+            {
+                if (fechaIngreso > DateTime.Now)
+                {
+                    MessageBox.Show("La fecha de ingreso no puede ser posterior a la fecha actual", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Fecha de ingreso inválida", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar ISBN: Solo números y guiones, longitud total 10-13
+            var isbn = txtISBN.Text;
+            var isbnSinGuiones = isbn.Replace("-", ""); // Elimina guiones para validar longitud total
+
+            if (!isbn.All(c => char.IsDigit(c) || c == '-'))
+            {
+                MessageBox.Show("El ISBN solo puede contener números y guiones", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (isbnSinGuiones.Length < 10 || isbnSinGuiones.Length > 13)
+            {
+                MessageBox.Show("El ISBN debe tener entre 10 y 13 dígitos (excluyendo guiones)", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar Editorial: Solo letras y espacios
+            if (string.IsNullOrWhiteSpace(txtEditorial.Text) || !txtEditorial.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)))
+            {
+                MessageBox.Show("El campo 'Editorial' solo debe contener letras y espacios", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        void guardarLibro()
+        {
+            if (ValidarCamposLibro()) // Solo si las validaciones pasan
+            {
+                try
+                {
+                    bool guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                    if (guardar)
+                    {
+                        MessageBox.Show("Libro ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ActualizarDataGrid();
+                        LimpiarCampos();
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show($"Error al guardar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -73,11 +157,9 @@ namespace sistema_gestion_biblioteca.Forms
                 return;
             }
 
-            // Obtener el libro seleccionado
             DataGridViewRow row = dgLibros.SelectedRows[0];
-            isbnSeleccionado = row.Cells[8].Value.ToString(); // Asegúrate de que el ISBN está en la columna correcta
+            isbnSeleccionado = row.Cells[8].Value.ToString();
 
-            // Cargar datos del libro en los campos
             txtTitulo.Text = row.Cells[0].Value.ToString();
             txtAutor.Text = row.Cells[1].Value.ToString();
             txtNumeroPags.Text = row.Cells[2].Value.ToString();
@@ -88,50 +170,40 @@ namespace sistema_gestion_biblioteca.Forms
             txtEditorial.Text = row.Cells[7].Value.ToString();
             txtISBN.Text = isbnSeleccionado;
 
-            modoEdicion = true; // Establecer el modo de edición
-            btnActualizar.Text = "Guardar Cambios"; // Cambiar el texto del botón
+            modoEdicion = true;
+            btnActualizar.Text = "Guardar Cambios";
         }
 
         void GuardarLibro()
         {
-            try
+            if (ValidarCamposLibro()) // Aplicar validaciones también al actualizar
             {
-                bool guardar;
-                if (!modoEdicion) // Si no está en modo de edición, es una nueva entrada
+                try
                 {
-                    guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
-                }
-                else // Si está en modo de edición, actualizar el libro
-                {
-                    guardar = obj_controlador.actualizarLibro(isbnSeleccionado, txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
-                }
+                    bool guardar;
+                    if (!modoEdicion)
+                    {
+                        guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                    }
+                    else
+                    {
+                        guardar = obj_controlador.actualizarLibro(isbnSeleccionado, txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                    }
 
-                if (guardar)
+                    if (guardar)
+                    {
+                        MessageBox.Show("Libro guardado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ActualizarDataGrid();
+                        LimpiarCampos();
+                        modoEdicion = false;
+                        btnActualizar.Text = "Actualizar";
+                    }
+                }
+                catch (Exception e)
                 {
-                    MessageBox.Show("Libro guardado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ActualizarDataGrid();
-                    LimpiarCampos();
-                    modoEdicion = false; // Resetear el modo de edición
-                    btnActualizar.Text = "Actualizar"; // Restaurar el texto del botón
+                    MessageBox.Show($"Error al guardar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Error al guardar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        void CargarHeadersDataGrid()
-        {
-            dgLibros.Columns[0].HeaderText = "Titulo del libro";
-            dgLibros.Columns[1].HeaderText = "Autor del libro";
-            dgLibros.Columns[2].HeaderText = "# de paginas ";
-            dgLibros.Columns[3].HeaderText = "Genero del libro";
-            dgLibros.Columns[4].HeaderText = "Fecha de Ingreso";
-            dgLibros.Columns[5].HeaderText = "Fecha de publicacion";
-            dgLibros.Columns[6].HeaderText = "Editorial del libro";
-            dgLibros.Columns[7].HeaderText = "ISBN";
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -143,12 +215,10 @@ namespace sistema_gestion_biblioteca.Forms
         {
             if (modoEdicion)
             {
-                // Guardar cambios si está en modo de edición
                 GuardarLibro();
             }
             else
             {
-                // Cargar datos del libro seleccionado para edición
                 ActualizarLibro();
             }
         }
@@ -163,7 +233,6 @@ namespace sistema_gestion_biblioteca.Forms
 
             var isbnSeleccionado = dgLibros.SelectedRows[0].Cells[8].Value.ToString();
 
-            // Mostrar mensaje de confirmación
             var result = MessageBox.Show("¿Está seguro de que desea eliminar este libro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -193,3 +262,4 @@ namespace sistema_gestion_biblioteca.Forms
         }
     }
 }
+
