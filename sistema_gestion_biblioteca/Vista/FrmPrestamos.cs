@@ -124,10 +124,25 @@ namespace sistema_gestion_biblioteca.Forms
         {
             try
             {
+                // Obtenenemos el libro seleccionado
+                string nombre_libro = cmbLibro.SelectedItem.ToString();
+
+                // Buscamos en ISBN segun el titulo del libro
+                string libroISBN = buscarISBNPorNombreLibro(nombre_libro);
+
+                // Condicion de ISBN encontrado o no (Despues)
+
                 bool guardado = obj_controlador.agregarPrestamo(cmbLibro.Text, cmbUsuario.Text, dtFechaInicial.Text, lblFechaDevolucion.Text, cmbEstadoPrestamo.Text);
                 if (guardado)
                 {
-                    MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bool estado_libro_actualizar = obj_libro_controlador.actualizarEstadoLibro(libroISBN, "No Disponible");
+                    if (estado_libro_actualizar)
+                    {
+                        MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } else
+                    {
+                        MessageBox.Show("Prestamo ingresado exitosamente, pero no se pudo actualizar el estado del libro", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     ActualizarDataGrid();
                 }
             }
@@ -277,6 +292,15 @@ namespace sistema_gestion_biblioteca.Forms
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             FiltrarPrestamos(txtBuscar.Text);
+        }
+
+        string buscarISBNPorNombreLibro(string p_nombreLibro)
+        {
+            var lista_libros = obj_libro_controlador.obtenerListaLibros();
+            var libro = lista_libros.FirstOrDefault(l => l.titulo_libro == p_nombreLibro);
+
+            // Hacemos un condicion en donde se evalua que se encuentre el ISBN, si se encuentra se devuelve el ISBN, sino se retorna un string vacio
+            return libro != null ? libro.ISBN : string.Empty;
         }
     }
 }

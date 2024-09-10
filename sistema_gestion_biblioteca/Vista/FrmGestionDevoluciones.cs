@@ -112,19 +112,29 @@ namespace sistema_gestion_biblioteca.Vista
 
         void ActualizarDataGrid()
         {
-            var listaPrestamos = obj_prestamo_controlador.obtenerPrestamos();
+            var listaPrestamos = obj_controlador.obtenerDevoluciones();
             enlaceDatos.DataSource = listaPrestamos;
-
+            dgDevoluciones.DataSource = enlaceDatos;
         }
 
         void guardarDevolucion()
         {
             try
             {
+                string nombre_libro = cmbLibro.SelectedItem.ToString();
+                string libroISBN = buscarISBNPorNombreLibro(nombre_libro);
+
                 bool guardado = obj_controlador.agregarDevolucion(cmbLibro.Text, cmbUsuario.Text, dtFechaDevolu.Text, lblMonto.Text, txtComentario.Text);
                 if (guardado)
                 {
-                    MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bool estado_libro_actualizar = obj_libro_controlador.actualizarEstadoLibro(libroISBN, "Disponible");
+                    if (estado_libro_actualizar)
+                    {
+                        MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } else
+                    {
+                        MessageBox.Show("Prestamo ingresado exitosamente, pero no se ha logrado actualizar el estado del libro", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                     ActualizarDataGrid();
                 }
             }
@@ -206,7 +216,15 @@ namespace sistema_gestion_biblioteca.Vista
             cargarCmbLibros();
             cargarCmbCorreoUsuario();
             txtComentario.Clear();
-            lblMonto.Text = "Monto";
+            lblMonto.Text = " - ";
+        }
+
+        string buscarISBNPorNombreLibro(string p_nombreLibro)
+        {
+            var lista_libros = obj_libro_controlador.obtenerListaLibros();
+            var libro = lista_libros.FirstOrDefault( l => l.titulo_libro == p_nombreLibro);
+
+            return libro != null ? libro.ISBN : string.Empty;
         }
     }
 }

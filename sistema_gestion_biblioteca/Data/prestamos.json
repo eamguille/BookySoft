@@ -2,15 +2,8 @@
   {
     "titulo_libro": "Exodo - Dioses y Reyes",
     "email_usuario": "guilleacc26@gmail.com",
-    "fecha_prestamo": "9/11/2024",
-    "fecha_devolucion_estimada": "09/12/2024",
-    "estado_prestamo": "En curso"
-  },
-  {
-    "titulo_libro": "La Cabaña del Tío Tom",
-    "email_usuario": "alexV01@gmail.com",
-    "fecha_prestamo": "9/9/2024",
-    "fecha_devolucion_estimada": "09/10/2024",
+    "fecha_prestamo": "10/9/2024",
+    "fecha_devolucion_estimada": "10/10/2024",
     "estado_prestamo": "En curso"
   }
 ]

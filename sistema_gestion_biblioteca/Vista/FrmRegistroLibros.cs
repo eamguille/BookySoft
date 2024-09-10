@@ -16,6 +16,8 @@ namespace sistema_gestion_biblioteca.Forms
         libroControlador obj_controlador;
         bool modoEdicion = false;
         string isbnSeleccionado;
+        // Definimos el estado del libro predeterminado al momento de registrar
+        string estado_libro = "Disponible";
 
         public FrmRegistroLibros()
         {
@@ -51,7 +53,7 @@ namespace sistema_gestion_biblioteca.Forms
         {
             try
             {
-                bool guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                bool guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text, estado_libro);
                 if (guardar)
                 {
                     MessageBox.Show("Libro ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,7 +101,7 @@ namespace sistema_gestion_biblioteca.Forms
                 bool guardar;
                 if (!modoEdicion) // Si no está en modo de edición, es una nueva entrada
                 {
-                    guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                    guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text, estado_libro);
                 }
                 else // Si está en modo de edición, actualizar el libro
                 {
