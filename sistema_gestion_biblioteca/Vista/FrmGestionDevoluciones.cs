@@ -38,6 +38,7 @@ namespace sistema_gestion_biblioteca.Vista
             cargarCmbCorreoUsuario();
             dtFechaDevolu.Format = DateTimePickerFormat.Custom;
             dtFechaDevolu.CustomFormat = " ";
+            cargarNombresHeaders();
         }
         private BindingSource enlaceDatos = new BindingSource();
 
@@ -46,6 +47,15 @@ namespace sistema_gestion_biblioteca.Vista
         // METODOS DE SCRUD
         // Variable para evitar bucles de actualización infinita entre ComboBoxes
         private bool isUpdating = false;
+
+        void cargarNombresHeaders()
+        {
+            dgDevoluciones.Columns[0].HeaderText = "Título del libro";
+            dgDevoluciones.Columns[1].HeaderText = "Corrreo del usuario";
+            dgDevoluciones.Columns[2].HeaderText = "Fecha de devolucion";
+            dgDevoluciones.Columns[3].HeaderText = "Monto por retraso";
+            dgDevoluciones.Columns[4].HeaderText = "Comentario";
+        }
 
         void cargarCmbLibros()
         {
@@ -121,6 +131,9 @@ namespace sistema_gestion_biblioteca.Vista
         {
             try
             {
+                validarFechaMontoDevolucion();
+
+                // Actualizamos el estado del libro nuevamente a "Disponible"
                 string nombre_libro = cmbLibro.SelectedItem.ToString();
                 string libroISBN = buscarISBNPorNombreLibro(nombre_libro);
 
@@ -131,7 +144,8 @@ namespace sistema_gestion_biblioteca.Vista
                     if (estado_libro_actualizar)
                     {
                         MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    } else
+                    }
+                    else
                     {
                         MessageBox.Show("Prestamo ingresado exitosamente, pero no se ha logrado actualizar el estado del libro", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
@@ -144,11 +158,55 @@ namespace sistema_gestion_biblioteca.Vista
             }
         }
 
-
-        private void dtFechaDevolu_ValueChanged_1(object sender, EventArgs e)
+        void actualizarDevolucion()
         {
-            dtFechaDevolu.Format = DateTimePickerFormat.Short;
+            try
+            {
+                if (index_tabla >= 0)
+                {
+                    bool actualizar = obj_controlador.actualizarDevolucion(index_tabla, cmbLibro.Text, cmbUsuario.Text, dtFechaDevolu.Text, lblMonto.Text, txtComentario.Text);
+                    if (actualizar)
+                    {
+                        MessageBox.Show("Registro actualizado con exito", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ActualizarDataGrid();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"No se logro actualizar el registro {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        void eliminarDevolucion()
+        {
+            try
+            {
+                if (MessageBox.Show("Deseas eliminar el prestamo ?", "Confirmacion de eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (dgDevoluciones.SelectedRows.Count > 0)
+                    {
+                        if (index_tabla >= 0)
+                        {
+                            bool eliminar = obj_controlador.eliminarDevolucion(index_tabla);
+
+                            if (eliminar)
+                            {
+                                MessageBox.Show("Devolucion eliminada exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                ActualizarDataGrid();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Error al eliminar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void validarFechaMontoDevolucion()
+        {
             // Fecha de devolución real seleccionada por el usuario
             DateTime fechaDevolucionReal = dtFechaDevolu.Value;
 
@@ -206,6 +264,61 @@ namespace sistema_gestion_biblioteca.Vista
             }
         }
 
+        void validarFechaMontoSinMensaje()
+        {
+            // Fecha de devolución real seleccionada por el usuario
+            DateTime fechaDevolucionReal = dtFechaDevolu.Value;
+
+            // Obtener la lista de préstamos desde el controlador
+            var listaPrestamos = obj_prestamo_controlador.obtenerPrestamos();
+
+            if (listaPrestamos != null && listaPrestamos.Count > 0)
+            {
+                foreach (var elemento in listaPrestamos)
+                {
+                    // Simulación de obtener la fecha establecida para un préstamo específico
+                    string fechaDevolucionEstablecidaStr = elemento.fecha_devolucion_estimada;
+
+                    // Convertir la fecha de devolución establecida a DateTime
+                    if (DateTime.TryParseExact(
+                        fechaDevolucionEstablecidaStr,
+                        "dd/MM/yyyy",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None,
+                        out DateTime fechaDevolucionEstablecida))
+                    {
+                        // Validar si la devolución se hizo dentro del plazo
+                        if (fechaDevolucionReal <= fechaDevolucionEstablecida)
+                        {
+                            lblMonto.Text = "$0.00"; // No hay penalización si está dentro del plazo
+                        }
+                        else
+                        {
+                            // Calcular la cantidad de meses de retraso
+                            int mesesRetraso = ((fechaDevolucionReal.Year - fechaDevolucionEstablecida.Year) * 12) +
+                                               fechaDevolucionReal.Month - fechaDevolucionEstablecida.Month;
+
+                            if (fechaDevolucionReal.Day < fechaDevolucionEstablecida.Day)
+                            {
+                                mesesRetraso--; // Ajuste si el día actual es menor al día de la fecha establecida
+                            }
+
+                            // Penalización de $5 por cada mes de atraso
+                            decimal montoPenalizacion = (mesesRetraso * 5) + 5;
+                            lblMonto.Text = $"${montoPenalizacion:0.00}";
+                        }
+                    }
+                }
+            }
+        }
+
+
+        private void dtFechaDevolu_ValueChanged_1(object sender, EventArgs e)
+        {
+            dtFechaDevolu.Format = DateTimePickerFormat.Short;
+            validarFechaMontoSinMensaje();
+        }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             guardarDevolucion();
@@ -222,9 +335,39 @@ namespace sistema_gestion_biblioteca.Vista
         string buscarISBNPorNombreLibro(string p_nombreLibro)
         {
             var lista_libros = obj_libro_controlador.obtenerListaLibros();
-            var libro = lista_libros.FirstOrDefault( l => l.titulo_libro == p_nombreLibro);
+            var libro = lista_libros.FirstOrDefault(l => l.titulo_libro == p_nombreLibro);
 
             return libro != null ? libro.ISBN : string.Empty;
+        }
+
+        private void dgDevoluciones_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgDevoluciones.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                index_tabla = e.RowIndex;
+
+                var fila = dgDevoluciones.Rows[e.RowIndex].Cells;
+
+                cmbLibro.Text = fila[0].Value?.ToString() ?? string.Empty;
+                cmbUsuario.Text = fila[1].Value?.ToString() ?? string.Empty;
+                dtFechaDevolu.Text = fila[2].Value?.ToString() ?? string.Empty;
+                lblMonto.Text = fila[3].Value?.ToString() ?? string.Empty;
+                txtComentario.Text = fila[4].Value?.ToString() ?? string.Empty;
+            }
+            else
+            {
+                index_tabla = -1;
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            actualizarDevolucion();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            eliminarDevolucion();
         }
     }
 }

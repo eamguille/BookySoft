@@ -99,6 +99,27 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
+        public bool eliminarDevolucion(int index)
+        {
+            try
+            {
+                var lista = obtenerDevoluciones();
+                if (index < 0 || index >= lista.Count)
+                {
+                    return false;
+                } 
+                else
+                {
+                    lista.RemoveAt(index);
+                    guardarDevolucion(lista);
+                    return true;
+                }
+            } catch
+            {
+                return false;
+            }
+        }
+
         public void guardarDevolucion(List<devolucionModelo> p_devoluciones)
         {
             var json = JsonConvert.SerializeObject(p_devoluciones, Formatting.Indented);
