@@ -194,6 +194,34 @@ namespace sistema_gestion_biblioteca.Forms
             dgPrestamos.Columns[4].HeaderText = "Estado del préstamo";
         }
 
+        void FiltrarPrestamos(string filtro_buscador)
+        {
+            var lista = obj_controlador.obtenerPrestamos();
+            if (string.IsNullOrEmpty(filtro_buscador))
+            {
+                enlaceDatos.DataSource = lista;
+            }
+            else
+            {
+                var busqueda = filtro_buscador.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                var listaFiltrada = lista.Where(ele =>
+                    busqueda.All(t =>
+                        (ele.titulo_libro != null && ele.titulo_libro.Contains(t, StringComparison.OrdinalIgnoreCase)) ||
+                        (ele.email_usuario != null && ele.email_usuario.Contains(t, StringComparison.OrdinalIgnoreCase)) ||
+                        (ele.fecha_prestamo != null && ele.fecha_prestamo.Contains(t, StringComparison.OrdinalIgnoreCase))
+                    )
+                ).ToList();
+
+                if (lista.Any())
+                {
+                    enlaceDatos.DataSource = listaFiltrada;
+                }
+            }
+
+            dgPrestamos.DataSource = enlaceDatos;
+        }
+
         // Variable para guardar la fecha estimada de devolucion
         DateTime fecha_devolucion;
 
@@ -217,16 +245,22 @@ namespace sistema_gestion_biblioteca.Forms
 
         private void dgPrestamos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Aqui arreglo el error de la seleccion de fila
+            if (e.RowIndex >= 0 && dgPrestamos.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 index_tabla = e.RowIndex;
 
                 var fila = dgPrestamos.Rows[e.RowIndex].Cells;
-                cmbLibro.Text = fila[0].Value.ToString();
-                cmbUsuario.Text = fila[1].Value.ToString();
-                dtFechaInicial.Text = fila[2].Value.ToString();
-                lblFechaDevolucion.Text = fila[3].Value.ToString();
-                cmbEstadoPrestamo.Text = fila[4].Value.ToString();
+
+                cmbLibro.Text = fila[0].Value?.ToString() ?? string.Empty;
+                cmbUsuario.Text = fila[1].Value?.ToString() ?? string.Empty;
+                dtFechaInicial.Text = fila[2].Value?.ToString() ?? string.Empty;
+                lblFechaDevolucion.Text = fila[3].Value?.ToString() ?? string.Empty;
+                cmbEstadoPrestamo.Text = fila[4].Value?.ToString() ?? string.Empty;
+            }
+            else
+            {
+                index_tabla = -1;
             }
         }
 
@@ -238,6 +272,11 @@ namespace sistema_gestion_biblioteca.Forms
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             eliminarPrestamo();
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarPrestamos(txtBuscar.Text);
         }
     }
 }

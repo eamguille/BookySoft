@@ -80,7 +80,7 @@ namespace sistema_gestion_biblioteca.Controlador
                     actualizar[index].titulo_libro = p_libro;
                     actualizar[index].email_usuario= p_email;
                     actualizar[index].fecha_prestamo = p_fechaP;
-                    actualizar[index].fecha_devolucion_estimada = p_fechaP;
+                    actualizar[index].fecha_devolucion_estimada = p_fechaD;
                     actualizar[index].estado_prestamo= p_estado;
                     guardarPrestamos(actualizar);
                     return true;
