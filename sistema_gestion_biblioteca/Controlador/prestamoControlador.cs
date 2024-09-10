@@ -111,7 +111,26 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
+        public bool actualizarEstadoPrestamo(string p_tituloLibro, string p_emailUsuario, string p_estadoPrestamo)
+        {
+            try
+            {
+                var lista = obtenerPrestamos();
+                var prestamo = lista.FirstOrDefault(ele => ele.titulo_libro == p_tituloLibro && ele.email_usuario == p_emailUsuario);
 
+                if (prestamo == null)
+                {
+                    return false;
+                }
+
+                prestamo.estado_prestamo = p_estadoPrestamo;
+                guardarPrestamos(lista);
+                return true;
+            } catch
+            {
+                return false;
+            }
+        }
 
         public void guardarPrestamos(List<prestamoModelo> p_prestamos)
         {

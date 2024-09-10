@@ -137,13 +137,25 @@ namespace sistema_gestion_biblioteca.Vista
                 string nombre_libro = cmbLibro.SelectedItem.ToString();
                 string libroISBN = buscarISBNPorNombreLibro(nombre_libro);
 
+                // Actualizamos el estado del prestamo a Devuelto
+                string correo_usuario = cmbUsuario.SelectedItem.ToString();
+
                 bool guardado = obj_controlador.agregarDevolucion(cmbLibro.Text, cmbUsuario.Text, dtFechaDevolu.Text, lblMonto.Text, txtComentario.Text);
                 if (guardado)
                 {
                     bool estado_libro_actualizar = obj_libro_controlador.actualizarEstadoLibro(libroISBN, "Disponible");
                     if (estado_libro_actualizar)
                     {
-                        MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        bool estado_prestamo = obj_prestamo_controlador.actualizarEstadoPrestamo(nombre_libro, correo_usuario, "Devuelto");
+                        if (estado_prestamo)
+                        {
+                            MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Prestamo ingresado exitosamente, pero no se ha logrado actualizar el estado del prestamo", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+
                     }
                     else
                     {

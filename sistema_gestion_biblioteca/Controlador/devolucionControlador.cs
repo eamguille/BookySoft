@@ -87,6 +87,7 @@ namespace sistema_gestion_biblioteca.Controlador
                 {
                     actualizar[index].titulo_libro = p_libro;
                     actualizar[index].email_usuario = p_email;
+                    actualizar[index].fecha_devolucion = p_fechaD;
                     actualizar[index].monto = p_monto;
                     actualizar[index].comentario = p_comentario;
                     guardarDevolucion(actualizar);
