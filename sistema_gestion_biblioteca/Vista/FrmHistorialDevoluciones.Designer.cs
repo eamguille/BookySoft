@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHistorialDevoluciones));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHistorialDevoluciones));
             groupBox1 = new GroupBox();
-            dgDevoluciones = new DataGridView();
             button1 = new Button();
-            txtBuscar = new TextBox();
+            textBox2 = new TextBox();
             label2 = new Label();
             textBox1 = new TextBox();
             label1 = new Label();
+            dgDevoluciones = new DataGridView();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgDevoluciones).BeginInit();
             SuspendLayout();
@@ -48,7 +48,7 @@
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(dgDevoluciones);
             groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(txtBuscar);
+            groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(label2);
             groupBox1.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.LightGray;
@@ -58,49 +58,6 @@
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
             groupBox1.Text = "DEVOLUCIONES";
-            // 
-            // dgDevoluciones
-            // 
-            dgDevoluciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgDevoluciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgDevoluciones.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
-            dgDevoluciones.BackgroundColor = Color.FromArgb(49, 66, 82);
-            dgDevoluciones.BorderStyle = BorderStyle.None;
-            dgDevoluciones.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.Gray;
-            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgDevoluciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgDevoluciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Silver;
-            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.LightGray;
-            dataGridViewCellStyle2.Padding = new Padding(8, 2, 8, 2);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgDevoluciones.DefaultCellStyle = dataGridViewCellStyle2;
-            dgDevoluciones.EnableHeadersVisualStyles = false;
-            dgDevoluciones.GridColor = Color.FromArgb(49, 66, 82);
-            dgDevoluciones.Location = new Point(21, 106);
-            dgDevoluciones.Name = "dgDevoluciones";
-            dgDevoluciones.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.Silver;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle3.Padding = new Padding(5);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgDevoluciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgDevoluciones.Size = new Size(923, 432);
-            dgDevoluciones.TabIndex = 26;
             // 
             // button1
             // 
@@ -115,15 +72,13 @@
             button1.TabIndex = 13;
             button1.UseVisualStyleBackColor = false;
             // 
-            // txtBuscar
+            // textBox2
             // 
-            txtBuscar.Cursor = Cursors.IBeam;
-            txtBuscar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBuscar.Location = new Point(105, 36);
-            txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(772, 25);
-            txtBuscar.TabIndex = 12;
-            txtBuscar.TextChanged += txtBuscar_TextChanged;
+            textBox2.Cursor = Cursors.IBeam;
+            textBox2.Location = new Point(105, 36);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(772, 26);
+            textBox2.TabIndex = 12;
             // 
             // label2
             // 
@@ -158,6 +113,49 @@
             label1.TabIndex = 15;
             label1.Text = "HISTORIAL DE DEVOLUCIONES";
             // 
+            // dgDevoluciones
+            // 
+            dgDevoluciones.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgDevoluciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgDevoluciones.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            dgDevoluciones.BackgroundColor = Color.FromArgb(49, 66, 82);
+            dgDevoluciones.BorderStyle = BorderStyle.None;
+            dgDevoluciones.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgDevoluciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgDevoluciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.LightGray;
+            dataGridViewCellStyle2.Padding = new Padding(8, 2, 8, 2);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgDevoluciones.DefaultCellStyle = dataGridViewCellStyle2;
+            dgDevoluciones.EnableHeadersVisualStyles = false;
+            dgDevoluciones.GridColor = Color.FromArgb(49, 66, 82);
+            dgDevoluciones.Location = new Point(21, 83);
+            dgDevoluciones.Name = "dgDevoluciones";
+            dgDevoluciones.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.Padding = new Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgDevoluciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgDevoluciones.Size = new Size(923, 452);
+            dgDevoluciones.TabIndex = 25;
+            // 
             // FrmHistorialDevoluciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -170,7 +168,6 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmHistorialDevoluciones";
             Text = "FrmHistorialDevoluciones";
-            Load += FrmHistorialDevoluciones_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgDevoluciones).EndInit();
@@ -182,7 +179,7 @@
 
         private GroupBox groupBox1;
         private Button button1;
-        private TextBox txtBuscar;
+        private TextBox textBox2;
         private Label label2;
         private TextBox textBox1;
         private Label label1;

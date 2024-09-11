@@ -80,7 +80,7 @@ namespace sistema_gestion_biblioteca.Controlador
                     actualizar[index].titulo_libro = p_libro;
                     actualizar[index].email_usuario= p_email;
                     actualizar[index].fecha_prestamo = p_fechaP;
-                    actualizar[index].fecha_devolucion_estimada = p_fechaD;
+                    actualizar[index].fecha_devolucion_estimada = p_fechaP;
                     actualizar[index].estado_prestamo= p_estado;
                     guardarPrestamos(actualizar);
                     return true;
@@ -111,26 +111,7 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
-        public bool actualizarEstadoPrestamo(string p_tituloLibro, string p_emailUsuario, string p_estadoPrestamo)
-        {
-            try
-            {
-                var lista = obtenerPrestamos();
-                var prestamo = lista.FirstOrDefault(ele => ele.titulo_libro == p_tituloLibro && ele.email_usuario == p_emailUsuario);
 
-                if (prestamo == null)
-                {
-                    return false;
-                }
-
-                prestamo.estado_prestamo = p_estadoPrestamo;
-                guardarPrestamos(lista);
-                return true;
-            } catch
-            {
-                return false;
-            }
-        }
 
         public void guardarPrestamos(List<prestamoModelo> p_prestamos)
         {

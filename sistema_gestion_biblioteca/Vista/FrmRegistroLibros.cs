@@ -10,8 +10,6 @@ namespace sistema_gestion_biblioteca.Forms
         libroControlador obj_controlador;
         bool modoEdicion = false;
         string isbnSeleccionado;
-        // Definimos el estado del libro predeterminado al momento de registrar
-        string estado_libro = "Disponible";
 
         public FrmRegistroLibros()
         {
@@ -78,9 +76,6 @@ namespace sistema_gestion_biblioteca.Forms
             if (DateTime.TryParse(dtFechaPublicacion.Text, out DateTime fechaPublicacion))
             {
                 if (fechaPublicacion > DateTime.Now)
-                bool guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text, estado_libro);
-                if (guardar)
-
                 {
                     MessageBox.Show("La fecha de publicación no puede ser posterior a la fecha actual", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
@@ -194,12 +189,6 @@ namespace sistema_gestion_biblioteca.Forms
                     {
                         guardar = obj_controlador.actualizarLibro(isbnSeleccionado, txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
                     }
-                    guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text, estado_libro);
-                }
-                else // Si está en modo de edición, actualizar el libro
-                {
-                    guardar = obj_controlador.actualizarLibro(isbnSeleccionado, txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
-                }
 
                     if (guardar)
                     {
@@ -272,4 +261,5 @@ namespace sistema_gestion_biblioteca.Forms
             LimpiarCampos();
         }
     }
+}
 
