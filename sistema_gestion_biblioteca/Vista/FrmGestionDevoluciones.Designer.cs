@@ -47,6 +47,8 @@
             btnAgregar = new Button();
             btnLimpiar = new Button();
             groupBox1 = new GroupBox();
+            btnEliminar = new Button();
+            btnActualizar = new Button();
             txtComentario = new TextBox();
             textBox1 = new TextBox();
             label1 = new Label();
@@ -97,6 +99,7 @@
             dgDevoluciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgDevoluciones.Size = new Size(967, 248);
             dgDevoluciones.TabIndex = 23;
+            dgDevoluciones.CellClick += dgDevoluciones_CellClick;
             // 
             // button1
             // 
@@ -213,7 +216,7 @@
             btnAgregar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnAgregar.FlatStyle = FlatStyle.Flat;
             btnAgregar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnAgregar.Location = new Point(793, 70);
+            btnAgregar.Location = new Point(793, 83);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(155, 44);
             btnAgregar.TabIndex = 22;
@@ -230,7 +233,7 @@
             btnLimpiar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             btnLimpiar.FlatStyle = FlatStyle.Flat;
             btnLimpiar.ForeColor = Color.FromArgb(49, 66, 82);
-            btnLimpiar.Location = new Point(793, 20);
+            btnLimpiar.Location = new Point(793, 33);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(155, 44);
             btnLimpiar.TabIndex = 21;
@@ -241,6 +244,8 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(btnEliminar);
+            groupBox1.Controls.Add(btnActualizar);
             groupBox1.Controls.Add(txtComentario);
             groupBox1.Controls.Add(lblMonto);
             groupBox1.Controls.Add(label7);
@@ -262,8 +267,43 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "GESTIÓN DE DEVOLUCIONES";
             // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.WhiteSmoke;
+            btnEliminar.BackgroundImageLayout = ImageLayout.None;
+            btnEliminar.Cursor = Cursors.Hand;
+            btnEliminar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnEliminar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnEliminar.Location = new Point(793, 186);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(155, 44);
+            btnEliminar.TabIndex = 38;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.BackColor = Color.WhiteSmoke;
+            btnActualizar.BackgroundImageLayout = ImageLayout.None;
+            btnActualizar.Cursor = Cursors.Hand;
+            btnActualizar.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnActualizar.FlatAppearance.MouseOverBackColor = Color.DarkGray;
+            btnActualizar.FlatStyle = FlatStyle.Flat;
+            btnActualizar.ForeColor = Color.FromArgb(49, 66, 82);
+            btnActualizar.Location = new Point(793, 133);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(155, 44);
+            btnActualizar.TabIndex = 37;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
+            // 
             // txtComentario
             // 
+            txtComentario.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtComentario.Location = new Point(248, 183);
             txtComentario.Multiline = true;
             txtComentario.Name = "txtComentario";
@@ -351,5 +391,7 @@
         private Label label1;
         private Label label2;
         private TextBox txtComentario;
+        private Button btnEliminar;
+        private Button btnActualizar;
     }
 }

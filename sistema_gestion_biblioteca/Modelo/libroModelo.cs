@@ -17,5 +17,6 @@ namespace sistema_gestion_biblioteca.Modelo
         public string descripcion { get; set; }
         public string editorial { get; set; }
         public string ISBN { get; set; }
+        public string estado_libro { get; set; }
     }
 }
