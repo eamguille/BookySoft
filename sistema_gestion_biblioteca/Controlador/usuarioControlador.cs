@@ -5,11 +5,9 @@ namespace sistema_gestion_biblioteca.Controlador
 {
     public class usuarioControlador
     {
-        // Definimos las variables para encontrar el archivo json
         private string carpetaData;
         private string archivoJson;
 
-        // Objeto para acceder a cualquier elemento de la clase
         public usuarioModelo obj_modelo = new usuarioModelo();
 
         public usuarioControlador()
@@ -30,7 +28,6 @@ namespace sistema_gestion_biblioteca.Controlador
             archivoJson = Path.Combine(carpetaData, "usuarios.json");
         }
 
-        // Metodo que me devuelve la lista desde el archivo json
         public List<usuarioModelo> obtenerUsuarios()
         {
             // Verificamos que el archivo JSON exista

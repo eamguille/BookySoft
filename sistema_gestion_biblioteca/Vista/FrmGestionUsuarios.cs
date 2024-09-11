@@ -13,11 +13,8 @@ namespace sistema_gestion_biblioteca.Forms
 {
     public partial class FrmGestionUsuarios : Form
     {
-        // Objeto para poder usar los metodos dentro de usuarioControlador
         private usuarioControlador obj_controlador;
-        // Variable que guardara el valor del indice seleccionado del dataGridView
         private int indexDataGrid = -1;
-        // Objeto que guarda el enlace constante de datos con la lista
         private BindingSource enlaceDatos = new BindingSource();
 
         public FrmGestionUsuarios()
@@ -30,10 +27,6 @@ namespace sistema_gestion_biblioteca.Forms
         private void FrmGestionUsuarios_Load(object sender, EventArgs e)
         {
             ActualizarDataGrid();
-
-            // Inicializamos los textboxes con ciertos valores
-            txtTelefono.Text = "----";
-            txtTelefono.SelectionStart = 0;
         }
 
         // Método para cargar los datos de la lista en el DataGridView
@@ -64,6 +57,13 @@ namespace sistema_gestion_biblioteca.Forms
                 if (!EsValidoTexto(txtNombres.Text) || !EsValidoTexto(txtApellidos.Text))
                 {
                     MessageBox.Show("Los campos de nombres y apellidos solo pueden contener letras y espacios.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Salir del método sin guardar
+                }
+
+                // Validar teléfono
+                if (!EsFormatoTelefonoValido(txtTelefono.Text))
+                {
+                    MessageBox.Show("Por favor, ingrese el dato bajo el siguiente formato: 'xxxx-xxxx'.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return; // Salir del método sin guardar
                 }
 
@@ -136,6 +136,13 @@ namespace sistema_gestion_biblioteca.Forms
                 if (!EsValidoTexto(txtNombres.Text) || !EsValidoTexto(txtApellidos.Text))
                 {
                     MessageBox.Show("Los campos de nombres y apellidos solo pueden contener letras y espacios.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Salir del método sin actualizar
+                }
+
+                // Validar teléfono
+                if (!EsFormatoTelefonoValido(txtTelefono.Text))
+                {
+                    MessageBox.Show("Por favor, ingrese el dato bajo el siguiente formato: 'xxxx-xxxx'.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return; // Salir del método sin actualizar
                 }
 
@@ -239,6 +246,13 @@ namespace sistema_gestion_biblioteca.Forms
             return !string.IsNullOrWhiteSpace(texto) && texto.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
         }
 
+        // Validar el formato del teléfono (xxxx-xxxx)
+        private bool EsFormatoTelefonoValido(string telefono)
+        {
+            var regex = new System.Text.RegularExpressions.Regex(@"^\d{4}-\d{4}$");
+            return regex.IsMatch(telefono);
+        }
+
         // Validar el formato del email
         private bool EsFormatoEmailValido(string email)
         {
@@ -257,39 +271,12 @@ namespace sistema_gestion_biblioteca.Forms
         }
 
         // Validar el formato del teléfono cuando el usuario cambia el texto
-        void validarCampoTelefono()
+        private void txtTelefono_TextChanged(object sender, EventArgs e)
         {
-            // Guardar la posición del cursor
-            int cursorPos = txtTelefono.SelectionStart;
-
-            // Eliminar cualquier carácter que no sea un número o guion
-            string textoLimpio = new string(txtTelefono.Text.Where(c => char.IsDigit(c) || c == '-').ToArray());
-
-            // Asegurarse de que solo haya un guion
-            int indexGuion = textoLimpio.IndexOf('-');
-            if (indexGuion != 4)
+            if (!EsFormatoTelefonoValido(txtTelefono.Text))
             {
-                textoLimpio = textoLimpio.Replace("-", ""); // Remueve todos los guiones
-                if (textoLimpio.Length > 4)
-                {
-                    textoLimpio = textoLimpio.Insert(4, "-"); // Inserta el guion en la posición correcta
-                }
+                MessageBox.Show("Por favor, ingrese el dato bajo el siguiente formato: 'XXXX-XXXX'.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            // Limitar la longitud máxima a 9 caracteres
-            if (textoLimpio.Length > 9)
-            {
-                textoLimpio = textoLimpio.Substring(0, 9);
-            }
-
-            // Actualizar el texto del TextBox
-            txtTelefono.Text = textoLimpio;
-            txtTelefono.SelectionStart = txtTelefono.Text.Length;
-        }
-
-        private void txtTelefono_TextChanged_1(object sender, EventArgs e)
-        {
-            validarCampoTelefono();
         }
 
         // Validar el formato del email cuando el usuario cambia el texto

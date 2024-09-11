@@ -15,4 +15,6 @@ namespace sistema_gestion_biblioteca.Modelo
         public string telefono { get; set; }
         public string email { get; set; }
     }
+
+	// ESTO ES UN EJEMPLO
 }
