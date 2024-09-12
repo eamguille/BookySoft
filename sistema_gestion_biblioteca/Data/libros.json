@@ -8,7 +8,8 @@
     "fecha_publicacion": "8/9/2024",
     "descripcion": "",
     "editorial": "Génesis primero",
-    "ISBN": "111-111-111-111-1"
+    "ISBN": "111-111-111-111-1",
+    "estado_libro":  "Disponible"
   },
   {
     "titulo_libro": "SAO",
@@ -19,7 +20,8 @@
     "fecha_publicacion": "8/9/2024",
     "descripcion": "",
     "editorial": "Génesis dos",
-    "ISBN": "1000-5555-99"
+    "ISBN": "1000-5555-99",
+    "estado_libro": "Disponible"
   },
   {
     "titulo_libro": "Rony Ariel",
@@ -30,7 +32,8 @@
     "fecha_publicacion": "9/9/2024",
     "descripcion": "",
     "editorial": "Dalton",
-    "ISBN": "100-100-100-1000"
+    "ISBN": "100-100-100-1000",
+    "estado_libro": "Disponible"
   },
   {
     "titulo_libro": "Exodo - Dioses y Reyes",
@@ -55,6 +58,5 @@
     "editorial": "No se ",
     "ISBN": "120-4354-9454-9450",
     "estado_libro": "Disponible"
-
   }
 ]
