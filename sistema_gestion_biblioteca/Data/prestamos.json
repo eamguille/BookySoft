@@ -12,5 +12,12 @@
     "fecha_prestamo": "20/8/2024",
     "fecha_devolucion_estimada": "20/8/2024",
     "estado_prestamo": "Devuelto"
+  },
+  {
+    "titulo_libro": "La Cabana del Tio Tom",
+    "email_usuario": "guilleacc26@gmail.com",
+    "fecha_prestamo": "11/9/2024",
+    "fecha_devolucion_estimada": "11/10/2024",
+    "estado_prestamo": "Devuelto"
   }
 ]

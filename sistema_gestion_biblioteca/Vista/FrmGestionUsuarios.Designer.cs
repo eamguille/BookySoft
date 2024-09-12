@@ -191,6 +191,7 @@
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(271, 25);
             txtTelefono.TabIndex = 15;
+            txtTelefono.TextChanged += txtTelefono_TextChanged_1;
             // 
             // txtEmail
             // 
