@@ -10,6 +10,10 @@ namespace sistema_gestion_biblioteca.Forms
         libroControlador obj_controlador;
         bool modoEdicion = false;
         string isbnSeleccionado;
+<<<<<<< HEAD
+        string estado_libro = "Disponible";
+=======
+>>>>>>> 5d2ef4e8e8d11d5ade88036acb24e610e35ffaa8
 
         public FrmRegistroLibros()
         {
@@ -41,7 +45,6 @@ namespace sistema_gestion_biblioteca.Forms
             txtISBN.Text = "";
         }
 
-        // Validaciones para los campos del libro
         bool ValidarCamposLibro()
         {
             // Validar Título: Solo letras y espacios
@@ -134,17 +137,28 @@ namespace sistema_gestion_biblioteca.Forms
             {
                 try
                 {
-                    bool guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                    bool guardar;
+                    if (!modoEdicion)
+                    {
+                        guardar = obj_controlador.agregarLibro(txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text, estado_libro);
+                    }
+                    else
+                    {
+                        guardar = obj_controlador.actualizarLibro(isbnSeleccionado, txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                    }
+
                     if (guardar)
                     {
-                        MessageBox.Show("Libro ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Libro guardado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ActualizarDataGrid();
                         LimpiarCampos();
+                        modoEdicion = false;
+                        btnActualizar.Text = "Actualizar";
                     }
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show($"Error al guardar los datos {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error al guardar los datos: {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -174,6 +188,8 @@ namespace sistema_gestion_biblioteca.Forms
             btnActualizar.Text = "Guardar Cambios";
         }
 
+<<<<<<< HEAD
+=======
         void GuardarLibro()
         {
             if (ValidarCamposLibro()) // Aplicar validaciones también al actualizar
@@ -206,6 +222,7 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
+>>>>>>> 5d2ef4e8e8d11d5ade88036acb24e610e35ffaa8
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             guardarLibro();
@@ -215,7 +232,7 @@ namespace sistema_gestion_biblioteca.Forms
         {
             if (modoEdicion)
             {
-                GuardarLibro();
+                guardarLibro();
             }
             else
             {
@@ -231,15 +248,15 @@ namespace sistema_gestion_biblioteca.Forms
                 return;
             }
 
-            var isbnSeleccionado = dgLibros.SelectedRows[0].Cells[8].Value.ToString();
+            var resultado = MessageBox.Show("¿Está seguro de que desea eliminar el libro seleccionado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            var result = MessageBox.Show("¿Está seguro de que desea eliminar este libro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            if (resultado == DialogResult.Yes)
             {
-                bool eliminar = obj_controlador.eliminarLibro(isbnSeleccionado);
+                DataGridViewRow row = dgLibros.SelectedRows[0];
+                string isbnEliminar = row.Cells[8].Value.ToString();
+                bool eliminado = obj_controlador.eliminarLibro(isbnEliminar);
 
-                if (eliminar)
+                if (eliminado)
                 {
                     MessageBox.Show("Libro eliminado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ActualizarDataGrid();
@@ -249,10 +266,6 @@ namespace sistema_gestion_biblioteca.Forms
                 {
                     MessageBox.Show("Error al eliminar el libro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Eliminación cancelada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

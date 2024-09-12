@@ -8,7 +8,8 @@
     "fecha_publicacion": "8/9/2024",
     "descripcion": "",
     "editorial": "Génesis primero",
-    "ISBN": "111-111-111-111-1"
+    "ISBN": "111-111-111-111-1",
+    "estado_libro": null
   },
   {
     "titulo_libro": "SAO",
@@ -19,7 +20,8 @@
     "fecha_publicacion": "8/9/2024",
     "descripcion": "",
     "editorial": "Génesis dos",
-    "ISBN": "1000-5555-99"
+    "ISBN": "1000-5555-99",
+    "estado_libro": null
   },
   {
     "titulo_libro": "Rony Ariel",
@@ -30,6 +32,35 @@
     "fecha_publicacion": "9/9/2024",
     "descripcion": "",
     "editorial": "Dalton",
+<<<<<<< HEAD
+    "ISBN": "100-100-100-1000",
+    "estado_libro": null
+  },
+  {
+    "titulo_libro": "Exodo - Dioses y Reyes",
+    "autor_libro": "Buena pregunta",
+    "numero_paginas": 588,
+    "genero_libro": "Religion",
+    "fecha_ingreso": "1/2/2024",
+    "fecha_publicacion": "10/9/2023",
+    "descripcion": "Libro que trata la vida e historia de Moises",
+    "editorial": "Cristianos - Magana",
+    "ISBN": "123-5443-3454-0000",
+    "estado_libro": "Disponible"
+  },
+  {
+    "titulo_libro": "La Cabana del Tio Tom",
+    "autor_libro": "Buena pregunta",
+    "numero_paginas": 600,
+    "genero_libro": "Realismo",
+    "fecha_ingreso": "10/9/2020",
+    "fecha_publicacion": "10/9/2018",
+    "descripcion": "Historia de la vida del Tio Tom y su transicion durante los tiempos de esclavitud",
+    "editorial": "No se ",
+    "ISBN": "120-4354-9454-9450",
+    "estado_libro": "Disponible"
+=======
     "ISBN": "100-100-100-1000"
+>>>>>>> 5d2ef4e8e8d11d5ade88036acb24e610e35ffaa8
   }
 ]
