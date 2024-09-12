@@ -1,23 +1,17 @@
 ﻿using sistema_gestion_biblioteca.Controlador;
+using sistema_gestion_biblioteca.Modelo;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace sistema_gestion_biblioteca.Forms
 {
     public partial class FrmGestionUsuarios : Form
     {
-        // Objeto para poder usar los metodos dentro de usuarioControlador
         private usuarioControlador obj_controlador;
-        // Variable que guardara el valor del indice seleccionado del dataGridView
         private int indexDataGrid = -1;
-        // Objeto que guarda el enlace constante de datos con la lista
         private BindingSource enlaceDatos = new BindingSource();
 
         public FrmGestionUsuarios()
@@ -30,51 +24,57 @@ namespace sistema_gestion_biblioteca.Forms
         private void FrmGestionUsuarios_Load(object sender, EventArgs e)
         {
             ActualizarDataGrid();
-
-            // Inicializamos los textboxes con ciertos valores
             txtTelefono.Text = "----";
             txtTelefono.SelectionStart = 0;
         }
 
-        // Método para cargar los datos de la lista en el DataGridView
         void ActualizarDataGrid()
         {
-            var listaUsuarios = obj_controlador.obtenerUsuarios();
+            var listaUsuarios = obj_controlador.ObtenerUsuarios();
             enlaceDatos.DataSource = listaUsuarios;
             dgUsuarios.DataSource = enlaceDatos;
         }
 
-        // Método para guardar el usuario
         void guardarUsuario()
         {
             try
             {
-                // Validar campos vacíos
                 if (string.IsNullOrWhiteSpace(txtNombres.Text) ||
                     string.IsNullOrWhiteSpace(txtApellidos.Text) ||
                     string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                     string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                    string.IsNullOrWhiteSpace(txtEmail.Text))
+                    string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                    string.IsNullOrWhiteSpace(txtUsuario.Text) ||
+                    string.IsNullOrWhiteSpace(txtClave.Text))
                 {
                     MessageBox.Show("Por favor, complete todos los campos antes de agregar el usuario.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Salir del método sin guardar
+                    return;
                 }
 
-                // Validar campos de texto
                 if (!EsValidoTexto(txtNombres.Text) || !EsValidoTexto(txtApellidos.Text))
                 {
                     MessageBox.Show("Los campos de nombres y apellidos solo pueden contener letras y espacios.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Salir del método sin guardar
+                    return;
                 }
 
-                // Validar email
                 if (!EsFormatoEmailValido(txtEmail.Text))
                 {
                     MessageBox.Show("Por favor, ingrese el dato en formato de email en este campo.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Salir del método sin guardar
+                    return;
                 }
 
-                bool guardado = obj_controlador.almacenarRegistro(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
+                var usuario = new usuarioModelo
+                {
+                    nombres = txtNombres.Text,
+                    apellidos = txtApellidos.Text,
+                    direccion = txtDireccion.Text,
+                    telefono = txtTelefono.Text,
+                    email = txtEmail.Text,
+                    Usuario = txtUsuario.Text,
+                    Clave = txtClave.Text
+                };
+
+                bool guardado = obj_controlador.AlmacenarRegistro(usuario);
 
                 if (guardado)
                 {
@@ -88,7 +88,6 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
-        // Método para eliminar el usuario
         void eliminarUsuario()
         {
             try
@@ -99,7 +98,7 @@ namespace sistema_gestion_biblioteca.Forms
                     {
                         if (indexDataGrid >= 0)
                         {
-                            bool eliminar = obj_controlador.eliminarUsuario(indexDataGrid);
+                            bool eliminar = obj_controlador.EliminarUsuario(indexDataGrid);
 
                             if (eliminar)
                             {
@@ -116,42 +115,44 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
-        // Método para actualizar el usuario
         void actualizarUsuario()
         {
             try
             {
-                // Validar campos vacíos
                 if (string.IsNullOrWhiteSpace(txtNombres.Text) ||
                     string.IsNullOrWhiteSpace(txtApellidos.Text) ||
                     string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                     string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                    string.IsNullOrWhiteSpace(txtEmail.Text))
+                    string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                    string.IsNullOrWhiteSpace(txtUsuario.Text) ||
+                    string.IsNullOrWhiteSpace(txtClave.Text))
                 {
                     MessageBox.Show("Por favor, complete todos los campos antes de actualizar el usuario.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Salir del método sin actualizar
+                    return;
                 }
 
-                // Validar campos de texto
                 if (!EsValidoTexto(txtNombres.Text) || !EsValidoTexto(txtApellidos.Text))
                 {
                     MessageBox.Show("Los campos de nombres y apellidos solo pueden contener letras y espacios.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Salir del método sin actualizar
+                    return;
                 }
 
-                // Validar email
                 if (!EsFormatoEmailValido(txtEmail.Text))
                 {
                     MessageBox.Show("Por favor, ingrese el dato en formato de email en este campo.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Salir del método sin actualizar
+                    return;
                 }
 
                 if (indexDataGrid >= 0)
                 {
-                    bool actualizar = obj_controlador.actualizarUsuario(indexDataGrid, txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
+                    var usuarioActualizado = new usuarioModelo { nombres = txtNombres.Text, apellidos = txtApellidos.Text, direccion = txtDireccion.Text, telefono = txtTelefono.Text, email = txtEmail.Text, Usuario = txtUsuario.Text, Clave = txtClave.Text };
+                    bool actualizar = obj_controlador.ActualizarUsuario(indexDataGrid, usuarioActualizado);
 
-                    MessageBox.Show("Usuario actualizado con exito", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ActualizarDataGrid();
+                    if (actualizar)
+                    {
+                        MessageBox.Show("Usuario actualizado con exito", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ActualizarDataGrid();
+                    }
                 }
             }
             catch (Exception e)
@@ -160,10 +161,9 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
-        // Método para filtrar usuarios en el DataGridView
         void filtrarUsuario(string filtro_buscador)
         {
-            var listaUsuarios = obj_controlador.obtenerUsuarios();
+            List<usuarioModelo> listaUsuarios = obj_controlador.ObtenerUsuarios();
             if (string.IsNullOrEmpty(filtro_buscador))
             {
                 enlaceDatos.DataSource = listaUsuarios;
@@ -213,14 +213,17 @@ namespace sistema_gestion_biblioteca.Forms
         {
             if (e.RowIndex >= 0)
             {
-                indexDataGrid = e.RowIndex;
+                DataGridViewRow fila = dgUsuarios.Rows[e.RowIndex];
 
-                var fila = dgUsuarios.Rows[e.RowIndex].Cells;
-                txtNombres.Text = fila[0].Value.ToString();
-                txtApellidos.Text = fila[1].Value.ToString();
-                txtDireccion.Text = fila[2].Value.ToString();
-                txtTelefono.Text = fila[3].Value.ToString();
-                txtEmail.Text = fila[4].Value.ToString();
+                txtNombres.Text = fila.Cells[0].Value?.ToString() ?? string.Empty;
+                txtApellidos.Text = fila.Cells[1].Value?.ToString() ?? string.Empty;
+                txtDireccion.Text = fila.Cells[2].Value?.ToString() ?? string.Empty;
+                txtTelefono.Text = fila.Cells[3].Value?.ToString() ?? string.Empty;
+                txtEmail.Text = fila.Cells[4].Value?.ToString() ?? string.Empty;
+                txtUsuario.Text = fila.Cells[5].Value?.ToString() ?? string.Empty;
+                txtClave.Text = fila.Cells[6].Value?.ToString() ?? string.Empty;
+
+                indexDataGrid = e.RowIndex;
             }
         }
 
@@ -231,22 +234,21 @@ namespace sistema_gestion_biblioteca.Forms
             txtDireccion.Clear();
             txtTelefono.Clear();
             txtEmail.Clear();
+            txtUsuario.Clear();
+            txtClave.Clear();
         }
 
-        // Validar que el texto solo contenga letras y espacios
         private bool EsValidoTexto(string texto)
         {
             return !string.IsNullOrWhiteSpace(texto) && texto.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
         }
 
-        // Validar el formato del email
         private bool EsFormatoEmailValido(string email)
         {
             var regex = new System.Text.RegularExpressions.Regex(@"^[^\s@]+@[^\s@]+\.[^\s@]+$");
             return regex.IsMatch(email);
         }
 
-        // Validar que solo se permitan letras en los campos de nombres y apellidos
         private void ValidarSoloLetras(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -256,33 +258,23 @@ namespace sistema_gestion_biblioteca.Forms
             }
         }
 
-        // Validar el formato del teléfono cuando el usuario cambia el texto
         void validarCampoTelefono()
         {
-            // Guardar la posición del cursor
             int cursorPos = txtTelefono.SelectionStart;
-
-            // Eliminar cualquier carácter que no sea un número o guion
             string textoLimpio = new string(txtTelefono.Text.Where(c => char.IsDigit(c) || c == '-').ToArray());
-
-            // Asegurarse de que solo haya un guion
             int indexGuion = textoLimpio.IndexOf('-');
             if (indexGuion != 4)
             {
-                textoLimpio = textoLimpio.Replace("-", ""); // Remueve todos los guiones
+                textoLimpio = textoLimpio.Replace("-", "");
                 if (textoLimpio.Length > 4)
                 {
-                    textoLimpio = textoLimpio.Insert(4, "-"); // Inserta el guion en la posición correcta
+                    textoLimpio = textoLimpio.Insert(4, "-");
                 }
             }
-
-            // Limitar la longitud máxima a 9 caracteres
             if (textoLimpio.Length > 9)
             {
                 textoLimpio = textoLimpio.Substring(0, 9);
             }
-
-            // Actualizar el texto del TextBox
             txtTelefono.Text = textoLimpio;
             txtTelefono.SelectionStart = txtTelefono.Text.Length;
         }
@@ -292,7 +284,6 @@ namespace sistema_gestion_biblioteca.Forms
             validarCampoTelefono();
         }
 
-        // Validar el formato del email cuando el usuario cambia el texto
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
             if (!EsFormatoEmailValido(txtEmail.Text))

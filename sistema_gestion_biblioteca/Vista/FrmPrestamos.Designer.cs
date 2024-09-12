@@ -35,7 +35,7 @@
             textBox1 = new TextBox();
             label1 = new Label();
             groupBox1 = new GroupBox();
-            lblFechaDevolucion = new TextBox();
+            lblFechaDevolucion = new Label();
             label7 = new Label();
             cmbEstadoPrestamo = new ComboBox();
             label6 = new Label();
@@ -109,15 +109,13 @@
             // 
             // lblFechaDevolucion
             // 
-            lblFechaDevolucion.BackColor = Color.FromArgb(49, 66, 82);
-            lblFechaDevolucion.BorderStyle = BorderStyle.None;
-            lblFechaDevolucion.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFechaDevolucion.ForeColor = Color.Gainsboro;
-            lblFechaDevolucion.Location = new Point(633, 143);
+            lblFechaDevolucion.AutoSize = true;
+            lblFechaDevolucion.Font = new Font("Arial Rounded MT Bold", 9.75F);
+            lblFechaDevolucion.ForeColor = Color.WhiteSmoke;
+            lblFechaDevolucion.Location = new Point(636, 143);
             lblFechaDevolucion.Name = "lblFechaDevolucion";
-            lblFechaDevolucion.ReadOnly = true;
-            lblFechaDevolucion.Size = new Size(121, 16);
-            lblFechaDevolucion.TabIndex = 36;
+            lblFechaDevolucion.Size = new Size(121, 15);
+            lblFechaDevolucion.TabIndex = 35;
             lblFechaDevolucion.Text = "fecha_devolucion";
             // 
             // label7
@@ -290,7 +288,6 @@
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(843, 23);
             txtBuscar.TabIndex = 12;
-            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // label2
             // 
@@ -392,7 +389,7 @@
         private ComboBox cmbEstadoPrestamo;
         private Label label6;
         private Label label7;
+        private Label lblFechaDevolucion;
         private DataGridView dgPrestamos;
-        private TextBox lblFechaDevolucion;
     }
 }
