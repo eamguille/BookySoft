@@ -40,7 +40,7 @@ namespace sistema_gestion_biblioteca.Controlador
             return new List<libroModelo>();
         }
 
-        public bool agregarLibro(string p_titulo, string p_autor, int p_numero_pags, string p_genero, string p_fechaI, string p_fechaP, string p_descripcion, string p_editorial, string p_isbn)
+        public bool agregarLibro(string p_titulo, string p_autor, int p_numero_pags, string p_genero, string p_fechaI, string p_fechaP, string p_descripcion, string p_editorial, string p_isbn, string p_estado)
         {
             try
             {
@@ -53,7 +53,8 @@ namespace sistema_gestion_biblioteca.Controlador
                     fecha_publicacion = p_fechaP,
                     descripcion = p_descripcion,
                     editorial = p_editorial,
-                    ISBN = p_isbn
+                    ISBN = p_isbn,
+                    estado_libro = p_estado
                 };
                 var guardar = obtenerListaLibros();
                 guardar.Add(obj_modelo);
@@ -116,6 +117,28 @@ namespace sistema_gestion_biblioteca.Controlador
                 return true;
             }
             catch
+            {
+                return false;
+            }
+        }
+
+        public bool actualizarEstadoLibro(string p_isbn, string p_estado)
+        {
+            try
+            {
+                var libros = obtenerListaLibros();
+                var libro = libros.FirstOrDefault(l => l.ISBN == p_isbn);
+                if (libro == null)
+                {
+                    return false;
+                }
+
+                libro.ISBN = p_isbn;
+                libro.estado_libro = p_estado;
+
+                guardarLibros(libros);
+                return true;
+            } catch
             {
                 return false;
             }

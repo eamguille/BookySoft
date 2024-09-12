@@ -9,18 +9,10 @@ namespace sistema_gestion_biblioteca.Modelo
     public class usuarioModelo
     {
         // Definimos los campos de usuario
-
         public string nombres { get; set; }
         public string apellidos { get; set; }
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string email { get; set; }
-        public string Usuario { get; set; }
-        public string Clave { get; set; }
-    }
-    public class Credenciales
-    {
-        public string Usuario { get; set; }
-        public string Clave { get; set; }
     }
 }

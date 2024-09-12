@@ -2,191 +2,15 @@
 {
     partial class FrmLogin
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.TextBox txtClave;
-        private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label lblInicioSesion;
-        private System.Windows.Forms.LinkLabel lnkOlvidoClave;
-        private System.Windows.Forms.PictureBox btnCerrar;
-        private System.Windows.Forms.PictureBox btnMinimizar;
 
-        private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtClave = new System.Windows.Forms.TextBox();
-            this.btnIngresar = new System.Windows.Forms.Button();
-            this.lblInicioSesion = new System.Windows.Forms.Label();
-            this.lnkOlvidoClave = new System.Windows.Forms.LinkLabel();
-            this.btnCerrar = new System.Windows.Forms.PictureBox();
-            this.btnMinimizar = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
-            this.SuspendLayout();
-
-            // panel1
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(0, 122, 204);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 330);
-            this.panel1.TabIndex = 0;
-
-            // pictureBox1
-            this.pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
-            this.pictureBox1.Location = new System.Drawing.Point(1, 63);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(198, 205);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-
-            // txtUsuario
-            this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(15, 15, 15);
-            this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsuario.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtUsuario.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12.75F);
-            this.txtUsuario.ForeColor = System.Drawing.Color.Silver;
-            this.txtUsuario.Location = new System.Drawing.Point(302, 96);
-            this.txtUsuario.Multiline = true;
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.PlaceholderText = "  Ingrese su usuario";
-            this.txtUsuario.Size = new System.Drawing.Size(390, 28);
-            this.txtUsuario.TabIndex = 1;
-
-            // textBox1
-            this.textBox1.BackColor = System.Drawing.Color.DarkGray;
-            this.textBox1.Location = new System.Drawing.Point(302, 124);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(390, 1);
-            this.textBox1.TabIndex = 3;
-
-            // textBox2
-            this.textBox2.BackColor = System.Drawing.Color.DarkGray;
-            this.textBox2.Location = new System.Drawing.Point(302, 184);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(390, 1);
-            this.textBox2.TabIndex = 5;
-
-            // txtClave
-            this.txtClave.BackColor = System.Drawing.Color.FromArgb(15, 15, 15);
-            this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtClave.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtClave.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12.75F);
-            this.txtClave.ForeColor = System.Drawing.Color.Silver;
-            this.txtClave.Location = new System.Drawing.Point(302, 156);
-            this.txtClave.Multiline = true;
-            this.txtClave.Name = "txtClave";
-            this.txtClave.PasswordChar = '•';
-            this.txtClave.PlaceholderText = "  Ingrese su contraseña";
-            this.txtClave.Size = new System.Drawing.Size(390, 28);
-            this.txtClave.TabIndex = 2;
-
-            // btnIngresar
-            this.btnIngresar.BackColor = System.Drawing.Color.FromArgb(40, 40, 40);
-            this.btnIngresar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIngresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(40, 40, 40);
-            this.btnIngresar.FlatAppearance.BorderSize = 0;
-            this.btnIngresar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(28, 28, 28);
-            this.btnIngresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(64, 64, 64);
-            this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F);
-            this.btnIngresar.ForeColor = System.Drawing.Color.Silver;
-            this.btnIngresar.Location = new System.Drawing.Point(302, 214);
-            this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(390, 37);
-            this.btnIngresar.TabIndex = 3;
-            this.btnIngresar.Text = "Ingresar";
-            this.btnIngresar.UseVisualStyleBackColor = false;
-            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
-
-            // lblInicioSesion
-            this.lblInicioSesion.AutoSize = true;
-            this.lblInicioSesion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 21.75F);
-            this.lblInicioSesion.ForeColor = System.Drawing.Color.Silver;
-            this.lblInicioSesion.Location = new System.Drawing.Point(400, 38);
-            this.lblInicioSesion.Name = "lblInicioSesion";
-            this.lblInicioSesion.Size = new System.Drawing.Size(195, 33);
-            this.lblInicioSesion.TabIndex = 7;
-            this.lblInicioSesion.Text = "Inicia Sesión";
-
-            // lnkOlvidoClave
-            this.lnkOlvidoClave.ActiveLinkColor = System.Drawing.Color.Gray;
-            this.lnkOlvidoClave.AutoSize = true;
-            this.lnkOlvidoClave.LinkColor = System.Drawing.Color.Silver;
-            this.lnkOlvidoClave.Location = new System.Drawing.Point(432, 271);
-            this.lnkOlvidoClave.Name = "lnkOlvidoClave";
-            this.lnkOlvidoClave.Size = new System.Drawing.Size(134, 15);
-            this.lnkOlvidoClave.TabIndex = 0;
-            this.lnkOlvidoClave.TabStop = true;
-            this.lnkOlvidoClave.Text = "¿ Olvidó su contraseña ?";
-            this.lnkOlvidoClave.VisitedLinkColor = System.Drawing.Color.DarkGray;
-
-            // btnCerrar
-            this.btnCerrar.Image = (System.Drawing.Image)resources.GetObject("btnCerrar.Image");
-            this.btnCerrar.Location = new System.Drawing.Point(757, 3);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(20, 20);
-            this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnCerrar.TabIndex = 9;
-            this.btnCerrar.TabStop = false;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-
-            // btnMinimizar
-            this.btnMinimizar.Image = (System.Drawing.Image)resources.GetObject("btnMinimizar.Image");
-            this.btnMinimizar.Location = new System.Drawing.Point(727, 3);
-            this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(20, 20);
-            this.btnMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnMinimizar.TabIndex = 10;
-            this.btnMinimizar.TabStop = false;
-            this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
-
-            // FrmLogin
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(15, 15, 15);
-            this.ClientSize = new System.Drawing.Size(780, 330);
-            this.Controls.Add(this.btnMinimizar);
-            this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.lnkOlvidoClave);
-            this.Controls.Add(this.lblInicioSesion);
-            this.Controls.Add(this.btnIngresar);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.txtClave);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.txtUsuario);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmLogin";
-            this.Opacity = 0.95D;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmLogin_MouseDown);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-        }
-
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -195,5 +19,209 @@
             }
             base.Dispose(disposing);
         }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
+            panel1 = new Panel();
+            pictureBox1 = new PictureBox();
+            txtUsuario = new TextBox();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            txtClave = new TextBox();
+            btnIngresar = new Button();
+            lblInicioSesion = new Label();
+            lnkOlvidoClave = new LinkLabel();
+            btnCerrar = new PictureBox();
+            btnMinimizar = new PictureBox();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnCerrar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnMinimizar).BeginInit();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(0, 122, 204);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(200, 330);
+            panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(1, 63);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(198, 205);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // txtUsuario
+            // 
+            txtUsuario.BackColor = Color.FromArgb(15, 15, 15);
+            txtUsuario.BorderStyle = BorderStyle.None;
+            txtUsuario.Cursor = Cursors.IBeam;
+            txtUsuario.Font = new Font("Arial Rounded MT Bold", 12.75F);
+            txtUsuario.ForeColor = Color.Silver;
+            txtUsuario.Location = new Point(302, 96);
+            txtUsuario.Multiline = true;
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.PlaceholderText = "  Ingrese su usuario";
+            txtUsuario.Size = new Size(390, 28);
+            txtUsuario.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.DarkGray;
+            textBox1.Location = new Point(302, 124);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(390, 1);
+            textBox1.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.DarkGray;
+            textBox2.Location = new Point(302, 184);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(390, 1);
+            textBox2.TabIndex = 5;
+            // 
+            // txtClave
+            // 
+            txtClave.BackColor = Color.FromArgb(15, 15, 15);
+            txtClave.BorderStyle = BorderStyle.None;
+            txtClave.Cursor = Cursors.IBeam;
+            txtClave.Font = new Font("Arial Rounded MT Bold", 12.75F);
+            txtClave.ForeColor = Color.Silver;
+            txtClave.Location = new Point(302, 156);
+            txtClave.Multiline = true;
+            txtClave.Name = "txtClave";
+            txtClave.PasswordChar = '•';
+            txtClave.PlaceholderText = "  Ingrese su contreseña";
+            txtClave.Size = new Size(390, 28);
+            txtClave.TabIndex = 2;
+            // 
+            // btnIngresar
+            // 
+            btnIngresar.BackColor = Color.FromArgb(40, 40, 40);
+            btnIngresar.Cursor = Cursors.Hand;
+            btnIngresar.FlatAppearance.BorderColor = Color.FromArgb(40, 40, 40);
+            btnIngresar.FlatAppearance.BorderSize = 0;
+            btnIngresar.FlatAppearance.MouseDownBackColor = Color.FromArgb(28, 28, 28);
+            btnIngresar.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            btnIngresar.FlatStyle = FlatStyle.Flat;
+            btnIngresar.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIngresar.ForeColor = Color.Silver;
+            btnIngresar.Location = new Point(302, 214);
+            btnIngresar.Name = "btnIngresar";
+            btnIngresar.Size = new Size(390, 37);
+            btnIngresar.TabIndex = 3;
+            btnIngresar.Text = "Ingresar";
+            btnIngresar.UseVisualStyleBackColor = false;
+            btnIngresar.Click += btnIngresar_Click;
+            // 
+            // lblInicioSesion
+            // 
+            lblInicioSesion.AutoSize = true;
+            lblInicioSesion.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInicioSesion.ForeColor = Color.Silver;
+            lblInicioSesion.Location = new Point(400, 38);
+            lblInicioSesion.Name = "lblInicioSesion";
+            lblInicioSesion.Size = new Size(195, 33);
+            lblInicioSesion.TabIndex = 7;
+            lblInicioSesion.Text = "Inicia Sesión";
+            // 
+            // lnkOlvidoClave
+            // 
+            lnkOlvidoClave.ActiveLinkColor = Color.Gray;
+            lnkOlvidoClave.AutoSize = true;
+            lnkOlvidoClave.LinkColor = Color.Silver;
+            lnkOlvidoClave.Location = new Point(432, 271);
+            lnkOlvidoClave.Name = "lnkOlvidoClave";
+            lnkOlvidoClave.Size = new Size(134, 15);
+            lnkOlvidoClave.TabIndex = 0;
+            lnkOlvidoClave.TabStop = true;
+            lnkOlvidoClave.Text = "¿ Olvidó su contraseña ?";
+            lnkOlvidoClave.VisitedLinkColor = Color.DarkGray;
+            // 
+            // btnCerrar
+            // 
+            btnCerrar.Image = (Image)resources.GetObject("btnCerrar.Image");
+            btnCerrar.Location = new Point(757, 3);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(20, 20);
+            btnCerrar.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnCerrar.TabIndex = 9;
+            btnCerrar.TabStop = false;
+            btnCerrar.Click += btnCerrar_Click;
+            // 
+            // btnMinimizar
+            // 
+            btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
+            btnMinimizar.Location = new Point(727, 3);
+            btnMinimizar.Name = "btnMinimizar";
+            btnMinimizar.Size = new Size(20, 20);
+            btnMinimizar.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnMinimizar.TabIndex = 10;
+            btnMinimizar.TabStop = false;
+            btnMinimizar.Click += btnMinimizar_Click;
+            // 
+            // FrmLogin
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(15, 15, 15);
+            ClientSize = new Size(780, 330);
+            Controls.Add(btnMinimizar);
+            Controls.Add(btnCerrar);
+            Controls.Add(lnkOlvidoClave);
+            Controls.Add(lblInicioSesion);
+            Controls.Add(btnIngresar);
+            Controls.Add(textBox2);
+            Controls.Add(txtClave);
+            Controls.Add(textBox1);
+            Controls.Add(txtUsuario);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "FrmLogin";
+            Opacity = 0.95D;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Login";
+            MouseDown += FrmLogin_MouseDown;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnCerrar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnMinimizar).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Panel panel1;
+        private TextBox txtUsuario;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private TextBox txtClave;
+        private Button btnIngresar;
+        private Label lblInicioSesion;
+        private LinkLabel lnkOlvidoClave;
+        private PictureBox pictureBox1;
+        private PictureBox btnCerrar;
+        private PictureBox btnMinimizar;
     }
 }

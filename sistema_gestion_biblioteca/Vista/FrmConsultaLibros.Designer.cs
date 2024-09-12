@@ -28,21 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaLibros));
             textBox1 = new TextBox();
             label1 = new Label();
             label2 = new Label();
             txtBuscar = new TextBox();
             groupBox1 = new GroupBox();
-            dgIngresoLibros = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
+            dgLibros = new DataGridView();
             button1 = new Button();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgIngresoLibros).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgLibros).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -81,15 +79,17 @@
             // txtBuscar
             // 
             txtBuscar.Cursor = Cursors.IBeam;
+            txtBuscar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscar.Location = new Point(105, 36);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(843, 26);
+            txtBuscar.Size = new Size(843, 25);
             txtBuscar.TabIndex = 12;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(dgIngresoLibros);
+            groupBox1.Controls.Add(dgLibros);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(txtBuscar);
             groupBox1.Controls.Add(label2);
@@ -102,57 +102,49 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "ENCUENTRA TU LIBRO";
             // 
-            // dgIngresoLibros
+            // dgLibros
             // 
-            dgIngresoLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgIngresoLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
-            dgIngresoLibros.BorderStyle = BorderStyle.None;
-            dgIngresoLibros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.Gray;
-            dataGridViewCellStyle4.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.LightGray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle4.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dgIngresoLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgIngresoLibros.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.Silver;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.LightGray;
-            dataGridViewCellStyle5.Padding = new Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle5.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgIngresoLibros.DefaultCellStyle = dataGridViewCellStyle5;
-            dgIngresoLibros.EnableHeadersVisualStyles = false;
-            dgIngresoLibros.GridColor = Color.FromArgb(49, 66, 82);
-            dgIngresoLibros.Location = new Point(21, 89);
-            dgIngresoLibros.Name = "dgIngresoLibros";
-            dgIngresoLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Silver;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.Padding = new Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(49, 66, 82);
-            dataGridViewCellStyle6.SelectionForeColor = Color.LightGray;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgIngresoLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dgIngresoLibros.Size = new Size(985, 416);
-            dgIngresoLibros.TabIndex = 14;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Column1";
-            Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Column2";
-            Column2.Name = "Column2";
+            dgLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgLibros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dgLibros.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            dgLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
+            dgLibros.BorderStyle = BorderStyle.None;
+            dgLibros.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle1.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Padding = new Padding(8, 2, 8, 2);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle2.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgLibros.DefaultCellStyle = dataGridViewCellStyle2;
+            dgLibros.EnableHeadersVisualStyles = false;
+            dgLibros.GridColor = Color.FromArgb(49, 66, 82);
+            dgLibros.Location = new Point(21, 102);
+            dgLibros.Name = "dgLibros";
+            dgLibros.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.Padding = new Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(49, 66, 82);
+            dataGridViewCellStyle3.SelectionForeColor = Color.LightGray;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgLibros.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgLibros.RowHeadersWidth = 51;
+            dgLibros.Size = new Size(979, 393);
+            dgLibros.TabIndex = 18;
             // 
             // button1
             // 
@@ -179,9 +171,10 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmConsultaLibros";
             Text = "FrmConsultaLibros";
+            Load += FrmConsultaLibros_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgIngresoLibros).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgLibros).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,8 +187,6 @@
         private TextBox txtBuscar;
         private GroupBox groupBox1;
         private Button button1;
-        private DataGridView dgIngresoLibros;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
+        private DataGridView dgLibros;
     }
 }
