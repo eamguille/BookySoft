@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using sistema_gestion_biblioteca.Controlador;
 
 namespace sistema_gestion_biblioteca.Forms
 {
@@ -17,6 +18,8 @@ namespace sistema_gestion_biblioteca.Forms
         {
             InitializeComponent();
         }
+
+        credencialesControlador obj_controlador = new credencialesControlador();
 
         // Codigo para agregar la funcionalidad de arrastre del Formulario
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -40,11 +43,29 @@ namespace sistema_gestion_biblioteca.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        void validarLogin()
+        {
+            try
+            {
+                bool validar = obj_controlador.validarLogin(txtUsuario.Text, txtClave.Text);
+                if (validar)
+                {
+                    FrmPrincipal next_form = new FrmPrincipal();
+                    next_form.Show();
+                    this.Hide();
+                } else
+                {
+                    MessageBox.Show("Usuario o Clave incorrectos", "Credenciales incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } catch (Exception e)
+            {
+                MessageBox.Show("Hubo un error para validar las credenciales", "Error externo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            FrmPrincipal next_form = new FrmPrincipal();
-            next_form.Show();
-            this.Hide();
+            validarLogin();
         }
     }
 }
