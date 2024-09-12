@@ -30,6 +30,7 @@ namespace sistema_gestion_biblioteca.Forms
         private void FrmGestionUsuarios_Load(object sender, EventArgs e)
         {
             ActualizarDataGrid();
+            cargarNombresDataGrid();
 
             // Inicializamos los textboxes con ciertos valores
             txtTelefono.Text = "----";
@@ -42,6 +43,17 @@ namespace sistema_gestion_biblioteca.Forms
             var listaUsuarios = obj_controlador.obtenerUsuarios();
             enlaceDatos.DataSource = listaUsuarios;
             dgUsuarios.DataSource = enlaceDatos;
+        }
+
+        // Agregamos titulos a cada columna
+        void cargarNombresDataGrid()
+        {
+            dgUsuarios.Columns[0].HeaderText = "Nombres";
+            dgUsuarios.Columns[1].HeaderText = "Apellidos";
+            dgUsuarios.Columns[2].HeaderText = "Direccion";
+            dgUsuarios.Columns[3].HeaderText = "Telefono";
+            dgUsuarios.Columns[4].HeaderText = "Correo";
+            dgUsuarios.Columns[5].Visible = false;
         }
 
         // Método para guardar el usuario
@@ -74,7 +86,10 @@ namespace sistema_gestion_biblioteca.Forms
                     return; // Salir del método sin guardar
                 }
 
-                bool guardado = obj_controlador.almacenarRegistro(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
+                // Codigo para guardar la fecha actual para la fecha de registro
+                string fecha_actual = DateTime.Now.ToString("dd/MM/yyyy");
+
+                bool guardado = obj_controlador.almacenarRegistro(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, DateTime.Parse(fecha_actual).Date);
 
                 if (guardado)
                 {

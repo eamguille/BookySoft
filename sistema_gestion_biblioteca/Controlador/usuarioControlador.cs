@@ -44,7 +44,7 @@ namespace sistema_gestion_biblioteca.Controlador
         }
 
         // METODO PARA ALMACENAR LOS CAMPOS DESDE MODELO A ESTE CONTROLADOR PARA DESPUES USARLO EN LAS VISTAS
-        public bool almacenarRegistro(string p_nombres, string p_apellidos, string p_direccion, string p_telefono, string p_email)
+        public bool almacenarRegistro(string p_nombres, string p_apellidos, string p_direccion, string p_telefono, string p_email, DateTime p_fecha_registro)
         {
             try
             {
@@ -54,7 +54,8 @@ namespace sistema_gestion_biblioteca.Controlador
                     apellidos = p_apellidos,
                     direccion = p_direccion,
                     telefono = p_telefono,
-                    email = p_email
+                    email = p_email,
+                    fechaRegistro = p_fecha_registro
                 };
 
                 return agregarUsuario(obj_modelo);
@@ -136,8 +137,27 @@ namespace sistema_gestion_biblioteca.Controlador
         // Metodo para Guardar los usuarios finalmente en el archivo JSON
         private void guardarUsuarios(List<usuarioModelo> p_usuarios)
         {
-            var json = JsonConvert.SerializeObject(p_usuarios, Formatting.Indented);
+            var jsonConfig = new JsonSerializerSettings
+            {
+                DateFormatString = "dd/MM/yyyy"
+            };
+
+            var json = JsonConvert.SerializeObject(p_usuarios, Formatting.Indented, jsonConfig);
             File.WriteAllText(archivoJson, json);
+        }
+
+
+        // METODO PARA LA GRAFICA
+        public List<usuarioModelo> obtenerUsuariosUltimoMes()
+        {
+            var usuarios = obtenerUsuarios();
+            DateTime fecha_max = DateTime.Now.AddMonths(-1);
+
+            var usuariosDelUltimoMes = usuarios.Where(ele =>
+                ele.fechaRegistro >= fecha_max
+            ).ToList();
+
+            return usuariosDelUltimoMes;
         }
     }
 }

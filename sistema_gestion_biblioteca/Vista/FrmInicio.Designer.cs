@@ -37,30 +37,33 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            chartUsuarios = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartUsuarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart3).BeginInit();
             SuspendLayout();
             // 
-            // chart1
+            // chartUsuarios
             // 
-            chart1.BackColor = Color.FromArgb(49, 66, 82);
+            chartUsuarios.BackColor = Color.FromArgb(49, 66, 82);
+            chartUsuarios.BackSecondaryColor = Color.Black;
+            chartUsuarios.BorderlineColor = Color.Black;
             chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
+            chartUsuarios.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
-            chart1.Location = new Point(-19, 12);
-            chart1.Name = "chart1";
+            chartUsuarios.Legends.Add(legend1);
+            chartUsuarios.Location = new Point(-19, 12);
+            chartUsuarios.Name = "chartUsuarios";
+            chartUsuarios.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            chart1.Series.Add(series1);
-            chart1.Size = new Size(1094, 300);
-            chart1.TabIndex = 2;
-            chart1.Text = "chart1";
+            chartUsuarios.Series.Add(series1);
+            chartUsuarios.Size = new Size(1094, 300);
+            chartUsuarios.TabIndex = 2;
+            chartUsuarios.Text = "chart1";
             // 
             // chart2
             // 
@@ -105,11 +108,12 @@
             ClientSize = new Size(1050, 615);
             Controls.Add(chart3);
             Controls.Add(chart2);
-            Controls.Add(chart1);
+            Controls.Add(chartUsuarios);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmInicio";
             Text = "FrmInicio";
-            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
+            Load += FrmInicio_Load;
+            ((System.ComponentModel.ISupportInitialize)chartUsuarios).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart3).EndInit();
             ResumeLayout(false);
@@ -117,7 +121,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartUsuarios;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
     }
