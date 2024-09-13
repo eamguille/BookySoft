@@ -1,15 +1,15 @@
 [
   {
     "titulo_libro": "Alicia en el país",
-    "autor_libro": "Rony Villela",
+    "autor_libro": "Hola",
     "numero_paginas": 300,
     "genero_libro": "Acción",
     "fecha_ingreso": "8/9/2024",
     "fecha_publicacion": "8/9/2024",
-    "descripcion": "",
+    "descripcion": "asdasdasdasdasdas",
     "editorial": "Génesis primero",
-    "ISBN": "111-111-111-111-1",
-    "estado_libro":  "Disponible"
+    "ISBN": "111-111-111-111-0",
+    "estado_libro": "Disponible"
   },
   {
     "titulo_libro": "SAO",
@@ -57,6 +57,18 @@
     "descripcion": "Historia de la vida del Tio Tom y su transicion durante los tiempos de esclavitud",
     "editorial": "No se ",
     "ISBN": "120-4354-9454-9450",
+    "estado_libro": "Disponible"
+  },
+  {
+    "titulo_libro": "asdasda",
+    "autor_libro": "dasd",
+    "numero_paginas": 32,
+    "genero_libro": "asddasd",
+    "fecha_ingreso": "12/9/2024",
+    "fecha_publicacion": "12/9/2024",
+    "descripcion": "asdasd",
+    "editorial": "dasd",
+    "ISBN": "324567865432",
     "estado_libro": "Disponible"
   }
 ]

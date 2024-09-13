@@ -1,5 +1,6 @@
 ﻿using sistema_gestion_biblioteca.Modelo;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace sistema_gestion_biblioteca.Controlador
 {
@@ -144,20 +145,6 @@ namespace sistema_gestion_biblioteca.Controlador
 
             var json = JsonConvert.SerializeObject(p_usuarios, Formatting.Indented, jsonConfig);
             File.WriteAllText(archivoJson, json);
-        }
-
-
-        // METODO PARA LA GRAFICA
-        public List<usuarioModelo> obtenerUsuariosUltimoMes()
-        {
-            var usuarios = obtenerUsuarios();
-            DateTime fecha_max = DateTime.Now.AddMonths(-1);
-
-            var usuariosDelUltimoMes = usuarios.Where(ele =>
-                ele.fechaRegistro >= fecha_max
-            ).ToList();
-
-            return usuariosDelUltimoMes;
         }
     }
 }
