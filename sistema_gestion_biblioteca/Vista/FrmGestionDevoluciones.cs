@@ -60,7 +60,7 @@ namespace sistema_gestion_biblioteca.Vista
         void cargarCmbLibros()
         {
             cmbLibro.DropDownStyle = ComboBoxStyle.DropDownList;
-            var lista = obj_prestamo_controlador.obtenerPrestamos();
+            var lista = obj_libro_controlador.obtenerListaLibros();
 
             if (lista != null && lista.Count > 0)
             {
@@ -91,11 +91,11 @@ namespace sistema_gestion_biblioteca.Vista
         void cargarCmbCorreoUsuario()
         {
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
-            var lista = obj_prestamo_controlador.obtenerPrestamos();
+            var lista = obj_usuario_controlador.obtenerUsuarios();
 
             if (lista != null && lista.Count > 0)
             {
-                var pos = lista.Select(elemento => elemento.email_usuario).ToList();
+                var pos = lista.Select(elemento => elemento.email).ToList();
                 pos.Insert(0, "Selecciona el correo");
                 cmbUsuario.DataSource = pos;
                 cmbUsuario.SelectedIndex = 0;

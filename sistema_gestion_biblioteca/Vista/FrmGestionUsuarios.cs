@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace sistema_gestion_biblioteca.Forms
             InitializeComponent();
             obj_controlador = new usuarioControlador();
             ActualizarDataGrid();
+
+            // Configuracion global de cultura para el ingreso y lectura de la fecha en el formato deseado
+            CultureInfo culture = new CultureInfo("es-ES");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         private void FrmGestionUsuarios_Load(object sender, EventArgs e)
@@ -87,7 +93,7 @@ namespace sistema_gestion_biblioteca.Forms
                 }
 
                 // Codigo para guardar la fecha actual para la fecha de registro
-                string fecha_actual = DateTime.Now.ToString("dd/MM/yyyy");
+                string fecha_actual = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
                 bool guardado = obj_controlador.almacenarRegistro(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, DateTime.Parse(fecha_actual).Date);
 
@@ -282,7 +288,7 @@ namespace sistema_gestion_biblioteca.Forms
 
             // Asegurarse de que solo haya un guion
             int indexGuion = textoLimpio.IndexOf('-');
-            if (indexGuion != 4)
+            if (indexGuion != 4)    
             {
                 textoLimpio = textoLimpio.Replace("-", ""); // Remueve todos los guiones
                 if (textoLimpio.Length > 4)

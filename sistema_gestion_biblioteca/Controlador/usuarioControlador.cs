@@ -1,6 +1,7 @@
 ﻿using sistema_gestion_biblioteca.Modelo;
 using Newtonsoft.Json;
 using System.Globalization;
+using System.Text.Json;
 
 namespace sistema_gestion_biblioteca.Controlador
 {
@@ -38,7 +39,12 @@ namespace sistema_gestion_biblioteca.Controlador
             if (File.Exists(archivoJson))
             {
                 string json = File.ReadAllText(archivoJson);
-                return JsonConvert.DeserializeObject<List<usuarioModelo>>(json) ?? new List<usuarioModelo>();
+                var jsonConfig = new JsonSerializerSettings
+                {
+                    DateFormatString = "dd/MM/yyyy",
+                    Culture = CultureInfo.InvariantCulture
+                };
+                return JsonConvert.DeserializeObject<List<usuarioModelo>>(json, jsonConfig) ?? new List<usuarioModelo>();
             }
 
             return new List<usuarioModelo>();

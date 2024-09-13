@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using sistema_gestion_biblioteca.Controlador;
 
@@ -22,12 +23,30 @@ namespace sistema_gestion_biblioteca.Forms
         private void FrmRegistroLibros_Load(object sender, EventArgs e)
         {
             ActualizarDataGrid();
+            cargarNombresHeaders();
+
+            txtISBN.Text = "---";
+            txtISBN.SelectionStart = 0;
         }
 
         void ActualizarDataGrid()
         {
             var lista = obj_controlador.obtenerListaLibros();
             dgLibros.DataSource = lista;
+        }
+
+        void cargarNombresHeaders()
+        {
+            dgLibros.Columns[0].HeaderText = "Título";
+            dgLibros.Columns[1].HeaderText = "Autor";
+            dgLibros.Columns[2].HeaderText = "Número de páginas";
+            dgLibros.Columns[3].HeaderText = "Género";
+            dgLibros.Columns[4].HeaderText = "Fecha de ingreso";
+            dgLibros.Columns[5].HeaderText = "Fecha de publicación";
+            dgLibros.Columns[6].HeaderText = "Descripción";
+            dgLibros.Columns[7].HeaderText = "Editorial";
+            dgLibros.Columns[8].HeaderText = "ISBN";
+            dgLibros.Columns[9].HeaderText = "Estado";
         }
 
         void LimpiarCampos()
@@ -105,22 +124,6 @@ namespace sistema_gestion_biblioteca.Forms
             else
             {
                 MessageBox.Show("Fecha de ingreso inválida", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Validar ISBN: Solo números y guiones, longitud total 10-13
-            var isbn = txtISBN.Text;
-            var isbnSinGuiones = isbn.Replace("-", ""); // Elimina guiones para validar longitud total
-
-            if (!isbn.All(c => char.IsDigit(c) || c == '-'))
-            {
-                MessageBox.Show("El ISBN solo puede contener números y guiones", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (isbnSinGuiones.Length < 10 || isbnSinGuiones.Length > 13)
-            {
-                MessageBox.Show("El ISBN debe tener entre 10 y 13 dígitos (excluyendo guiones)", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -240,6 +243,46 @@ namespace sistema_gestion_biblioteca.Forms
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+        }
+
+        // Metodos para manejar la validacion del ISBN del libro
+        void validarISBN()
+        {
+            int cursorPos = txtISBN.SelectionStart;
+
+            string textoLimpio = new string(txtISBN.Text.Where( c => char.IsDigit(c) || c == '-').ToArray());
+
+            // Eliminar guiones existentes
+            textoLimpio = textoLimpio.Replace("-", "");
+
+            // Añadir guiones en las posiciones correctas
+            if (textoLimpio.Length > 3)
+            {
+                textoLimpio = textoLimpio.Insert(3, "-");
+            }
+            if (textoLimpio.Length > 8)
+            {
+                textoLimpio = textoLimpio.Insert(8, "-");
+            }
+            if (textoLimpio.Length > 13)
+            {
+                textoLimpio = textoLimpio.Insert(13, "-");
+            }
+
+            // Formatear con guiones en las posiciones adecuadas
+            if (textoLimpio.Length > 15)
+            {
+                textoLimpio = textoLimpio.Substring(0, 15);
+            }
+
+
+            // Actualizamos el texto
+            txtISBN.Text = textoLimpio;
+            txtISBN.SelectionStart = txtISBN.Text.Length;
+        }
+        private void txtISBN_TextChanged(object sender, EventArgs e)
+        {
+            validarISBN();
         }
     }
 }

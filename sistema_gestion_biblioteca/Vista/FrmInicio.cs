@@ -18,9 +18,6 @@ namespace sistema_gestion_biblioteca.Forms
     {
         public FrmInicio()
         {
-            // Configuración de la cultura de la aplicación
-            CultureInfo.CurrentCulture = new CultureInfo("es-ES");
-            CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
             InitializeComponent();
         }
 
@@ -42,73 +39,116 @@ namespace sistema_gestion_biblioteca.Forms
         {
             // Obtenemos los datos desde el controlador
             var usuariosUltimoMes = obj_grafica_controlador.obtenerUsuariosUltimoMes();
+
+            // Aseguramos que las fechas se agrupan correctamente por año y mes
             var registroPorMes = usuariosUltimoMes
                 .GroupBy(usuario => new { Anio = usuario.fechaRegistro.Year, Mes = usuario.fechaRegistro.Month })
                 .Select(grupo => new { Fecha = new DateTime(grupo.Key.Anio, grupo.Key.Mes, 1), Cantidad = grupo.Count() })
                 .OrderBy(x => x.Fecha)
                 .ToList();
 
-
-            // CONFIGURACION DEL CHART
+            // CONFIGURACIÓN DEL CHART
             chartUsuarios.Series.Clear();
             chartUsuarios.Legends.Clear();
+            chartUsuarios.ChartAreas.Clear();
 
-            var series = new Series("Usuarios Registrados");
-            series.ChartType = SeriesChartType.Column;
-            series.YValueType = ChartValueType.Int32;
+            // Creamos un ChartArea nuevo para evitar problemas de configuración
+            ChartArea chartArea = new ChartArea("AreaUsuarios");
+            chartUsuarios.ChartAreas.Add(chartArea);
+            chartArea.BackColor = Color.Transparent;
 
-            var legend = new Legend("Leyenda")
+            // Crear la serie para los usuarios registrados
+            var series = new Series("Usuarios Registrados")
             {
-                Docking = Docking.Top, // Posición de la leyenda
-                Alignment = StringAlignment.Center, // Alineación del texto en la leyenda
-                BackColor = Color.Transparent, // Color de fondo de la leyenda
-                ForeColor = Color.White,
-                Font = new Font("Arial", 16, FontStyle.Bold)
+                ChartType = SeriesChartType.Column,
+                YValueType = ChartValueType.Int32,
+                Color = Color.Blue // Cambia el color para asegurar visibilidad
             };
 
-
-            // Agregamos los puntos de la serie
-            foreach (var registro in registroPorMes)
+            // Validación para verificar si hay datos
+            if (registroPorMes.Count <= 0)
             {
-                series.Points.AddXY(registro.Fecha, registro.Cantidad);
+                // Si no hay datos, configuramos el gráfico para mostrar vacío
+                chartUsuarios.Series.Add(series); // Agregar la serie vacía
+
+                // Mensaje informativo en el título
+                Title tituloSinDatos = new Title
+                {
+                    Text = "No hay datos disponibles para mostrar",
+                    Font = new Font("Arial", 16, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    Alignment = ContentAlignment.TopCenter
+                };
+                chartUsuarios.Titles.Clear();
+                chartUsuarios.Titles.Add(tituloSinDatos);
+            }
+            else
+            {
+                // Si hay datos, agregamos los puntos de la serie
+                foreach (var registro in registroPorMes)
+                {
+                    series.Points.AddXY(registro.Fecha, registro.Cantidad);
+                    series.Color = Color.FromArgb(0, 122, 204);
+                }
+
+                // Añadir la serie y la leyenda al gráfico
+                chartUsuarios.Series.Add(series);
+
+                // Verifica si existe la leyenda
+                if (chartUsuarios.Legends.Count == 0)
+                {
+                    chartUsuarios.Legends.Add(new Legend("Leyenda")
+                    {
+                        Docking = Docking.Top,
+                        Alignment = StringAlignment.Center,
+                        BackColor = Color.Transparent,
+                        ForeColor = Color.White,
+                        Font = new Font("Arial", 13, FontStyle.Italic),
+                        BackSecondaryColor = Color.Purple
+                    });
+                }
+
+                // Configuración de los ejes
+                chartArea.AxisX.LabelStyle.Format = "MMM yyyy"; // Formato de salida de mes
+                chartArea.AxisX.Title = "Meses";
+                chartArea.AxisX.TitleForeColor = Color.White;
+                chartArea.AxisX.TitleFont = new Font("Arial", 13, FontStyle.Bold);
+                chartArea.AxisY.Title = "Cantidad de Usuarios";
+                chartArea.AxisY.TitleAlignment = StringAlignment.Center;
+                chartArea.AxisY.TitleForeColor = Color.White;
+                chartArea.AxisY.TitleFont = new Font("Arial", 11, FontStyle.Bold);
+                chartArea.AxisX.IntervalType = DateTimeIntervalType.Months; // Intervalos por mes
+                chartArea.AxisX.Interval = 1;
+                chartArea.AxisX.LabelStyle.Angle = -45;
+                chartArea.AxisX.LabelStyle.ForeColor = Color.White;
+                chartArea.AxisY.LabelStyle.ForeColor = Color.White;
+                chartArea.AxisX.MajorGrid.LineColor = Color.White;
+                chartArea.AxisY.MajorGrid.LineColor = Color.White;
+                chartArea.AxisX.MajorTickMark.LineColor = Color.White;
+                chartArea.AxisY.MajorTickMark.LineColor = Color.White;
+                chartArea.AxisX.LineColor = Color.White;
+                chartArea.AxisY.LineColor = Color.White;
+                chartArea.AxisY.Minimum = 0; // Mínimo del eje Y
+
+                // Ajustar el rango de fechas en el eje X para mostrar meses relevantes
+                DateTime fechaInicio = registroPorMes.First().Fecha.AddMonths(-2); // Un mes antes del primer registro
+                DateTime fechaFin = registroPorMes.Last().Fecha.AddMonths(2); // Un mes después del último registro
+
+                chartArea.AxisX.Minimum = fechaInicio.ToOADate();
+                chartArea.AxisX.Maximum = fechaFin.ToOADate();
+
+                // Agregar título al gráfico
+                chartUsuarios.Titles.Clear();
+                Title tituloConDatos = new Title
+                {
+                    Text = "Usuarios Ingresados por Mes",
+                    Font = new Font("Arial", 16, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    Alignment = ContentAlignment.TopCenter
+                };
+                chartUsuarios.Titles.Add(tituloConDatos);
             }
 
-            chartUsuarios.Series.Add(series);
-            chartUsuarios.Legends.Add(legend);
-
-            chartUsuarios.Titles.Clear();
-
-            // Configuración de los ejes
-            var chartArea = chartUsuarios.ChartAreas[0];
-            chartArea.AxisX.LabelStyle.Format = "MMM yyyy"; // Formato de salida de mes
-            chartArea.AxisX.Title = "Meses";
-            chartArea.AxisX.TitleForeColor = Color.White;
-            chartArea.AxisX.TitleFont = new Font("Arial", 13, FontStyle.Bold);
-            chartArea.AxisY.Title = "Cantidad de Usuarios";
-            chartArea.AxisY.TitleAlignment = StringAlignment.Center;
-            chartArea.AxisY.TitleForeColor = Color.White;
-            chartArea.AxisY.TitleFont = new Font("Arial", 11, FontStyle.Bold);
-            chartArea.AxisX.IntervalType = DateTimeIntervalType.Months; // Intervalos por mes
-            chartArea.AxisX.Interval = 1;
-            chartArea.AxisX.LabelStyle.Angle = -45;
-            chartArea.AxisX.LabelStyle.ForeColor = Color.White;
-            chartArea.AxisY.LabelStyle.ForeColor = Color.White;
-            chartArea.BackColor = Color.Transparent;
-            chartArea.AxisX.MajorGrid.LineColor = Color.White;
-            chartArea.AxisY.MajorGrid.LineColor = Color.White;
-
-            chartArea.AxisX.MajorTickMark.LineColor = Color.White;
-            chartArea.AxisY.MajorTickMark.LineColor = Color.White;
-
-            chartArea.AxisX.LineColor = Color.White;
-            chartArea.AxisY.LineColor = Color.White;
-
-            // Ajustar el rango de fechas en el eje X para mostrar más meses
-            var fechaInicio = DateTime.Now.AddMonths(-3).AddDays(1);
-            var fechaFin = DateTime.Now.AddMonths(3);
-
-            chartArea.AxisX.Minimum = fechaInicio.ToOADate();
-            chartArea.AxisX.Maximum = fechaFin.ToOADate();
         }
 
         void mostrarUsuariosConMasPrestamos()
@@ -140,8 +180,22 @@ namespace sistema_gestion_biblioteca.Forms
             // Verificar si hay datos
             if (usuariosParaMostrar.Count == 0)
             {
-                MessageBox.Show("No se encontraron usuarios con préstamos.");
-                return;
+                // No hay datos para mostrar, agregamos una serie vacía
+                chartPrestamosPorUsuario.Series.Add(seriesTopUsuarios);
+
+                // Mensaje informativo en el título del gráfico
+                Title tituloSinDatos = new Title
+                {
+                    Text = "No se encontraron usuarios con préstamos.",
+                    Font = new Font("Arial", 16, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    Alignment = ContentAlignment.TopCenter
+                };
+
+                chartPrestamosPorUsuario.Titles.Clear();
+                chartPrestamosPorUsuario.Titles.Add(tituloSinDatos);
+
+                return; // Salimos del método ya que no hay más que hacer
             }
 
             // Agregamos los datos al chart
@@ -157,8 +211,8 @@ namespace sistema_gestion_biblioteca.Forms
             chartPrestamosPorUsuario.Legends[0].BackColor = Color.Transparent;
             chartPrestamosPorUsuario.Legends[0].ForeColor = Color.White;
 
-            // Agregamos un titulo al grafico
-            Title titulo = new Title
+            // Agregamos un título al gráfico
+            Title tituloConDatos = new Title
             {
                 Text = "Top 5 Usuarios con más Préstamos",
                 Font = new Font("Arial", 16, FontStyle.Bold),
@@ -167,7 +221,7 @@ namespace sistema_gestion_biblioteca.Forms
             };
 
             chartPrestamosPorUsuario.Titles.Clear();
-            chartPrestamosPorUsuario.Titles.Add(titulo);
+            chartPrestamosPorUsuario.Titles.Add(tituloConDatos);
         }
 
         void mostrarLibrosConMasPrestamos()
@@ -201,8 +255,22 @@ namespace sistema_gestion_biblioteca.Forms
             // Verificar si hay datos
             if (librosParaMostrar.Count == 0)
             {
-                MessageBox.Show("No se encontraron préstamos para los libros.");
-                return;
+                // No hay datos para mostrar, agregamos una serie vacía
+                chartLibrosPrestados.Series.Add(seriesTopLibros);
+
+                // Mensaje informativo en el título del gráfico
+                Title tituloSinDatos = new Title
+                {
+                    Text = "No se encontraron préstamos para los libros.",
+                    Font = new Font("Arial", 16, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    Alignment = ContentAlignment.TopCenter
+                };
+
+                chartLibrosPrestados.Titles.Clear();
+                chartLibrosPrestados.Titles.Add(tituloSinDatos);
+
+                return; // Salimos del método ya que no hay más que hacer
             }
 
             // Agregamos los datos al chart
@@ -219,7 +287,7 @@ namespace sistema_gestion_biblioteca.Forms
             chartLibrosPrestados.Legends[0].ForeColor = Color.White;
 
             // Agregar un título al gráfico
-            Title titulo = new Title
+            Title tituloConDatos = new Title
             {
                 Text = "Libros con más Préstamos",
                 Font = new Font("Arial", 16, FontStyle.Bold),
@@ -228,8 +296,7 @@ namespace sistema_gestion_biblioteca.Forms
             };
 
             chartLibrosPrestados.Titles.Clear();
-            chartLibrosPrestados.Titles.Add(titulo);
-
+            chartLibrosPrestados.Titles.Add(tituloConDatos);
         }
     }
 }

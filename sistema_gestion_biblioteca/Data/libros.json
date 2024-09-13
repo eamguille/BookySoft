@@ -1,74 +1,14 @@
 [
   {
-    "titulo_libro": "Alicia en el país",
-    "autor_libro": "Hola",
-    "numero_paginas": 300,
-    "genero_libro": "Acción",
-    "fecha_ingreso": "8/9/2024",
-    "fecha_publicacion": "8/9/2024",
-    "descripcion": "asdasdasdasdasdas",
-    "editorial": "Génesis primero",
-    "ISBN": "111-111-111-111-0",
-    "estado_libro": "Disponible"
-  },
-  {
-    "titulo_libro": "SAO",
-    "autor_libro": "Ariel Perdomo",
-    "numero_paginas": 842,
-    "genero_libro": "Terror",
-    "fecha_ingreso": "8/9/2024",
-    "fecha_publicacion": "8/9/2024",
-    "descripcion": "",
-    "editorial": "Génesis dos",
-    "ISBN": "1000-5555-99",
-    "estado_libro": "Disponible"
-  },
-  {
-    "titulo_libro": "Rony Ariel",
-    "autor_libro": "Villela Perdomo",
-    "numero_paginas": 800,
-    "genero_libro": "Terror",
-    "fecha_ingreso": "9/9/2024",
-    "fecha_publicacion": "9/9/2024",
-    "descripcion": "",
-    "editorial": "Dalton",
-    "ISBN": "100-100-100-1000",
-    "estado_libro": "Disponible"
-  },
-  {
-    "titulo_libro": "Exodo - Dioses y Reyes",
-    "autor_libro": "Buena pregunta",
+    "titulo_libro": "Exodo Dioses y Reyes",
+    "autor_libro": "asdasda",
     "numero_paginas": 588,
-    "genero_libro": "Religion",
-    "fecha_ingreso": "1/2/2024",
-    "fecha_publicacion": "10/9/2023",
-    "descripcion": "Libro que trata la vida e historia de Moises",
-    "editorial": "Cristianos - Magana",
-    "ISBN": "123-5443-3454-0000",
-    "estado_libro": "Disponible"
-  },
-  {
-    "titulo_libro": "La Cabana del Tio Tom",
-    "autor_libro": "Buena pregunta",
-    "numero_paginas": 600,
-    "genero_libro": "Realismo",
-    "fecha_ingreso": "10/9/2020",
-    "fecha_publicacion": "10/9/2018",
-    "descripcion": "Historia de la vida del Tio Tom y su transicion durante los tiempos de esclavitud",
-    "editorial": "No se ",
-    "ISBN": "120-4354-9454-9450",
-    "estado_libro": "Disponible"
-  },
-  {
-    "titulo_libro": "asdasda",
-    "autor_libro": "dasd",
-    "numero_paginas": 32,
-    "genero_libro": "asddasd",
-    "fecha_ingreso": "12/9/2024",
-    "fecha_publicacion": "12/9/2024",
-    "descripcion": "asdasd",
-    "editorial": "dasd",
-    "ISBN": "324567865432",
+    "genero_libro": "Cristianismo",
+    "fecha_ingreso": "13/9/2024",
+    "fecha_publicacion": "13/9/2020",
+    "descripcion": "dasdasd",
+    "editorial": "Hola",
+    "ISBN": "123-4567-6754-3",
     "estado_libro": "Disponible"
   }
 ]

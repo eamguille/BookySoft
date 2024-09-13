@@ -1,16 +1,16 @@
 [
   {
-    "titulo_libro": "La Cabana del Tio Tom",
-    "email_usuario": "alexV01@gmail.com",
-    "fecha_devolucion": "12/10/2024",
-    "monto": "$5.00",
-    "comentario": "Libro devuelto en buen estado"
-  },
-  {
-    "titulo_libro": "La Cabana del Tio Tom",
-    "email_usuario": "guilleacc26@gmail.com",
+    "titulo_libro": "Exodo Dioses y Reyes",
+    "email_usuario": "eamguille@gmail.com",
     "fecha_devolucion": "1/11/2024",
     "monto": "$5.00",
-    "comentario": "Devuelto"
+    "comentario": "Devuelto en buen estado"
+  },
+  {
+    "titulo_libro": "Exodo Dioses y Reyes",
+    "email_usuario": "eamguille@gmail.com",
+    "fecha_devolucion": "14/9/2024",
+    "monto": "$0.00",
+    "comentario": "asdasdasd"
   }
 ]

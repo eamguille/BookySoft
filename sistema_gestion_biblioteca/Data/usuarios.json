@@ -1,42 +1,26 @@
 [
   {
-    "nombres": "Leonardo",
-    "apellidos": "Castro",
-    "direccion": "La Libertad",
-    "telefono": "8976-5432",
-    "email": "leo01@gmail.com",
-    "fechaRegistro": "12/09/2024"
-  },
-  {
     "nombres": "Guillermo",
     "apellidos": "Castillo",
     "direccion": "San Salvador",
     "telefono": "7633-5320",
     "email": "eamguille@gmail.com",
-    "fechaRegistro": "09/12/2024"
-  },
-  {
-    "nombres": "Jefferson",
-    "apellidos": "Fernandez",
-    "direccion": "sdgsdfdfsdf",
-    "telefono": "7654-3234",
-    "email": "jeff01@gmail.com",
-    "fechaRegistro": "12/09/2024"
-  },
-  {
-    "nombres": "Silvia",
-    "apellidos": "Amaya",
-    "direccion": "Santa Ana",
-    "telefono": "7432-4235",
-    "email": "sAmm03@gmail.com",
-    "fechaRegistro": "09/12/2024"
+    "fechaRegistro": "13/09/2024"
   },
   {
     "nombres": "Alex",
     "apellidos": "Valdez",
+    "direccion": "Mejicanos",
+    "telefono": "5676-5435",
+    "email": "alex01@gmail.com",
+    "fechaRegistro": "13/09/2024"
+  },
+  {
+    "nombres": "Jefferson",
+    "apellidos": "Carrasco",
     "direccion": "San Marcos",
-    "telefono": "7432-1333",
-    "email": "Alex02@gmail.com",
-    "fechaRegistro": "12/09/2024"
+    "telefono": "7453-5455",
+    "email": "Jeff02@gmail.com",
+    "fechaRegistro": "13/09/2024"
   }
 ]
