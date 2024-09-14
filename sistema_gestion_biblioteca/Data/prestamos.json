@@ -12,5 +12,19 @@
     "fecha_prestamo": "13/9/2024",
     "fecha_devolucion_estimada": "13/10/2024",
     "estado_prestamo": "En curso"
+  },
+  {
+    "titulo_libro": "Exodo Dioses y Reyes",
+    "email_usuario": "Jeff02@gmail.com",
+    "fecha_prestamo": "14/9/2024",
+    "fecha_devolucion_estimada": "14/10/2024",
+    "estado_prestamo": "Devuelto"
+  },
+  {
+    "titulo_libro": "Exodo Dioses y Reyes",
+    "email_usuario": "eamguille@gmail.com",
+    "fecha_prestamo": "13/9/2024",
+    "fecha_devolucion_estimada": "13/10/2024",
+    "estado_prestamo": "En curso"
   }
 ]

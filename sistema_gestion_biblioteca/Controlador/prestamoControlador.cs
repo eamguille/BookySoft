@@ -111,6 +111,7 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
+        // Actualizamos el estado del prestamo automaticamente
         public bool actualizarEstadoPrestamo(string p_tituloLibro, string p_emailUsuario, string p_estadoPrestamo)
         {
             try
@@ -136,6 +137,15 @@ namespace sistema_gestion_biblioteca.Controlador
         {
             var json = JsonConvert.SerializeObject(p_prestamos, Formatting.Indented);
             File.WriteAllText(archivoJson, json);
+        }
+
+        // Metodo para cargar automaticamente el cmbUsuario en Devoluciones
+        public prestamoModelo obtenerUltimoPrestamoPorLibro(string p_libro)
+        {
+            var prestamos = obtenerPrestamos();
+            return prestamos.Where(ele => ele.titulo_libro == p_libro)
+                .OrderByDescending(p => p.fecha_prestamo)
+                .FirstOrDefault();
         }
     }
 }

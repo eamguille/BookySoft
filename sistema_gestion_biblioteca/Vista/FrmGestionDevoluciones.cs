@@ -35,7 +35,6 @@ namespace sistema_gestion_biblioteca.Vista
         {
             ActualizarDataGrid();
             cargarCmbLibros();
-            cargarCmbCorreoUsuario();
             dtFechaDevolu.Format = DateTimePickerFormat.Custom;
             dtFechaDevolu.CustomFormat = " ";
             cargarNombresHeaders();
@@ -77,45 +76,47 @@ namespace sistema_gestion_biblioteca.Vista
                         return;
                     }
 
-                    // Vincula la selección con cmbUsuario
-                    if (!isUpdating)
-                    {
-                        isUpdating = true;
-                        cmbUsuario.SelectedIndex = cmbLibro.SelectedIndex;
-                        isUpdating = false;
-                    }
+                    // Vinculamos la seleccion del libro con el ultimo usuario que haya hecho un prestamo
+                    string libroSeleccionado = cmbLibro.SelectedItem.ToString();
+                    cargarCmbUltimoUsuario(libroSeleccionado);
                 };
             }
         }
 
-        void cargarCmbCorreoUsuario()
+        void cargarCmbUltimoUsuario(string libro)
         {
-            cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
-            var lista = obj_usuario_controlador.obtenerUsuarios();
+            // Agregamos el libro para verificar su estado
+            var libroSeleccionado = obj_libro_controlador.obtenerListaPorLibro(libro);
 
-            if (lista != null && lista.Count > 0)
+            if (libroSeleccionado != null)
             {
-                var pos = lista.Select(elemento => elemento.email).ToList();
-                pos.Insert(0, "Selecciona el correo");
-                cmbUsuario.DataSource = pos;
-                cmbUsuario.SelectedIndex = 0;
-
-                cmbUsuario.SelectedIndexChanged += (s, ev) =>
+                // Verificamos si el libro ha sido prestado o no
+                if (libroSeleccionado.estado_libro == "No Disponible")
                 {
-                    if (cmbUsuario.SelectedIndex == 0)
-                    {
-                        cmbUsuario.SelectedIndex = -1;
-                        return;
-                    }
+                    // Agregamos el ultimo prestamo que se ha realizado
+                    var ultimoPrestamo = obj_prestamo_controlador.obtenerUltimoPrestamoPorLibro(libro);
 
-                    // Vincula la selección con cmbLibro
-                    if (!isUpdating)
+                    if (ultimoPrestamo != null)
                     {
-                        isUpdating = true;
-                        cmbLibro.SelectedIndex = cmbUsuario.SelectedIndex;
-                        isUpdating = false;
+                        cmbUsuario.Items.Clear();
+                        cmbUsuario.Items.Add(ultimoPrestamo.email_usuario);
+                        cmbUsuario.SelectedIndex = 0;
                     }
-                };
+                    else
+                    {
+                        MessageBox.Show("No se han realizado prestamos de este libro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        cmbUsuario.Items.Clear();
+                    }
+                } else if (libroSeleccionado.estado_libro == "Disponible")
+                {
+                    MessageBox.Show($"El libro {libroSeleccionado} no ha sido prestado, Esta disponible para prestar", "Mensaje de Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                // Si el libro no existe
+                MessageBox.Show("No se encontró el libro seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmbUsuario.Items.Clear();
             }
         }
 
@@ -131,6 +132,24 @@ namespace sistema_gestion_biblioteca.Vista
         {
             try
             {
+                if (cmbUsuario.SelectedItem == null)
+                {
+                    MessageBox.Show("El campo de correo no puede estar vacio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DateTime fechaDev;
+                if (!DateTime.TryParse(dtFechaDevolu.Text, out fechaDev))
+                {
+                    MessageBox.Show("Por favor, ingresa una fecha valida.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (fechaDev > DateTime.Now)
+                {
+                    MessageBox.Show("La fecha ingresada no puede ser mayor a la actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 validarFechaMontoDevolucion();
 
                 // Actualizamos el estado del libro nuevamente a "Disponible"
@@ -146,14 +165,20 @@ namespace sistema_gestion_biblioteca.Vista
                     bool estado_libro_actualizar = obj_libro_controlador.actualizarEstadoLibro(libroISBN, "Disponible");
                     if (estado_libro_actualizar)
                     {
-                        bool estado_prestamo = obj_prestamo_controlador.actualizarEstadoPrestamo(nombre_libro, correo_usuario, "Devuelto");
-                        if (estado_prestamo)
+                        if (correo_usuario != null)
                         {
-                            MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
+                            bool estado_prestamo = obj_prestamo_controlador.actualizarEstadoPrestamo(nombre_libro, correo_usuario, "Devuelto");
+                            if (estado_prestamo)
+                            {
+                                MessageBox.Show("Prestamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Prestamo ingresado exitosamente, pero no se ha logrado actualizar el estado del prestamo", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        } else
                         {
-                            MessageBox.Show("Prestamo ingresado exitosamente, pero no se ha logrado actualizar el estado del prestamo", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            // Que hacer en caso de que el campo usuario sea null
                         }
 
                     }
@@ -278,11 +303,18 @@ namespace sistema_gestion_biblioteca.Vista
 
         void validarFechaMontoSinMensaje()
         {
+            // Obtener la lista de préstamos desde el controlador
+            var listaPrestamos = obj_prestamo_controlador.obtenerPrestamos();
+
             // Fecha de devolución real seleccionada por el usuario
             DateTime fechaDevolucionReal = dtFechaDevolu.Value;
 
-            // Obtener la lista de préstamos desde el controlador
-            var listaPrestamos = obj_prestamo_controlador.obtenerPrestamos();
+            if (fechaDevolucionReal > DateTime.Now)
+            {
+                MessageBox.Show("La fecha de devolución no puede ser mayor a la fecha actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtFechaDevolu.Value = DateTime.Now;
+            }
 
             if (listaPrestamos != null && listaPrestamos.Count > 0)
             {
@@ -333,13 +365,18 @@ namespace sistema_gestion_biblioteca.Vista
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            guardarDevolucion();
+            if (cmbLibro.SelectedIndex <= 0 && cmbUsuario.SelectedItem.ToString() == null && dtFechaDevolu.Value == null && string.IsNullOrWhiteSpace(lblMonto.Text) && string.IsNullOrWhiteSpace(txtComentario.Text))
+            {
+                MessageBox.Show("Todos los campos deben estar completos", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } else
+            {
+                guardarDevolucion();
+            }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             cargarCmbLibros();
-            cargarCmbCorreoUsuario();
             txtComentario.Clear();
             lblMonto.Text = " - ";
         }
@@ -374,7 +411,14 @@ namespace sistema_gestion_biblioteca.Vista
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            actualizarDevolucion();
+            if (cmbLibro.SelectedIndex <= 0 && string.IsNullOrWhiteSpace(cmbUsuario.Text) && dtFechaDevolu.Value == null && string.IsNullOrWhiteSpace(lblMonto.Text) && string.IsNullOrWhiteSpace(txtComentario.Text))
+            {
+                MessageBox.Show("Todos los campos deben estar completos", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                actualizarDevolucion();
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
