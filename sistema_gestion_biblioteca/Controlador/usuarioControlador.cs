@@ -140,6 +140,13 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
+        // Metodo para validar que no existan usuarios duplicados por medio del email y el telefono
+        public bool validarUsariosDuplicados(string p_email, string p_telefono)
+        {
+            var lista = obtenerUsuarios();
+            return lista.Any( ele => ele.email.Equals(p_email, StringComparison.OrdinalIgnoreCase) || ele.telefono.Equals(p_telefono));
+        }
+
 
         // Metodo para Guardar los usuarios finalmente en el archivo JSON
         private void guardarUsuarios(List<usuarioModelo> p_usuarios)

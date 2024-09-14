@@ -37,6 +37,7 @@ namespace sistema_gestion_biblioteca.Forms
         {
             ActualizarDataGrid();
             cargarNombresDataGrid();
+            dgUsuarios.ReadOnly = true;
 
             // Inicializamos los textboxes con ciertos valores
             txtTelefono.Text = "----";
@@ -92,6 +93,13 @@ namespace sistema_gestion_biblioteca.Forms
                     return; // Salir del método sin guardar
                 }
 
+                var validarDuplicados = obj_controlador.validarUsariosDuplicados(txtEmail.Text, txtTelefono.Text);
+                if (validarDuplicados)
+                {
+                    MessageBox.Show("El usuario ya existe.", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Codigo para guardar la fecha actual para la fecha de registro
                 string fecha_actual = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
@@ -116,7 +124,7 @@ namespace sistema_gestion_biblioteca.Forms
             {
                 if (MessageBox.Show("Deseas eliminar el usuario ?", "Confirmacion de eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (dgUsuarios.SelectedRows.Count > 0)
+                    if (dgUsuarios.CurrentCell != null)
                     {
                         if (indexDataGrid >= 0)
                         {
@@ -230,9 +238,10 @@ namespace sistema_gestion_biblioteca.Forms
             actualizarUsuario();
         }
 
+        // Evento CellClick para capturar los valores del dataGrid en los campos respectivos
         private void dgUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && dgUsuarios.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 indexDataGrid = e.RowIndex;
 
@@ -242,6 +251,9 @@ namespace sistema_gestion_biblioteca.Forms
                 txtDireccion.Text = fila[2].Value.ToString();
                 txtTelefono.Text = fila[3].Value.ToString();
                 txtEmail.Text = fila[4].Value.ToString();
+            } else
+            {
+                indexDataGrid = -1;
             }
         }
 
