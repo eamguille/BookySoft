@@ -79,6 +79,7 @@
             txtUsuario.PlaceholderText = "  Ingrese su usuario";
             txtUsuario.Size = new Size(390, 28);
             txtUsuario.TabIndex = 1;
+            txtUsuario.KeyDown += txtUsuario_KeyDown;
             // 
             // textBox1
             // 
@@ -114,6 +115,7 @@
             txtClave.PlaceholderText = "  Ingrese su contreseña";
             txtClave.Size = new Size(390, 28);
             txtClave.TabIndex = 2;
+            txtClave.KeyDown += txtClave_KeyDown;
             // 
             // btnIngresar
             // 
@@ -201,6 +203,7 @@
             Opacity = 0.95D;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            Load += FrmLogin_Load;
             MouseDown += FrmLogin_MouseDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

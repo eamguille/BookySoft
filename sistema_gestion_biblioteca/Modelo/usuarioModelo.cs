@@ -14,5 +14,6 @@ namespace sistema_gestion_biblioteca.Modelo
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string email { get; set; }
+        public DateTime fechaRegistro { get; set; }
     }
 }

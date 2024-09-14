@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,17 @@ namespace sistema_gestion_biblioteca.Forms
             InitializeComponent();
             obj_controlador = new usuarioControlador();
             ActualizarDataGrid();
+
+            // Configuracion global de cultura para el ingreso y lectura de la fecha en el formato deseado
+            CultureInfo culture = new CultureInfo("es-ES");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         private void FrmGestionUsuarios_Load(object sender, EventArgs e)
         {
             ActualizarDataGrid();
+            cargarNombresDataGrid();
 
             // Inicializamos los textboxes con ciertos valores
             txtTelefono.Text = "----";
@@ -42,6 +49,17 @@ namespace sistema_gestion_biblioteca.Forms
             var listaUsuarios = obj_controlador.obtenerUsuarios();
             enlaceDatos.DataSource = listaUsuarios;
             dgUsuarios.DataSource = enlaceDatos;
+        }
+
+        // Agregamos titulos a cada columna
+        void cargarNombresDataGrid()
+        {
+            dgUsuarios.Columns[0].HeaderText = "Nombres";
+            dgUsuarios.Columns[1].HeaderText = "Apellidos";
+            dgUsuarios.Columns[2].HeaderText = "Direccion";
+            dgUsuarios.Columns[3].HeaderText = "Telefono";
+            dgUsuarios.Columns[4].HeaderText = "Correo";
+            dgUsuarios.Columns[5].Visible = false;
         }
 
         // Método para guardar el usuario
@@ -74,7 +92,10 @@ namespace sistema_gestion_biblioteca.Forms
                     return; // Salir del método sin guardar
                 }
 
-                bool guardado = obj_controlador.almacenarRegistro(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
+                // Codigo para guardar la fecha actual para la fecha de registro
+                string fecha_actual = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                bool guardado = obj_controlador.almacenarRegistro(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, DateTime.Parse(fecha_actual).Date);
 
                 if (guardado)
                 {
@@ -267,7 +288,7 @@ namespace sistema_gestion_biblioteca.Forms
 
             // Asegurarse de que solo haya un guion
             int indexGuion = textoLimpio.IndexOf('-');
-            if (indexGuion != 4)
+            if (indexGuion != 4)    
             {
                 textoLimpio = textoLimpio.Replace("-", ""); // Remueve todos los guiones
                 if (textoLimpio.Length > 4)

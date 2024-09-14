@@ -149,5 +149,15 @@ namespace sistema_gestion_biblioteca.Controlador
             var json = JsonConvert.SerializeObject(p_libros, Formatting.Indented);
             File.WriteAllText(archivoJson, json);
         }
+
+        // Metodo para cargar cmbUsuario segun estado del libro
+        public libroModelo obtenerListaPorLibro(string p_libro)
+        {
+            var lista = obtenerListaLibros();
+
+            var libroSeleccionado = lista.FirstOrDefault( ele => ele.titulo_libro.Equals(p_libro, StringComparison.OrdinalIgnoreCase));
+
+            return libroSeleccionado;
+        }
     }
 }

@@ -236,6 +236,7 @@
             txtISBN.Name = "txtISBN";
             txtISBN.Size = new Size(204, 22);
             txtISBN.TabIndex = 19;
+            txtISBN.TextChanged += txtISBN_TextChanged;
             // 
             // txtDescripcion
             // 
@@ -346,7 +347,7 @@
             // dgLibros
             // 
             dgLibros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgLibros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgLibros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
             dgLibros.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             dgLibros.BackgroundColor = Color.FromArgb(49, 66, 82);
             dgLibros.BorderStyle = BorderStyle.None;

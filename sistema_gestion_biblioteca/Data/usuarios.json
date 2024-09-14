@@ -2,22 +2,25 @@
   {
     "nombres": "Guillermo",
     "apellidos": "Castillo",
-    "direccion": "Apopa",
-    "telefono": "76335320",
-    "email": "guilleacc26@gmail.com"
+    "direccion": "San Salvador",
+    "telefono": "7633-5320",
+    "email": "eamguille@gmail.com",
+    "fechaRegistro": "13/09/2024"
   },
   {
     "nombres": "Alex",
     "apellidos": "Valdez",
-    "direccion": "San Salvador",
-    "telefono": "7234-2301",
-    "email": "alexV01@gmail.com"
+    "direccion": "Mejicanos",
+    "telefono": "5676-5435",
+    "email": "alex01@gmail.com",
+    "fechaRegistro": "13/09/2024"
   },
   {
-    "nombres": "Rony Ariel",
-    "apellidos": "Villela Perdomo",
-    "direccion": "San Salvador",
-    "telefono": "7898-5167",
-    "email": "DD@GMAIL.COM"
+    "nombres": "Jefferson",
+    "apellidos": "Carrasco",
+    "direccion": "San Marcos",
+    "telefono": "7453-5455",
+    "email": "Jeff02@gmail.com",
+    "fechaRegistro": "13/09/2024"
   }
 ]
