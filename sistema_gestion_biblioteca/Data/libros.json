@@ -1,14 +1,38 @@
 [
   {
-    "titulo_libro": "Exodo Dioses y Reyes",
-    "autor_libro": "asdasda",
-    "numero_paginas": 588,
-    "genero_libro": "Cristianismo",
-    "fecha_ingreso": "13/9/2024",
-    "fecha_publicacion": "13/9/2020",
-    "descripcion": "dasdasd",
-    "editorial": "Hola",
-    "ISBN": "123-4567-6754-3",
-    "estado_libro": "No Disponible"
+    "titulo_libro": "CIEN AÑOS DE SOLEDAD",
+    "autor_libro": "GABRIEL GARCÍA MÁRQUEZ",
+    "numero_paginas": 471,
+    "genero_libro": "REALISMO MÁGICO",
+    "fecha_ingreso": "14/9/2024",
+    "fecha_publicacion": "30/5/1967",
+    "descripcion": "LA OBRA CUMBRE DE GABRIEL GARCÍA MÁRQUEZ SIGUE LA HISTORIA DE LA FAMILIA BUENDÍA A LO LARGO DE GENERACIONES, MEZCLANDO LO MÁGICO Y LO COTIDIANO EN EL IMAGINARIO PUEBLO DE MACONDO.",
+    "editorial": "LITERATURA RANDOM HOUSE",
+    "ISBN": "978-0060-8832-8",
+    "estado_libro": "Disponible"
+  },
+  {
+    "titulo_libro": "EL AMOR EN LOS TIEMPOS DEL CÓLERA",
+    "autor_libro": "GABRIEL GARCÍA MÁRQUEZ",
+    "numero_paginas": 368,
+    "genero_libro": "NARRATIVA ROMÁNTICA",
+    "fecha_ingreso": "14/9/2024",
+    "fecha_publicacion": "5/9/1985",
+    "descripcion": "UNA HISTORIA DE AMOR INUSUAL ENTRE FLORANTINO ARIZA Y FERMINA DAZA, QUE ABARCA MÁS DE CINCUENTA AÑOS, EXPLORANDO LOS ALTIBAJOS DEL AMOR A TRAVÉS DEL TIEMPO.",
+    "editorial": "LITERATURA RANDOM HOUSE",
+    "ISBN": "978-8437-6049-4",
+    "estado_libro": "Disponible"
+  },
+  {
+    "titulo_libro": "LA SOMBRA DEL VIENTO",
+    "autor_libro": "CARLOS RUIZ ZAFÓN",
+    "numero_paginas": 576,
+    "genero_libro": "MISTERIO Y NOVELA HISTÓRICA",
+    "fecha_ingreso": "14/9/2024",
+    "fecha_publicacion": "1/1/2001",
+    "descripcion": "EN LA BARCELONA DE LA POSGUERRA, UN JOVEN LLAMADO DANIEL DESCUBRE UN MISTERIOSO LIBRO QUE LO CONDUCE A REVELAR OSCUROS SECRETOS SOBRE SU AUTOR Y SU PROPIA FAMILIA.",
+    "editorial": "PLANETA",
+    "ISBN": "978-8408-0378-1",
+    "estado_libro": "Disponible"
   }
 ]
