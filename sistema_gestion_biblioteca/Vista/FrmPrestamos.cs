@@ -31,6 +31,7 @@ namespace sistema_gestion_biblioteca.Forms
             dtFechaInicial.Format = DateTimePickerFormat.Custom;
             dtFechaInicial.CustomFormat = " ";
             cargarHeadersDataGrid();
+            dgPrestamos.ReadOnly = true;
 
             // Establecer la fecha máxima en el DateTimePicker
             dtFechaInicial.MaxDate = DateTime.Now.Date;
@@ -108,12 +109,23 @@ namespace sistema_gestion_biblioteca.Forms
         {
             try
             {
-                // Validación de la fecha de préstamo
-                if (dtFechaInicial.Value.Date > DateTime.Now.Date)
+                if (cmbUsuario.SelectedItem == null)
                 {
-                    MessageBox.Show("La fecha de préstamo no puede ser superior a la actual", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El campo de correo no puede estar vacio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                DateTime fechaDev;
+                if (!DateTime.TryParse(dtFechaInicial.Text, out fechaDev))
+                {
+                    return;
+                }
+                if (fechaDev > DateTime.Now)
+                {
+                    MessageBox.Show("La fecha ingresada no puede ser mayor a la actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
 
                 // Obtenemos el libro seleccionado
                 string nombre_libro = cmbLibro.SelectedItem.ToString();
@@ -122,19 +134,35 @@ namespace sistema_gestion_biblioteca.Forms
                 string libroISBN = buscarISBNPorNombreLibro(nombre_libro);
 
                 // Guardar el préstamo
-                bool guardado = obj_controlador.agregarPrestamo(cmbLibro.Text, cmbUsuario.Text, dtFechaInicial.Text, lblFechaDevolucion.Text, cmbEstadoPrestamo.Text);
-                if (guardado)
+                // Buscamos el libro para verificar su estado
+                var libroSeleccionado = obj_libro_controlador.obtenerListaPorLibro(nombre_libro);
+                if (libroSeleccionado != null)
                 {
-                    bool estado_libro_actualizar = obj_libro_controlador.actualizarEstadoLibro(libroISBN, "No Disponible");
-                    if (estado_libro_actualizar)
+                    if (libroSeleccionado.estado_libro == "No Disponible")
                     {
-                        MessageBox.Show("Préstamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"El libro {libroSeleccionado.titulo_libro} ya ha sido prestado", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
-                    else
+
+                    // Guardar el préstamo
+                    bool guardado = obj_controlador.agregarPrestamo(cmbLibro.Text, cmbUsuario.Text, dtFechaInicial.Text, lblFechaDevolucion.Text, cmbEstadoPrestamo.Text);
+                    if (guardado)
                     {
-                        MessageBox.Show("Préstamo ingresado exitosamente, pero no se pudo actualizar el estado del libro", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        bool estado_libro_actualizar = obj_libro_controlador.actualizarEstadoLibro(libroISBN, "No Disponible");
+                        if (estado_libro_actualizar)
+                        {
+                            MessageBox.Show("Préstamo ingresado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Préstamo ingresado exitosamente, pero no se pudo actualizar el estado del libro", "Tarea exitosa (Advertencia)", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        ActualizarDataGrid();
                     }
-                    ActualizarDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("No se ha ingresado ningún libro", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception e)
@@ -269,6 +297,9 @@ namespace sistema_gestion_biblioteca.Forms
                 dtFechaInicial.Value = Convert.ToDateTime(dgPrestamos.Rows[e.RowIndex].Cells[2].Value);
                 lblFechaDevolucion.Text = dgPrestamos.Rows[e.RowIndex].Cells[3].Value.ToString();
                 cmbEstadoPrestamo.Text = dgPrestamos.Rows[e.RowIndex].Cells[4].Value.ToString();
+            } else
+            {
+                index_tabla = -1;
             }
         }
 

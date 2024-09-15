@@ -255,6 +255,7 @@
             dtFechaPublicacion.Name = "dtFechaPublicacion";
             dtFechaPublicacion.Size = new Size(229, 22);
             dtFechaPublicacion.TabIndex = 17;
+            dtFechaPublicacion.ValueChanged += dtFechaPublicacion_ValueChanged;
             // 
             // dtFechaIngreso
             // 
@@ -264,6 +265,7 @@
             dtFechaIngreso.Name = "dtFechaIngreso";
             dtFechaIngreso.Size = new Size(229, 22);
             dtFechaIngreso.TabIndex = 16;
+            dtFechaIngreso.ValueChanged += dtFechaIngreso_ValueChanged;
             // 
             // txtNumeroPags
             // 
