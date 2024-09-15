@@ -38,6 +38,8 @@ namespace sistema_gestion_biblioteca.Vista
             dtFechaDevolu.Format = DateTimePickerFormat.Custom;
             dtFechaDevolu.CustomFormat = " ";
             cargarNombresHeaders();
+
+            dgDevoluciones.ReadOnly = true;
         }
         private BindingSource enlaceDatos = new BindingSource();
 
@@ -109,7 +111,7 @@ namespace sistema_gestion_biblioteca.Vista
                     }
                 } else if (libroSeleccionado.estado_libro == "Disponible")
                 {
-                    MessageBox.Show($"El libro {libroSeleccionado} no ha sido prestado, Esta disponible para prestar", "Mensaje de Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show($"El libro {libroSeleccionado.titulo_libro} no ha sido prestado, Esta disponible para prestar", "Mensaje de Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
@@ -411,14 +413,7 @@ namespace sistema_gestion_biblioteca.Vista
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (cmbLibro.SelectedIndex <= 0 && string.IsNullOrWhiteSpace(cmbUsuario.Text) && dtFechaDevolu.Value == null && string.IsNullOrWhiteSpace(lblMonto.Text) && string.IsNullOrWhiteSpace(txtComentario.Text))
-            {
-                MessageBox.Show("Todos los campos deben estar completos", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                actualizarDevolucion();
-            }
+            actualizarDevolucion();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

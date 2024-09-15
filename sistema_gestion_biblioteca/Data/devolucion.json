@@ -19,5 +19,19 @@
     "fecha_devolucion": "14/10/2024",
     "monto": "$5.00",
     "comentario": ""
+  },
+  {
+    "titulo_libro": "Exodo Dioses y Reyes",
+    "email_usuario": "Jeff02@gmail.com",
+    "fecha_devolucion": "14/9/2024",
+    "monto": "$0.00",
+    "comentario": "XD"
+  },
+  {
+    "titulo_libro": "Exodo Dioses y Reyes",
+    "email_usuario": "Jeff02@gmail.com",
+    "fecha_devolucion": "14/9/2024",
+    "monto": "$0.00",
+    "comentario": "Hola"
   }
 ]

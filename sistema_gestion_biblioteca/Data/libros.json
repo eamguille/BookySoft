@@ -1,14 +1,14 @@
 [
   {
-    "titulo_libro": "Exodo Dioses y Reyes",
-    "autor_libro": "asdasda",
-    "numero_paginas": 588,
-    "genero_libro": "Cristianismo",
-    "fecha_ingreso": "13/9/2024",
-    "fecha_publicacion": "13/9/2020",
-    "descripcion": "dasdasd",
-    "editorial": "Hola",
+    "titulo_libro": "asda",
+    "autor_libro": "dasd",
+    "numero_paginas": 12,
+    "genero_libro": "aasdas",
+    "fecha_ingreso": "14/9/2024",
+    "fecha_publicacion": "14/9/2024",
+    "descripcion": "hola",
+    "editorial": "jdajdad",
     "ISBN": "123-4567-6754-3",
-    "estado_libro": "No Disponible"
+    "estado_libro": "Disponible"
   }
 ]
