@@ -1,14 +1,6 @@
 ﻿using sistema_gestion_biblioteca.Controlador;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace sistema_gestion_biblioteca.Forms
 {
@@ -103,7 +95,7 @@ namespace sistema_gestion_biblioteca.Forms
                 // Codigo para guardar la fecha actual para la fecha de registro
                 string fecha_actual = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                bool guardado = obj_controlador.almacenarRegistro(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, DateTime.Parse(fecha_actual).Date);
+                bool guardado = obj_controlador.agregarUsuario(txtNombres.Text, txtApellidos.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, DateTime.Parse(fecha_actual).Date);
 
                 if (guardado)
                 {

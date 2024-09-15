@@ -1,7 +1,6 @@
 ﻿using sistema_gestion_biblioteca.Modelo;
 using Newtonsoft.Json;
 using System.Globalization;
-using System.Text.Json;
 
 namespace sistema_gestion_biblioteca.Controlador
 {
@@ -14,6 +13,7 @@ namespace sistema_gestion_biblioteca.Controlador
         // Objeto para acceder a cualquier elemento de la clase
         public usuarioModelo obj_modelo = new usuarioModelo();
 
+        // Constructor de la clase
         public usuarioControlador()
         {
             // Establecemos la carpeta root del proyecto
@@ -50,8 +50,8 @@ namespace sistema_gestion_biblioteca.Controlador
             return new List<usuarioModelo>();
         }
 
-        // METODO PARA ALMACENAR LOS CAMPOS DESDE MODELO A ESTE CONTROLADOR PARA DESPUES USARLO EN LAS VISTAS
-        public bool almacenarRegistro(string p_nombres, string p_apellidos, string p_direccion, string p_telefono, string p_email, DateTime p_fecha_registro)
+        // Metodo con el cual agregamos un nuevo usuario a la lista
+        public bool agregarUsuario(string p_nombres, string p_apellidos, string p_direccion, string p_telefono, string p_email, DateTime p_fecha_registro)
         {
             try
             {
@@ -64,23 +64,8 @@ namespace sistema_gestion_biblioteca.Controlador
                     email = p_email,
                     fechaRegistro = p_fecha_registro
                 };
-
-                return agregarUsuario(obj_modelo);
-
-            } 
-            catch
-            {
-                return false;
-            }
-        }
-
-        // Metodo con el cual agregamos un nuevo usuario a la lista
-        public bool agregarUsuario(usuarioModelo p_usuario)
-        {
-            try
-            {
                 var guardar = obtenerUsuarios();
-                guardar.Add(p_usuario); // Aqui agregamos los datos recogidos a la lista
+                guardar.Add(obj_modelo); // Aqui agregamos los datos recogidos a la lista
                 guardarUsuarios(guardar); // Aqui guardamos la lista dentro del JSON
                 return true;
             } 
@@ -140,14 +125,6 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
-        // Metodo para validar que no existan usuarios duplicados por medio del email y el telefono
-        public bool validarUsariosDuplicados(string p_email, string p_telefono)
-        {
-            var lista = obtenerUsuarios();
-            return lista.Any( ele => ele.email.Equals(p_email, StringComparison.OrdinalIgnoreCase) || ele.telefono.Equals(p_telefono));
-        }
-
-
         // Metodo para Guardar los usuarios finalmente en el archivo JSON
         private void guardarUsuarios(List<usuarioModelo> p_usuarios)
         {
@@ -158,6 +135,14 @@ namespace sistema_gestion_biblioteca.Controlador
 
             var json = JsonConvert.SerializeObject(p_usuarios, Formatting.Indented, jsonConfig);
             File.WriteAllText(archivoJson, json);
+        }
+
+
+        // Metodo para validar que no existan usuarios duplicados por medio del email y el telefono
+        public bool validarUsariosDuplicados(string p_email, string p_telefono)
+        {
+            var lista = obtenerUsuarios();
+            return lista.Any(ele => ele.email.Equals(p_email, StringComparison.OrdinalIgnoreCase) || ele.telefono.Equals(p_telefono));
         }
     }
 }

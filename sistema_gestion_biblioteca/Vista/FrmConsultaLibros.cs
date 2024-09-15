@@ -51,7 +51,8 @@ namespace sistema_gestion_biblioteca.Forms
                     busqueda.All(t =>
                         (ele.titulo_libro != null && ele.titulo_libro.Contains(t, StringComparison.OrdinalIgnoreCase)) ||
                         (ele.genero_libro != null && ele.genero_libro.Contains(t, StringComparison.OrdinalIgnoreCase)) ||
-                        (ele.autor_libro != null && ele.autor_libro.Contains(t, StringComparison.OrdinalIgnoreCase))
+                        (ele.autor_libro != null && ele.autor_libro.Contains(t, StringComparison.OrdinalIgnoreCase)) ||
+                        (ele.estado_libro != null && ele.estado_libro.Contains(t, StringComparison.OrdinalIgnoreCase))
                     )
                 ).ToList();
 
