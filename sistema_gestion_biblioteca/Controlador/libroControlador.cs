@@ -150,6 +150,13 @@ namespace sistema_gestion_biblioteca.Controlador
             File.WriteAllText(archivoJson, json);
         }
 
+        // Metodo para validar que no existan valores duplicados
+        public bool validarLibrosDuplicados(string isbn)
+        {
+            var lista = obtenerListaLibros();
+            return lista.Any( ele => ele.ISBN.Equals(isbn, StringComparison.OrdinalIgnoreCase));
+        }
+
         // Metodo para cargar cmbUsuario segun estado del libro
         public libroModelo obtenerListaPorLibro(string p_libro)
         {

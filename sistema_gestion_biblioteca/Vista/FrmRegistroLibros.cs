@@ -134,6 +134,13 @@ namespace sistema_gestion_biblioteca.Forms
                 return false;
             }
 
+            // validar que no existan valores duplicados
+            var valoresDuplicados = obj_controlador.validarLibrosDuplicados(txtISBN.Text);
+            if (valoresDuplicados)
+            {
+                MessageBox.Show("El libro ya existe. Intenta nuevamente", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             return true;
         }
 
@@ -250,7 +257,7 @@ namespace sistema_gestion_biblioteca.Forms
         {
             int cursorPos = txtISBN.SelectionStart;
 
-            string textoLimpio = new string(txtISBN.Text.Where( c => char.IsDigit(c) || c == '-').ToArray());
+            string textoLimpio = new string(txtISBN.Text.Where(c => char.IsDigit(c) || c == '-').ToArray());
 
             // Eliminar guiones existentes
             textoLimpio = textoLimpio.Replace("-", "");
@@ -283,6 +290,32 @@ namespace sistema_gestion_biblioteca.Forms
         private void txtISBN_TextChanged(object sender, EventArgs e)
         {
             validarISBN();
+        }
+
+        private void dtFechaIngreso_ValueChanged(object sender, EventArgs e)
+        {
+            // Fecha de devolución real seleccionada por el usuario
+            DateTime fechaDevolucionReal = dtFechaIngreso.Value;
+
+            if (fechaDevolucionReal > DateTime.Now)
+            {
+                MessageBox.Show("La fecha de devolución no puede ser mayor a la fecha actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtFechaIngreso.Value = DateTime.Now;
+            }
+        }
+
+        private void dtFechaPublicacion_ValueChanged(object sender, EventArgs e)
+        {
+            // Fecha de devolución real seleccionada por el usuario
+            DateTime fechaDevolucionReal = dtFechaPublicacion.Value;
+
+            if (fechaDevolucionReal > DateTime.Now)
+            {
+                MessageBox.Show("La fecha de devolución no puede ser mayor a la fecha actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtFechaPublicacion.Value = DateTime.Now;
+            }
         }
     }
 }

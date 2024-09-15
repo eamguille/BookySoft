@@ -35,16 +35,6 @@ namespace sistema_gestion_biblioteca.Controlador
             return new List<prestamoModelo>();
         }
 
-        public List<usuarioModelo> obtenerUsuarios()
-        {
-            if (File.Exists(archivoJson))
-            {
-                string json = File.ReadAllText(archivoJson);
-                return JsonConvert.DeserializeObject<List<usuarioModelo>>(json) ?? new List<usuarioModelo>();
-            }
-            return new List<usuarioModelo>();
-        }
-
         public bool agregarPrestamo(string p_libro, string p_email, string p_fechaP, string p_fechaD, string p_estado)
         {
             try
@@ -137,6 +127,13 @@ namespace sistema_gestion_biblioteca.Controlador
         {
             var json = JsonConvert.SerializeObject(p_prestamos, Formatting.Indented);
             File.WriteAllText(archivoJson, json);
+        }
+
+        // Metodo para validar prestamos dupicados
+        public bool validarPrestamosDuplicados(string p_libro)
+        {
+            var lista = obtenerPrestamos();
+            return lista.Any( ele => ele.titulo_libro.Equals(p_libro, StringComparison.OrdinalIgnoreCase));
         }
 
         // Metodo para cargar automaticamente el cmbUsuario en Devoluciones
