@@ -389,6 +389,7 @@
             dgLibros.RowHeadersWidth = 51;
             dgLibros.Size = new Size(967, 261);
             dgLibros.TabIndex = 17;
+            dgLibros.CellClick += dgLibros_CellClick;
             // 
             // FrmRegistroLibros
             // 

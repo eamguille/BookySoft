@@ -66,31 +66,31 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
-        public bool actualizarLibro(string isbnSeleccionado, string titulo, string autor, int numeroPags, string genero, string fechaIngreso, string fechaPublicacion, string descripcion, string editorial, string nuevoIsbn)
+        public bool actualizarLibro(int index, string p_titulo, string p_autor, int p_numeroPags, string p_genero, string p_fechaIngreso, string p_fechaPublicacion, string p_descripcion, string p_editorial, string p_isbn)
         {
             try
             {
                 var libros = obtenerListaLibros();
-                var libro = libros.FirstOrDefault(l => l.ISBN == isbnSeleccionado);
-                if (libro == null)
+                if (index < 0 || index >= libros.Count)
                 {
-                    return false; // No se encontró el libro para actualizar
+                    return false;
+                } else
+                {
+                    libros[index].titulo_libro = p_titulo;
+                    libros[index].autor_libro = p_autor;
+                    libros[index].numero_paginas = p_numeroPags;
+                    libros[index].genero_libro = p_genero;
+                    libros[index].fecha_ingreso = p_fechaIngreso;
+                    libros[index].fecha_publicacion= p_fechaPublicacion;
+                    libros[index].descripcion = p_descripcion;
+                    libros[index].editorial = p_editorial;
+                    libros[index].ISBN = p_isbn;
+
+                    // Guarda los cambios en el archivo JSON
+                    guardarLibros(libros);
+                    return true;
                 }
 
-                // Actualiza los datos del libro
-                libro.titulo_libro = titulo;
-                libro.autor_libro = autor;
-                libro.numero_paginas = numeroPags;
-                libro.genero_libro = genero;
-                libro.fecha_ingreso = fechaIngreso;
-                libro.fecha_publicacion = fechaPublicacion;
-                libro.descripcion = descripcion;
-                libro.editorial = editorial;
-                libro.ISBN = nuevoIsbn; // Si se desea actualizar el ISBN
-
-                // Guarda los cambios en el archivo JSON
-                guardarLibros(libros);
-                return true;
             }
             catch
             {
@@ -98,23 +98,24 @@ namespace sistema_gestion_biblioteca.Controlador
             }
         }
 
-        public bool eliminarLibro(string isbnSeleccionado)
+        public bool eliminarLibro(int index)
         {
             try
             {
                 var libros = obtenerListaLibros();
-                var libro = libros.FirstOrDefault(l => l.ISBN == isbnSeleccionado);
-                if (libro == null)
+                if (index < 0 || index >= libros.Count)
                 {
-                    return false; // No se encontró el libro para eliminar
+                    return false;
+                } else
+                {
+                    // Elimina el libro de la lista
+                    libros.RemoveAt(index);
+
+                    // Guarda la lista actualizada en el archivo JSON
+                    guardarLibros(libros);
+                    return true;
                 }
 
-                // Elimina el libro de la lista
-                libros.Remove(libro);
-
-                // Guarda la lista actualizada en el archivo JSON
-                guardarLibros(libros);
-                return true;
             }
             catch
             {

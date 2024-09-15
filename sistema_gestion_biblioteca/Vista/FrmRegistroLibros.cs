@@ -10,9 +10,9 @@ namespace sistema_gestion_biblioteca.Forms
     {
         libroControlador obj_controlador;
         bool modoEdicion = false;
-        string isbnSeleccionado;
         // Definimos el estado del libro predeterminado al momento de registrar
         string estado_libro = "Disponible";
+        int index_tabla = -1;
 
         public FrmRegistroLibros()
         {
@@ -24,6 +24,7 @@ namespace sistema_gestion_biblioteca.Forms
         {
             ActualizarDataGrid();
             cargarNombresHeaders();
+            dgLibros.ReadOnly = true;
 
             txtISBN.Text = "---";
             txtISBN.SelectionStart = 0;
@@ -135,10 +136,14 @@ namespace sistema_gestion_biblioteca.Forms
             }
 
             // validar que no existan valores duplicados
-            var valoresDuplicados = obj_controlador.validarLibrosDuplicados(txtISBN.Text);
-            if (valoresDuplicados)
+            if (!modoEdicion)
             {
-                MessageBox.Show("El libro ya existe. Intenta nuevamente", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var valoresDuplicados = obj_controlador.validarLibrosDuplicados(txtISBN.Text);
+                if (valoresDuplicados)
+                {
+                    MessageBox.Show("El libro ya existe. Intenta nuevamente", "Error de registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
 
             return true;
@@ -157,7 +162,7 @@ namespace sistema_gestion_biblioteca.Forms
                     }
                     else
                     {
-                        guardar = obj_controlador.actualizarLibro(isbnSeleccionado, txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
+                        guardar = obj_controlador.actualizarLibro(index_tabla, txtTitulo.Text, txtAutor.Text, Convert.ToInt32(txtNumeroPags.Text), txtGenero.Text, dtFechaIngreso.Text, dtFechaPublicacion.Text, txtDescripcion.Text, txtEditorial.Text, txtISBN.Text);
                     }
 
                     if (guardar)
@@ -178,14 +183,13 @@ namespace sistema_gestion_biblioteca.Forms
 
         void ActualizarLibro()
         {
-            if (dgLibros.SelectedRows.Count == 0)
+            if (dgLibros.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("Seleccione el libro a actualizar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             DataGridViewRow row = dgLibros.SelectedRows[0];
-            isbnSeleccionado = row.Cells[8].Value.ToString();
 
             txtTitulo.Text = row.Cells[0].Value.ToString();
             txtAutor.Text = row.Cells[1].Value.ToString();
@@ -195,7 +199,7 @@ namespace sistema_gestion_biblioteca.Forms
             dtFechaPublicacion.Text = row.Cells[5].Value.ToString();
             txtDescripcion.Text = row.Cells[6].Value.ToString();
             txtEditorial.Text = row.Cells[7].Value.ToString();
-            txtISBN.Text = isbnSeleccionado;
+            txtISBN.Text = row.Cells[8].Value.ToString();
 
             modoEdicion = true;
             btnActualizar.Text = "Guardar Cambios";
@@ -220,30 +224,28 @@ namespace sistema_gestion_biblioteca.Forms
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgLibros.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show("Seleccione el libro a eliminar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (MessageBox.Show("Deseas eliminar el libro ?", "Confirmacion de eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (dgLibros.CurrentCell != null)
+                    {
+                        if (index_tabla >= 0)
+                        {
+                            bool eliminar = obj_controlador.eliminarLibro(index_tabla);
+
+                            if (eliminar)
+                            {
+                                MessageBox.Show("Usuario eliminado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                ActualizarDataGrid();
+                            }
+                        }
+                    }
+                }
             }
-
-            var resultado = MessageBox.Show("¿Está seguro de que desea eliminar el libro seleccionado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
+            catch (Exception ex)
             {
-                DataGridViewRow row = dgLibros.SelectedRows[0];
-                string isbnEliminar = row.Cells[8].Value.ToString();
-                bool eliminado = obj_controlador.eliminarLibro(isbnEliminar);
-
-                if (eliminado)
-                {
-                    MessageBox.Show("Libro eliminado exitosamente", "Tarea exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ActualizarDataGrid();
-                    LimpiarCampos();
-                }
-                else
-                {
-                    MessageBox.Show("Error al eliminar el libro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show($"No se ha logrado eliminar el usuario {ex.Message}", "Tarea sin exito", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -315,6 +317,17 @@ namespace sistema_gestion_biblioteca.Forms
                 MessageBox.Show("La fecha de devolución no puede ser mayor a la fecha actual.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 dtFechaPublicacion.Value = DateTime.Now;
+            }
+        }
+
+        private void dgLibros_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgLibros.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                index_tabla = e.RowIndex;
+            } else
+            {
+                index_tabla = -1;
             }
         }
     }
