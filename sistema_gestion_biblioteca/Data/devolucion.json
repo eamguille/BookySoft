@@ -33,5 +33,19 @@
     "fecha_devolucion": "14/9/2024",
     "monto": "$0.00",
     "comentario": "Hola"
+  },
+  {
+    "titulo_libro": "CIEN AÑOS DE SOLEDAD",
+    "email_usuario": "eamguille@gmail.com",
+    "fecha_devolucion": "14/9/2024",
+    "monto": "$0.00",
+    "comentario": "Hola"
+  },
+  {
+    "titulo_libro": "EL AMOR EN LOS TIEMPOS DEL CÓLERA",
+    "email_usuario": "alex01@gmail.com",
+    "fecha_devolucion": "13/9/2024",
+    "monto": "$0.00",
+    "comentario": "XD"
   }
 ]

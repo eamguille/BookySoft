@@ -252,6 +252,11 @@ namespace sistema_gestion_biblioteca.Vista
             // Obtener la lista de préstamos desde el controlador
             var listaPrestamos = obj_prestamo_controlador.obtenerPrestamos();
 
+            // Variables para controlar el mensaje
+            bool devolucionEnPlazo = false;
+            decimal montoPenalizacion = 0;
+            string libroTitulo = string.Empty;
+
             if (listaPrestamos != null && listaPrestamos.Count > 0)
             {
                 foreach (var elemento in listaPrestamos)
@@ -267,10 +272,12 @@ namespace sistema_gestion_biblioteca.Vista
                         DateTimeStyles.None,
                         out DateTime fechaDevolucionEstablecida))
                     {
+                        libroTitulo = elemento.titulo_libro;
+
                         // Validar si la devolución se hizo dentro del plazo
                         if (fechaDevolucionReal <= fechaDevolucionEstablecida)
                         {
-                            MessageBox.Show($"Devolución realizada dentro del plazo para el libro: {elemento.titulo_libro}.");
+                            devolucionEnPlazo = true;
                             lblMonto.Text = "$0.00"; // No hay penalización si está dentro del plazo
                         }
                         else
@@ -285,23 +292,33 @@ namespace sistema_gestion_biblioteca.Vista
                             }
 
                             // Penalización de $5 por cada mes de atraso
-                            decimal montoPenalizacion = (mesesRetraso * 5) + 5;
+                            montoPenalizacion = (mesesRetraso * 5) + 5;
                             lblMonto.Text = $"${montoPenalizacion:0.00}";
-
-                            MessageBox.Show($"La devolución para el libro: {elemento.titulo_libro} se realizó fuera del plazo. Penalización: {lblMonto.Text}.");
                         }
                     }
                     else
                     {
                         MessageBox.Show("Error al convertir la fecha de devolución establecida para el préstamo.");
+                        return; // Salimos del método si ocurre un error
                     }
+                }
+
+                // Mostrar un solo mensaje después de completar la iteración
+                if (devolucionEnPlazo)
+                {
+                    MessageBox.Show($"Devolución realizada dentro del plazo para el libro: {libroTitulo}.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (montoPenalizacion > 0)
+                {
+                    MessageBox.Show($"La devolución para el libro: {libroTitulo} se realizó fuera del plazo. Penalización: {lblMonto.Text}.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("No se encontraron préstamos para validar.");
+                MessageBox.Show("No se encontraron préstamos para validar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         void validarFechaMontoSinMensaje()
         {

@@ -26,5 +26,19 @@
     "fecha_prestamo": "14/9/2024",
     "fecha_devolucion_estimada": "14/10/2024",
     "estado_prestamo": "En curso"
+  },
+  {
+    "titulo_libro": "CIEN AÑOS DE SOLEDAD",
+    "email_usuario": "eamguille@gmail.com",
+    "fecha_prestamo": "14/9/2024",
+    "fecha_devolucion_estimada": "14/10/2024",
+    "estado_prestamo": "Devuelto"
+  },
+  {
+    "titulo_libro": "EL AMOR EN LOS TIEMPOS DEL CÓLERA",
+    "email_usuario": "alex01@gmail.com",
+    "fecha_prestamo": "14/9/2024",
+    "fecha_devolucion_estimada": "14/10/2024",
+    "estado_prestamo": "Devuelto"
   }
 ]
